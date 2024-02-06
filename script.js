@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const seatMap = document.getElementById("seat-map");
     const checkoutBtn = document.getElementById("checkout-btn");
-    const seats = 40; // Number of seats in the cinema
+    const seats = 45; // Number of seats in the cinema
 
     // Create seats
     for (let i = 1; i <= seats; i++) {
