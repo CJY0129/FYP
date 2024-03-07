@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Booking</title>
     <link rel="stylesheet" href="styles.css">
-    <title>Cinema Seat Booking</title>
 </head>
+
 <body>
-    <div class="container">
-        <h2>Select a seat:</h2>
-        <div id="seat-map"></div>
-        <button id="checkout-btn">Checkout</button>
-    </div>
+    <h2>Seat Booking</h2>
+
+    <div id="seat-map"></div>
+
+    <button onclick="bookSeats()">Book Selected Seats</button>
+
     <script src="script.js"></script>
 </body>
+
 </html>
