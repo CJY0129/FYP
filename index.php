@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seat Booking</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="test.css">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
 
     <button onclick="bookSeats()">Book Selected Seats</button>
 
-    <script src="script.js"></script>
+    <script src="test.js"></script>
 </body>
 
 </html>
