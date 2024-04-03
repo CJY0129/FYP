@@ -1,5 +1,5 @@
 <?php
-// Assuming you have a database connection
+include("dataconnect.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $selectedSeats = $_POST["selectedSeats"];
