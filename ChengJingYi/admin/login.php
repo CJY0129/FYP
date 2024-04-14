@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -24,15 +23,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows == 1) {
-        // Authentication successful, set session variable and redirect to admin dashboard
-        $_SESSION['username'] = $_POST['loginUsername'];
-        header("Location: dashboard.html");
-        exit();
+        // Authentication successful, check if the user is a super admin
+        $row = $result->fetch_assoc();
+        if ($row['is_super_admin'] == 1) {
+            // User is a super admin, set session variable and redirect to admin dashboard
+            $_SESSION['username'] = $_POST['loginUsername'];
+            header("Location: super_dashboard.php");
+            exit();
+        } else {
+            // User is not a super admin, redirect back to login page with error
+            header("Location: dashboard.html");
+            exit();
+        }
     } else {
         // Authentication failed, redirect back to login page with error
         header("Location: index.php?error=1");
         exit();
-
     }
 
     // Close statement and connection
