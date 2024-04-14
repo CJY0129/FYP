@@ -35,9 +35,9 @@
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
-                    <h1>Dashboard</h1>
+                    
+                    <h1>CineTime Admin</h1>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                 </div>
               </div>
             </div>
@@ -60,7 +60,7 @@
                         }
                     ?>
                     <button type="submit" class="btn btn-primary">Login</button>
-                  </form><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+                  </form>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@
         </div>
       </div>
       <div class="copyrights text-center">
-         <p>2018 &copy; Your company. Download From <a target="_blank">Templates Hub</a>.</p>
+         <p>2024 &copy; CineTime.  <a target="_blank">Templates Hub</a>.</p>
       </div>
     </div>
     
