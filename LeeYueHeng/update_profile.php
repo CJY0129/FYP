@@ -3,13 +3,14 @@ include("connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $full_name = $_POST['full_name'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
     $gender = $_POST['gender'];
     $email = $_POST['email'];
-    $phone_no = $_POST['phone_no'];
+    $phone_number = $_POST['phone_number'];
 
     // Update query
-    $update_query = "UPDATE Customers SET Full_Name='$full_name', Gender='$gender', Email='$email', Phone_No='$phone_no' WHERE ID=1"; // Assuming ID=1 for demonstration
+    $update_query = "UPDATE user SET First_Name='$first_name', last_Name='$last_name', Gender='$gender', Email='$email', Phone_number='$phone_number' WHERE user_id=1"; // Assuming ID=1 for demonstration
 
     if ($conn->query($update_query) === TRUE) {
         // Update successful

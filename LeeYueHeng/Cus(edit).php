@@ -19,9 +19,10 @@
         <form method="post" action="update_profile.php"> <!-- Modified action to point to update_profile.php -->
             <table border="1">
                 <tr>
-                    <th>Your Name</th>
+                    <th>First Name / Last name</th>
                     <td>
-                        <input type="text" name="full_name" value="<?php echo $customer['Full_Name']; ?>">
+                        <input type="text" name="first_name" value="<?php echo $customer['first_name']; ?>">
+                        <input type="text" name="last_name" value="<?php echo $customer['last_name']; ?>">
                     </td>
                 </tr>
                 <tr>
@@ -33,13 +34,13 @@
                 <tr>
                     <th>Email</th>
                     <td>
-                        <input type="email" name="email" value="<?php echo $customer['Email']; ?>">
+                        <input type="email" name="email" value="<?php echo $customer['email']; ?>">
                     </td>
                 </tr>
                 <tr>
                     <th>Phone Number</th>
                     <td>
-                        <input type="text" name="phone_no" value="<?php echo $customer['Phone_No']; ?>">
+                        <input type="text" name="phone_number" value="<?php echo $customer['phone_number']; ?>">
                     </td>
                 </tr>
             </table>

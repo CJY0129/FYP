@@ -23,7 +23,7 @@
                 <th>Your Name</th>
                 <?php
                 foreach ($rows as $row) {
-                    echo "<td>" . $row["Full_Name"] . "</td>";
+                    echo "<td>" . $row["first_name"] ." ". $row["last_name"]. "</td>";
                 }
                 ?>
             </tr>
@@ -39,7 +39,7 @@
                 <th>Email</th>
                 <?php
                 foreach ($rows as $row) {
-                    echo "<td>" . $row["Email"] . "</td>";
+                    echo "<td>" . $row["email"] . "</td>";
                 }
                 ?>
             </tr>
@@ -47,7 +47,7 @@
                 <th>Phone Number</th>
                 <?php
                 foreach ($rows as $row) {
-                    echo "<td>" . $row["Phone_No"] . "</td>";
+                    echo "<td>" . $row["phone_number"] . "</td>";
                 }
                 ?>
             </tr>
