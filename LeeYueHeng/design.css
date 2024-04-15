@@ -1,0 +1,27 @@
+body {
+    background-image: url('theater-bg.jpg');
+    display: flex;
+    flex-direction: column; /* Ensure elements stack vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    text-align: center;
+}
+
+#mainbox {
+    background-color: lightgray;
+    width: auto;
+    border: 1px solid black;
+    padding: 20px;
+    margin-top: 20px; /* Add some space between the back button and the profile box */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+}

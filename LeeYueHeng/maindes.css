@@ -1,0 +1,20 @@
+body {
+    background-image: url('theater-bg.jpg');
+    color: rgba(255, 255, 255, 0.651);
+}
+
+#header h3 {
+    margin: 0;
+    padding: 10px;
+}
+
+.left-links {
+    float: left;
+    padding-right: 50px;
+}
+
+.right-links {
+    float: right;
+    color: rgba(255, 255, 255, 0.651);
+}
+
