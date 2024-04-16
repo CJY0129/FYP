@@ -9,10 +9,10 @@
 <body>
     <div id="header">
         <h3>
-            <span class="left-links">Now Showing</span>
-            <span class="left-links">Upcoming</span>
-            <span class="left-links">Coming Soon</span>
-            <a href="Customer.php" class="right-links">Profile</a>
+            <a href="Nowshowing.php" class="left-links">Now Showing</a>
+            <a href="Upcoming.php" class="left-links">Upcoming</a>
+            <a href="Comingsoon.php" class="left-links">Coming Soon</a>
+            <a href="customer/Customer.php" class="right-links">Profile</a>
         </h3>
     </div>
 </body>
