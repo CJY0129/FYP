@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: index.php");
+    exit();
+}
   include("connect.php");
 ?>
 
@@ -98,44 +106,18 @@
             <div class="title">
             <h1 class="h5">
               <?php
-               if (isset($_GET['admin'])) 
-               {
-                  $admin_id = $_GET['admin'];
-
-                  $stmt = $conn->prepare("SELECT admin_name FROM admin WHERE admin_id = ?");
-                  $stmt->bind_param("i", $admin_id);
-                  $stmt->execute();
-                  $result = $stmt->get_result();
-
-                  if ($result->num_rows > 0) {
-                      $row = $result->fetch_assoc();
-                      echo $row["admin_name"];
-                  } else {
-                      echo "Admin not found";
-                  }
-
-
-                  $stmt->close();
-              } else {
-                if(isset($_GET['superadmin'])) 
-                {
-                  echo "Super Admin";
-                } else {
-                  echo "Admin ID not provided";
-                }
-              }
-
+               echo  $_SESSION['admin_name'];  
             $conn->close();
               ?>
             </h1>
           </div>
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
-        <ul class="list-unstyled">
-                <li class="active"><a href="home.php"> <i class="icon-home"></i>Home </a></li>
-                <li><a href="tables.php"> <i class="icon-grid"></i>Tables </a></li>
-                <li><a href="charts.php"> <i class="fa fa-bar-chart"></i>Charts </a></li>
-                <li><a href="forms.php"> <i class="icon-padnote"></i>Forms </a></li>
+          <ul class="list-unstyled">
+            <li><a href="home.php?show=dashboard"><i class="icon-home"></i>Dashboard</a></li>
+            <li><a href="home.php?show=forms"><i class="icon-grid"></i>Forms</a></li>
+            <li><a href="home.php?show=tables"><i class="fa fa-bar-chart"></i>Tables</a></li>
+            <li><a href="home.php?show=charts"><i class="icon-padnote"></i>Charts</a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="#">Page</a></li>
@@ -144,10 +126,10 @@
                   </ul>
                 </li>
                 <?php
-                        if (isset($_GET['superadmin']) && $_GET['superadmin'] == 1) {
-                          echo '<li><a href="register.php"> <i class="icon-logout"></i>Register page </a></li>';
-                        }
-                    ?>
+                  if ($_SESSION['is_super_admin'] == 1) {
+                      echo '<li><a href="register.php"> <i class="icon-logout"></i>Register page </a></li>';
+                    }
+                  ?>
         </ul><span class="heading">Extras</span>
         <ul class="list-unstyled">
           <li> <a href="#"> <i class="icon-settings"></i>Demo </a></li>
@@ -156,12 +138,21 @@
         </ul>
       </nav>
       <!-- Sidebar Navigation end-->
-      <?php
-              include("dashboard.php");
-              include("forms.php");
-              include("tables.php");
-              include("charts.php");
-            ?>
+        <?php
+          // 根据需要显示不同的内容
+          if (isset($_GET['show']) && $_GET['show'] == 'dashboard') {
+            include("dashboard.php");
+          } elseif (isset($_GET['show']) && $_GET['show'] == 'forms') {
+            include("forms.php");
+          } elseif (isset($_GET['show']) && $_GET['show'] == 'tables') {
+            include("tables.php");
+          } elseif (isset($_GET['show']) && $_GET['show'] == 'charts') {
+            include("charts.php");
+          } else {
+            // 默认显示什么内容，这里可以自定义
+            include("dashboard.php");
+          }
+        ?>
     </div>
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
