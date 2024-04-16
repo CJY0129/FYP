@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2024 at 03:03 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Apr 16, 2024 at 05:09 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `admin` (
   `is_admin` tinyint(1) NOT NULL,
   `is_super_admin` tinyint(1) NOT NULL,
   `Email` varchar(100) DEFAULT NULL,
-  `PhoneNumber` int(11) DEFAULT NULL
+  `PhoneNumber` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -43,8 +43,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `is_admin`, `is_super_admin`, `Email`, `PhoneNumber`) VALUES
-(1, 'CTadmin', 'admin123', 'BOSS', 0, 1, 'ctboss.gmail.com', 123456789),
-(2, 'CJY', 'cjy123', 'Cheng Jing Yi', 1, 0, '1211208060@student.mmu.edu.my', 172471629);
+(1, 'CTadmin', 'admin123', 'BOSS', 0, 1, 'ctboss.gmail.com', '0123456789'),
+(2, 'CJY', 'cjy123', 'Cheng Jing Yi', 1, 0, '1211208060@student.mmu.edu.my', '0172471629');
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,7 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`booking_id`, `user_id`, `show_id`, `seat_id`, `ticket_type_id`, `booking_time`, `total_price`, `total_person`) VALUES
-(2, 1, 2, 2, 1, '2024-04-03 10:06:08', '20', 1);
+(2, 1, 2, 2, 1, '2024-04-03 10:06:08', 20, 18);
 
 -- --------------------------------------------------------
 
@@ -109,7 +109,7 @@ CREATE TABLE `hall` (
 --
 
 INSERT INTO `hall` (`hall_id`, `cinema_id`, `hall_type_id`, `number_of_seat`) VALUES
-(3, 1, '2D', 1);
+(3, 1, '2D', 20);
 
 -- --------------------------------------------------------
 
@@ -212,7 +212,7 @@ CREATE TABLE `ticket_type` (
 --
 
 INSERT INTO `ticket_type` (`ticket_type_id`, `name`, `price`) VALUES
-(1, 'Adult', '20');
+(1, 'Adult', 20);
 
 -- --------------------------------------------------------
 
@@ -226,7 +226,6 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  `Gender` char(1) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone_number` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -235,8 +234,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `first_name`, `last_name`, `Gender`, `email`, `phone_number`) VALUES
-(1, 'CJY', 'cjy123', 'Cheng', 'Jing Yi', 'M', '1211208060@gmail.com', '0172471629');
+INSERT INTO `user` (`user_id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone_number`) VALUES
+(1, 'CJY', 'cjy123', 'Cheng', 'Jing Yi', '1211208060@gmail.com', '0172471629');
 
 --
 -- Indexes for dumped tables
@@ -373,7 +372,7 @@ ALTER TABLE `ticket_type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

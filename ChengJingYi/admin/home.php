@@ -32,7 +32,7 @@ if (!isset($_SESSION['admin_id'])) {
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/CT.ico">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -117,7 +117,7 @@ if (!isset($_SESSION['admin_id'])) {
             <li><a href="home.php?show=dashboard"><i class="icon-home"></i>Dashboard</a></li>
             <li><a href="home.php?show=forms"><i class="icon-grid"></i>Forms</a></li>
             <li><a href="home.php?show=tables"><i class="fa fa-bar-chart"></i>Tables</a></li>
-            <li><a href="home.php?show=charts"><i class="icon-padnote"></i>Charts</a></li>
+            <li><a href="home.php?show=booking"><i class="icon-padnote"></i>Booking</a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="#">Page</a></li>
@@ -139,20 +139,28 @@ if (!isset($_SESSION['admin_id'])) {
       </nav>
       <!-- Sidebar Navigation end-->
         <?php
-          // 根据需要显示不同的内容
           if (isset($_GET['show']) && $_GET['show'] == 'dashboard') {
             include("dashboard.php");
           } elseif (isset($_GET['show']) && $_GET['show'] == 'forms') {
             include("forms.php");
           } elseif (isset($_GET['show']) && $_GET['show'] == 'tables') {
             include("tables.php");
-          } elseif (isset($_GET['show']) && $_GET['show'] == 'charts') {
-            include("charts.php");
+          } elseif (isset($_GET['show']) && $_GET['show'] == 'booking') {
+            include("booking.php");
           } else {
-            // 默认显示什么内容，这里可以自定义
             include("dashboard.php");
           }
         ?>
+        </section>
+        <footer class="footer">
+          <div class="footer__block block no-margin-bottom">
+            <div class="container-fluid text-center">
+              <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+               <p class="no-margin-bottom">2024 &copy; CineTime.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
