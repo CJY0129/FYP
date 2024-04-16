@@ -26,7 +26,9 @@
 
         <div class="mySlides fade">
             <div class="numbertext">2 / 3</div>
-            <img src="movie2.jpg" style="width:300px; height: 400px">
+            <a href="main.php">
+              <img src="movie2.jpg" style="width:300px; height: 400px">
+            </a>
             <div class="text">Caption Two</div>
         </div>
 
