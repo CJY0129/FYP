@@ -1,9 +1,13 @@
+<?php
+  include("connect.php");
+?>
+
 <!DOCTYPE html>
 <html>
   <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dark Bootstrap Admin </title>
+    <title>CineTime Admin </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -41,9 +45,9 @@
         </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
-            <!-- Navbar Header--><a href="home.html" class="navbar-brand">
-              <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Dark</strong><strong>Admin</strong></div>
-              <div class="brand-text brand-sm"><strong class="text-primary">D</strong><strong>A</strong></div></a>
+            <!-- Navbar Header--><a href="home.php" class="navbar-brand">
+              <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Cine</strong><strong>Time</strong></div>
+              <div class="brand-text brand-sm"><strong class="text-primary">C</strong><strong>T</strong></div></a>
             <!-- Sidebar Toggle Btn-->
             <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
           </div>
@@ -91,17 +95,47 @@
         <!-- Sidebar Header-->
         <div class="sidebar-header d-flex align-items-center">
           <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
-          <div class="title">
-            <h1 class="h5">Mark Stephen</h1>
-            <p>Web Designer</p>
+            <div class="title">
+            <h1 class="h5">
+              <?php
+               if (isset($_GET['admin'])) 
+               {
+                  $admin_id = $_GET['admin'];
+
+                  $stmt = $conn->prepare("SELECT admin_name FROM admin WHERE admin_id = ?");
+                  $stmt->bind_param("i", $admin_id);
+                  $stmt->execute();
+                  $result = $stmt->get_result();
+
+                  if ($result->num_rows > 0) {
+                      $row = $result->fetch_assoc();
+                      echo $row["admin_name"];
+                  } else {
+                      echo "Admin not found";
+                  }
+
+
+                  $stmt->close();
+              } else {
+                if(isset($_GET['superadmin'])) 
+                {
+                  echo "Super Admin";
+                } else {
+                  echo "Admin ID not provided";
+                }
+              }
+
+            $conn->close();
+              ?>
+            </h1>
           </div>
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-                <li class="active"><a href="home.html"> <i class="icon-home"></i>Home </a></li>
-                <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
-                <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
-                <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
+                <li class="active"><a href="home.php"> <i class="icon-home"></i>Home </a></li>
+                <li><a href="tables.php"> <i class="icon-grid"></i>Tables </a></li>
+                <li><a href="charts.php"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+                <li><a href="forms.php"> <i class="icon-padnote"></i>Forms </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="#">Page</a></li>
@@ -109,6 +143,11 @@
                     <li><a href="#">Page</a></li>
                   </ul>
                 </li>
+                <?php
+                        if (isset($_GET['superadmin']) && $_GET['superadmin'] == 1) {
+                          echo '<li><a href="register.php"> <i class="icon-logout"></i>Register page </a></li>';
+                        }
+                    ?>
         </ul><span class="heading">Extras</span>
         <ul class="list-unstyled">
           <li> <a href="#"> <i class="icon-settings"></i>Demo </a></li>
@@ -116,7 +155,6 @@
           <li> <a href="#"> <i class="icon-chart"></i>Demo </a></li>
         </ul>
       </nav>
-      <!-- Sidebar Navigation end-->
       <!-- Sidebar Navigation end-->
       <div class="page-content">
         <div class="page-header">
