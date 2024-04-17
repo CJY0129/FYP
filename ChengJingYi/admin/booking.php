@@ -18,7 +18,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="block margin-bottom-sm">
-                  <div class="title"><strong>Basic Table</strong></div>
+                  <div class="title"><strong>Booking Details</strong></div>
                   <div class="table-responsive"> 
                   <?php
                   // Assuming you have a database connection established

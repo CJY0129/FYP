@@ -114,7 +114,7 @@ if (!isset($_SESSION['admin_id'])) {
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
           <ul class="list-unstyled">
-            <li><a href="home.php?show=dashboard"><i class="icon-home"></i>Dashboard</a></li>
+            <li><a href="home.php?show=showtime"><i class="icon-home"></i>Showtime</a></li>
             <li><a href="home.php?show=forms"><i class="icon-grid"></i>Forms</a></li>
             <li><a href="home.php?show=tables"><i class="fa fa-bar-chart"></i>Tables</a></li>
             <li><a href="home.php?show=booking"><i class="icon-padnote"></i>Booking</a></li>
@@ -139,8 +139,8 @@ if (!isset($_SESSION['admin_id'])) {
       </nav>
       <!-- Sidebar Navigation end-->
         <?php
-          if (isset($_GET['show']) && $_GET['show'] == 'dashboard') {
-            include("dashboard.php");
+          if (isset($_GET['show']) && $_GET['show'] == 'showtime') {
+            include("showtime.php");
           } elseif (isset($_GET['show']) && $_GET['show'] == 'forms') {
             include("forms.php");
           } elseif (isset($_GET['show']) && $_GET['show'] == 'tables') {
@@ -148,7 +148,7 @@ if (!isset($_SESSION['admin_id'])) {
           } elseif (isset($_GET['show']) && $_GET['show'] == 'booking') {
             include("booking.php");
           } else {
-            include("dashboard.php");
+            include("showtime.php");
           }
         ?>
         </section>
