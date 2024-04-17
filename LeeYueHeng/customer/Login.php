@@ -1,30 +1,3 @@
-<?php
-include("connection.php");
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Assuming you're using POST method to submit the form
-
-    // Retrieve username and password from the form
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Validate username and password here if needed
-
-    // Query to select user with provided username and password
-    $sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // If user exists, fetch user data
-        $user = $result->fetch_assoc();
-    } else {
-        // Handle invalid login attempt
-        echo "Invalid username or password";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,14 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h3>
             <p>Login/Sign up</p>
         </h3>
-        <form method="post">
+        <form method="post" action="Checklogin.php">
             <table border="1">
                 <tr>
                     <th>
                         Username
                     </th>
                     <td>
-                        <input type="text" name="username" value="<?php echo isset($user['username']) ? $user['username'] : ''; ?>">
+                        <input type="text" name="username" value="">
                     </td>
                 </tr>
                 <tr>
@@ -53,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         Password
                     </th>
                     <td>
-                        <input type="password" name="password" value="<?php echo isset($user['password']) ? $user['password'] : ''; ?>">
+                        <input type="password" name="password" value="">
                     </td>
                 </tr>
             </table>
@@ -61,5 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
     <a href="../main(notlogin).php">Go back to main page</a>
+
+    <script>
+        // Check if there's an error query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        if (error) {
+            // Display an alert with the error message
+            alert(error);
+        }
+    </script>
 </body>
 </html>
