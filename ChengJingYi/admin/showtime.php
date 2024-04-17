@@ -34,7 +34,7 @@
                       $result = mysqli_query($conn, $query);
                       while ($row = mysqli_fetch_assoc($result)) {
                         // Display hall name and cinema ID
-                        echo '<option value="' . $row['hall_id'] . '">Hall: ' . $row['hall_type_id'] . ', Cinema ID: ' . $row['cinema_id'] . '</option>';
+                        echo '<option value="'. '">Hall: '. $row['hall_id'] . ', Hall Type: ' . $row['hall_type_id'] . ', Cinema ID: ' . $row['cinema_id'] . '</option>';
                       }
                       ?>
                     </select>
@@ -47,18 +47,6 @@
                     <label class="form-control-label">End Time</label>
                     <input type="datetime-local" name="end_time" class="form-control">
                   </div>
-                  <div class="form-group">
-                    <label class="form-control-label">Ticket Type </label>
-                    <select name="hall_id" class="form-control">
-                      <?php
-                      $query = "SELECT ticket_type_id, name, price FROM ticket_type";
-                      $result = mysqli_query($conn, $query);
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        // Display hall name and cinema ID
-                        echo '<option value="' . $row['ticket_type_id'] . '">Ticket Type: ' . $row['name'] . '</option>';
-                      }
-                      ?>
-                    </select>
                   <div class="form-group">
                     <input type="submit" value="Add Showtime" class="btn btn-primary">
                   </div>
