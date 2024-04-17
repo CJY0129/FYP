@@ -1,3 +1,5 @@
+<?php include("booking for.php");?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,19 +28,19 @@
       <form action="payment_process.php" method="POST">
         <div class="form-group">
           <label for="card-number">Card Number</label>
-          <input type="text" id="card-number" name="card-number" placeholder="Enter your card number" required>
+          <input type="number" id="card-number" name="card-number" placeholder="Enter your card number"  min="16" max="19" >
         </div>
         <div class="form-group">
           <label for="expiration-date">Expiration Date</label>
-          <input type="date" id="expiration-date" name="expiration-date" placeholder="DD/MM/YYYY" required>
+          <input type="date" id="expiration-date" name="expiration-date" placeholder="DD/MM/YYYY" >
         </div>
         <div class="form-group">
           <label for="cvv">CVV</label>
-          <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
+          <input type="text" id="cvv" name="cvv" placeholder="CVV" >
         </div>
         <div class="form-group">
           <label for="email">Your Email</label>
-          <input type="text" id="email" name="email" placeholder="xxxxxxxxxx@gmail.com" required>
+          <input type="text" id="email" name="email" placeholder="xxxxxxxxxx@gmail.com" >
         </div>
         <button type="submit">Pay Now</button>
       </form>
@@ -51,3 +53,5 @@
   </footer>
 </body>
 </html>
+
+
