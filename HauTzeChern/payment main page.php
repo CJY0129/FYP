@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cinema Website - Payment</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <header>
@@ -22,7 +22,15 @@
   </header>
   <section class="payment">
     <div class="container">
-      
+      <h3>Select payment method</h3>
+      <button type="button" class="pay-now-btn">
+        Online Banking
+
+    </button>
+
+    <button type="button" class="pay-now-btn">
+        Pay at counter
+    </button>
       
     </div>
   </section>
