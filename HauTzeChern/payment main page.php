@@ -1,3 +1,5 @@
+<?php include("booking for.php");?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +27,13 @@
       <h3>Select payment method</h3>
       <button type="button" class="pay-now-btn">
         Online Banking
+        <a href="online banking.php"></a>
 
     </button>
 
     <button type="button" class="pay-now-btn">
         Pay at counter
+        <a href=".php"></a>
     </button>
       
     </div>
