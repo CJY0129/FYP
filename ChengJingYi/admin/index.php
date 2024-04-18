@@ -37,7 +37,6 @@
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
-
                     <h1>CineTime Admin</h1>
                   </div>
                 </div>
