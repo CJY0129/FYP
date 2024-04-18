@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2024 at 05:09 PM
+-- Generation Time: Apr 18, 2024 at 03:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,7 +57,6 @@ CREATE TABLE `booking` (
   `user_id` int(10) NOT NULL,
   `show_id` int(10) NOT NULL,
   `seat_id` int(10) NOT NULL,
-  `ticket_type_id` int(10) NOT NULL,
   `booking_time` datetime NOT NULL,
   `total_price` decimal(10,0) NOT NULL,
   `total_person` int(10) NOT NULL
@@ -67,8 +66,8 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`booking_id`, `user_id`, `show_id`, `seat_id`, `ticket_type_id`, `booking_time`, `total_price`, `total_person`) VALUES
-(2, 1, 2, 2, 1, '2024-04-03 10:06:08', 20, 18);
+INSERT INTO `booking` (`booking_id`, `user_id`, `show_id`, `seat_id`, `booking_time`, `total_price`, `total_person`) VALUES
+(2, 1, 2, 2, '2024-04-03 10:06:08', 20, 18);
 
 -- --------------------------------------------------------
 
@@ -109,7 +108,10 @@ CREATE TABLE `hall` (
 --
 
 INSERT INTO `hall` (`hall_id`, `cinema_id`, `hall_type_id`, `number_of_seat`) VALUES
-(3, 1, '2D', 20);
+(1, 1, '3D', 40),
+(2, 1, '2D', 40),
+(3, 1, '3D', 20),
+(4, 1, '2D', 20);
 
 -- --------------------------------------------------------
 
@@ -127,7 +129,8 @@ CREATE TABLE `hall_type` (
 --
 
 INSERT INTO `hall_type` (`hall_type_id`, `type_name`) VALUES
-('2D', 'two dimension');
+('2D', 'two dimension'),
+('3D', 'three dimension');
 
 -- --------------------------------------------------------
 
@@ -151,7 +154,7 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`movie_id`, `title`, `genre`, `director`, `cast`, `synopsis`, `duration`, `release_date`) VALUES
-(1, 'The Matrix', 'Action, Sci-Fi', 'Lana Wachowski, Lilly Wachowski', 'Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss', 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.', 136, '1999-03-31');
+(1, 'kungfu panda 3', 'Action, Sci-Fi', 'Lana Wachowski, Lilly Wachowski', 'Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss', 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.', 136, '1999-03-31');
 
 -- --------------------------------------------------------
 
@@ -184,7 +187,6 @@ CREATE TABLE `showtime` (
   `Movie_id` int(10) NOT NULL,
   `Hall_id` int(10) NOT NULL,
   `show_time` date NOT NULL,
-  `ticket_type_id` int(10) NOT NULL,
   `end_time` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -192,27 +194,8 @@ CREATE TABLE `showtime` (
 -- Dumping data for table `showtime`
 --
 
-INSERT INTO `showtime` (`show_id`, `Movie_id`, `Hall_id`, `show_time`, `ticket_type_id`, `end_time`) VALUES
-(2, 1, 3, '2024-04-12', 1, '2024-04-20');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ticket_type`
---
-
-CREATE TABLE `ticket_type` (
-  `ticket_type_id` int(10) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `price` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `ticket_type`
---
-
-INSERT INTO `ticket_type` (`ticket_type_id`, `name`, `price`) VALUES
-(1, 'Adult', 20);
+INSERT INTO `showtime` (`show_id`, `Movie_id`, `Hall_id`, `show_time`, `end_time`) VALUES
+(2, 1, 3, '2024-04-12', '2024-04-20');
 
 -- --------------------------------------------------------
 
@@ -256,8 +239,7 @@ ALTER TABLE `booking`
   ADD PRIMARY KEY (`booking_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `show_id` (`show_id`),
-  ADD KEY `seat_id` (`seat_id`),
-  ADD KEY `ticket_type` (`ticket_type_id`);
+  ADD KEY `seat_id` (`seat_id`);
 
 --
 -- Indexes for table `cinema`
@@ -298,14 +280,7 @@ ALTER TABLE `seat`
 ALTER TABLE `showtime`
   ADD PRIMARY KEY (`show_id`),
   ADD KEY `Movie_id` (`Movie_id`),
-  ADD KEY `hall` (`Hall_id`),
-  ADD KEY `tickettype` (`ticket_type_id`);
-
---
--- Indexes for table `ticket_type`
---
-ALTER TABLE `ticket_type`
-  ADD PRIMARY KEY (`ticket_type_id`);
+  ADD KEY `hall` (`Hall_id`);
 
 --
 -- Indexes for table `user`
@@ -342,7 +317,7 @@ ALTER TABLE `cinema`
 -- AUTO_INCREMENT for table `hall`
 --
 ALTER TABLE `hall`
-  MODIFY `hall_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `hall_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `movie`
@@ -363,12 +338,6 @@ ALTER TABLE `showtime`
   MODIFY `show_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `ticket_type`
---
-ALTER TABLE `ticket_type`
-  MODIFY `ticket_type_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -384,7 +353,6 @@ ALTER TABLE `user`
 ALTER TABLE `booking`
   ADD CONSTRAINT `seat_id` FOREIGN KEY (`seat_id`) REFERENCES `seat` (`seat_id`),
   ADD CONSTRAINT `show_id` FOREIGN KEY (`show_id`) REFERENCES `showtime` (`show_id`),
-  ADD CONSTRAINT `ticket_type` FOREIGN KEY (`ticket_type_id`) REFERENCES `showtime` (`ticket_type_id`),
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
@@ -405,8 +373,7 @@ ALTER TABLE `seat`
 --
 ALTER TABLE `showtime`
   ADD CONSTRAINT `Movie_id` FOREIGN KEY (`Movie_id`) REFERENCES `movie` (`movie_id`),
-  ADD CONSTRAINT `hall` FOREIGN KEY (`Hall_id`) REFERENCES `hall` (`hall_id`),
-  ADD CONSTRAINT `tickettype` FOREIGN KEY (`ticket_type_id`) REFERENCES `ticket_type` (`ticket_type_id`);
+  ADD CONSTRAINT `hall` FOREIGN KEY (`Hall_id`) REFERENCES `hall` (`hall_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
