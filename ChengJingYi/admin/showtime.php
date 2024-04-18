@@ -5,6 +5,39 @@
       <h2 class="h5 no-margin-bottom">Showtime</h2>
     </div>
   </div>
+  <?php
+if (isset($_GET['show']) && $_GET['show'] == 'showtime') 
+{
+  if (isset($_GET['success']) && $_GET['success'] == '1') 
+  {
+    echo '<div class="alert alert-danger">New Showtime added succesfully.</div>';
+  }
+  else if(isset($_GET['success']) && $_GET['success'] == '2') 
+  {
+    echo '<div class="alert alert-danger">Showtime deleted succesfully.</div>';
+  }
+  else if(isset($_GET['success']) && $_GET['success'] == '3') 
+  {
+    echo '<div class="alert alert-danger">Showtime updated succesfully.</div>';
+  }
+
+
+  if (isset($_GET['error']) && $_GET['error'] == '1') 
+  {
+    echo '<div class="alert alert-danger">Error adding new Showtime.</div>';
+  }
+  else if(isset($_GET['error']) && $_GET['error'] == '2') 
+  {
+    echo '<div class="alert alert-danger">Error deleting Showtime.</div>';
+  }
+  else if(isset($_GET['error']) && $_GET['error'] == '3') 
+  {
+    echo '<div class="alert alert-danger">Error updating Showtime.</div>';
+  }
+
+  
+}
+?>
   <section class="no-padding-top no-padding-bottom">
     <div class="container-fluid">
       <div class="row">
@@ -57,7 +90,7 @@
                   echo '<td>' . $row['show_time'] . '</td>';
                   echo '<td>' . $row['end_time'] . '</td>';
                   echo '<td>' . $row['price'] . '</td>';
-                  echo '<td><a href="edit_showtime.php?show_id=' . $row['show_id'] . '">Edit</a> | <a href="delete_showtime.php?show_id=' . $row['show_id'] . '">Delete</a></td>';
+                  echo '<td><a href="home.php?show=showtime&edit=1&show_id=' . $row['show_id'] . '">Edit</a> | <a href="delete_showtime.php?show_id=' . $row['show_id'] . '">Delete</a></td>';
                   echo '</tr>';
                 }
 
@@ -74,6 +107,15 @@
       </div>
     </div>
   </section>
+  <?php
+    if (isset($_GET['show']) && $_GET['show'] == 'showtime') 
+    {
+      if(isset($_GET['edit']) && $_GET['edit'] == '1')
+      {
+        include("edit_showtime.php");
+      }
+    }
+  ?>
   <section class="no-padding-top no-padding-bottom">
     <div class="container-fluid">
       <div class="row">
@@ -140,20 +182,6 @@
   </section>
 </div>
 
-<?php
-if (isset($_GET['show']) && $_GET['show'] == 'showtime') {
-  if (isset($_GET['success']) && $_GET['success'] == '1') {
-    echo '<script>alert("New Showtime added succesfully.")</script>';
-  }else if(isset($_GET['success']) && $_GET['success'] == '2') {
-    echo '<script>alert("Showtime deleted succesfully.")</script>';
-  }
-  
-  if (isset($_GET['error']) && $_GET['error'] == '1') {
-    echo '<script>alert("Error adding new Showtime.")</script>';
-  }else if(isset($_GET['error']) && $_GET['error'] == '2') {
-    echo '<script>alert("Error deleting Showtime.")</script>';
-  }
-}
-?>
+
 
 
