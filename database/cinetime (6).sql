@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2024 at 03:24 PM
+-- Generation Time: Apr 18, 2024 at 04:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -58,7 +58,7 @@ CREATE TABLE `booking` (
   `show_id` int(10) NOT NULL,
   `seat_id` int(10) NOT NULL,
   `booking_time` datetime NOT NULL,
-  `total_price` decimal(10,0) NOT NULL,
+  `total_price` decimal(5,2) NOT NULL,
   `total_person` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -67,7 +67,7 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`booking_id`, `user_id`, `show_id`, `seat_id`, `booking_time`, `total_price`, `total_person`) VALUES
-(2, 1, 2, 2, '2024-04-03 10:06:08', 20, 18);
+(2, 1, 2, 2, '2024-04-03 10:06:08', 20.00, 18);
 
 -- --------------------------------------------------------
 
@@ -187,15 +187,16 @@ CREATE TABLE `showtime` (
   `Movie_id` int(10) NOT NULL,
   `Hall_id` int(10) NOT NULL,
   `show_time` date NOT NULL,
-  `end_time` date NOT NULL
+  `end_time` date NOT NULL,
+  `price` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `showtime`
 --
 
-INSERT INTO `showtime` (`show_id`, `Movie_id`, `Hall_id`, `show_time`, `end_time`) VALUES
-(2, 1, 3, '2024-04-12', '2024-04-20');
+INSERT INTO `showtime` (`show_id`, `Movie_id`, `Hall_id`, `show_time`, `end_time`, `price`) VALUES
+(2, 1, 3, '2024-04-12', '2024-04-20', 20.00);
 
 -- --------------------------------------------------------
 
