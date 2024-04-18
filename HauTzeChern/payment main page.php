@@ -26,20 +26,20 @@
     <div class="container">
       <h3>Select payment method</h3>
       <button type="button" class="pay-now-btn">
-        Online Banking
-        <a href="online banking.php"></a>
+      
+        <a href="online banking.php">Online Banking</a>
 
     </button>
 
     <button type="button" class="pay-now-btn">
-        Pay at counter
-        <a href=".php"></a>
+        
+        <a href="receipt.php">Pay at counter</a>
     </button>
       
     </div>
   </section>
   <footer>
-    <div class="container">
+    <div class="foot_container">
       <p>&copy; 2024 CineTime</p>
     </div>
   </footer>

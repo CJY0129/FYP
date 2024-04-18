@@ -7,15 +7,21 @@
     <link rel="stylesheet" type="text/css" href="maindes.css"/>
 </head>
 <body>
-    <div id="header">
+    <header>
+    <div id="container">
+        <h1>CineTime</h1>
         <h3>
-            <a href="Nowshowing.php" class="left-links">Now Showing</a>
-            <a href="Upcoming.php" class="left-links">Upcoming</a>
-            <a href="Comingsoon.php" class="left-links">Coming Soon</a>
-            <a href="customer/Login.php" class="right-links">Login/Sign up</a>
+            <nav>
+            <ul>
+            <li><a href="Nowshowing.php" class="left-links">Now Showing</a></li>
+            <li><a href="Upcoming.php" class="left-links">Upcoming</a></li>
+            <li><a href="Comingsoon.php" class="left-links">Coming Soon</a></li>
+            <li><a href="customer/Login.php" class="right-links">Login/Sign up</a></li>
+            </ul>
+            </nav>
         </h3>
     </div>
-    
+</header>
     <div class="slideshow-container">
 
         <div class="mySlides fade">
