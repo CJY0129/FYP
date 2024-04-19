@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,13 @@
             <li><a href="Nowshowing.php" class="left-links">Now Showing</a></li>
             <li><a href="Upcoming.php" class="left-links">Upcoming</a></li>
             <li><a href="Comingsoon.php" class="left-links">Coming Soon</a></li>
-            <li><a href="customer/Login.php" class="right-links">Login/Sign up</a></li>
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <form method="post">
+                    <li><button type="submit" name="logout" class="right-links">Logout</button></li>
+                </form>
+            <?php else: ?>
+                <li><a href="customer/Login.php" class="right-links">Login/Sign up</a></li>
+            <?php endif; ?>
             </ul>
             </nav>
         </h3>
@@ -25,13 +32,11 @@
     <div class="slideshow-container">
 
         <div class="mySlides fade">
-            <div class="numbertext">1 / 3</div>
             <img src="movie1.jpg" style="width:300px; height: 400px">
             <div class="text">Caption Text</div>
         </div>
 
         <div class="mySlides fade">
-            <div class="numbertext">2 / 3</div>
             <a href="main.php">
               <img src="movie2.jpg" style="width:300px; height: 400px">
             </a>
@@ -39,19 +44,12 @@
         </div>
 
         <div class="mySlides fade">
-            <div class="numbertext">3 / 3</div>
             <img src="movie3.jpg" style="width:300px; height: 400px">
             <div class="text">Caption Three</div>
         </div>
 
     </div>
     <br>
-
-    <div style="text-align:center">
-        <span class="dot"></span> 
-        <span class="dot"></span> 
-        <span class="dot"></span> 
-    </div>
 
     <script>
         let slideIndex = 0;

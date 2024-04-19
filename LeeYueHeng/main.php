@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" type="text/css" href="maindes.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-cTz51lJqGg2K2H/J2zEe7lL2/5C6+M7k5WjHt/5Y/ObduamDdp2rVsW1yeO8vlHChz3xU0ZgD/HgFONcR40gMw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
@@ -16,7 +17,61 @@
             <li><a href="Nowshowing.php" class="left-links">Now Showing</a></li>
             <li><a href="Upcoming.php" class="left-links">Upcoming</a></li>
             <li><a href="Comingsoon.php" class="left-links">Coming Soon</a></li>
-            <li><a href="customer/Customer.php" class="right-links">Profile</a></li>
+            <div class="dropdown">
+            <button class="dropbtn">
+            <i class='fas fa-user-circle'></i><!-- Font Awesome user icon -->
+                <?php
+                // Assuming you have established a database connection
+                include("customer/connection.php");
+
+                // Assuming you have a session or some other means of identifying the user
+                $user_id = 1; // Example user ID
+
+                // Fetch user data from the database
+                $sql = "SELECT * FROM user WHERE user_id = $user_id"; // Adjust this query according to your database structure
+                $result = $conn->query($sql); 
+
+                // Check if the query returned any rows
+                if ($result->num_rows > 0) {
+                    // Fetch the data from the result set
+                    $row = $result->fetch_assoc();
+
+                    // Extract gender and first name information from the fetched row
+                    $gender = $row['Gender'];
+                    $firstname = $row['first_name'];
+
+                    // Output Mr. or Ms. followed by the first name
+                    if ($gender == 'M') {
+                        echo 'Mr. ' . $firstname;
+                    } else {
+                        echo 'Ms. ' . $firstname;
+                    }
+                } else {
+                    echo "No user found"; // Handle case where no user is found
+                }
+                ?>
+            </button>
+                <div class="dropdown-content">
+                    <a href="customer/Customer.php">View Profile</a>
+                    <a href="#" onclick="confirmLogout()">Log out</a>
+                </div>
+                <script>
+                    function confirmLogout() 
+                    {
+                        var confirmation = confirm("Are you sure you want to log out?");
+                        if (confirmation) 
+                        {
+                            // If user clicks "OK" (true), redirect to the logout page
+                            window.location.href = "main(notlogin).php";
+                        } 
+                        else 
+                        {
+                            // If user clicks "Cancel" (false), do nothing
+                            return false;
+                        }
+                }
+                </script>
+            </div>
             </ul>
             </nav>
         </h3>
@@ -25,13 +80,11 @@
     <div class="slideshow-container">
 
         <div class="mySlides fade">
-            <div class="numbertext">1 / 3</div>
             <img src="movie1.jpg" style="width:300px; height: 400px">
             <div class="text">Caption Text</div>
         </div>
 
         <div class="mySlides fade">
-            <div class="numbertext">2 / 3</div>
             <a href="main.php">
               <img src="movie2.jpg" style="width:300px; height: 400px">
             </a>
@@ -39,7 +92,6 @@
         </div>
 
         <div class="mySlides fade">
-            <div class="numbertext">3 / 3</div>
             <img src="movie3.jpg" style="width:300px; height: 400px">
             <div class="text">Caption Three</div>
         </div>
@@ -47,11 +99,6 @@
     </div>
     <br>
 
-    <div style="text-align:center">
-        <span class="dot"></span> 
-        <span class="dot"></span> 
-        <span class="dot"></span> 
-    </div>
 
     <script>
         let slideIndex = 0;
