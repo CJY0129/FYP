@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2024 at 04:32 PM
+-- Generation Time: Apr 19, 2024 at 06:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -67,7 +67,7 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`booking_id`, `user_id`, `show_id`, `seat_id`, `booking_time`, `total_price`, `total_person`) VALUES
-(2, 1, 2, 2, '2024-04-03 10:06:08', 20.00, 18);
+(2, 1, 2, 2, '2024-04-03 10:06:08', 20.00, 20);
 
 -- --------------------------------------------------------
 
@@ -146,15 +146,16 @@ CREATE TABLE `movie` (
   `cast` text NOT NULL,
   `synopsis` text NOT NULL,
   `duration` int(3) NOT NULL,
-  `release_date` date NOT NULL
+  `release_date` date NOT NULL,
+  `poster_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `movie`
 --
 
-INSERT INTO `movie` (`movie_id`, `title`, `genre`, `director`, `cast`, `synopsis`, `duration`, `release_date`) VALUES
-(1, 'kungfu panda 3', 'Action, Sci-Fi', 'Lana Wachowski, Lilly Wachowski', 'Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss', 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.', 136, '1999-03-31');
+INSERT INTO `movie` (`movie_id`, `title`, `genre`, `director`, `cast`, `synopsis`, `duration`, `release_date`, `poster_path`) VALUES
+(1, 'The Matrix', 'Action, Sci-Fi', 'Lana Wachowski, Lilly Wachowski', 'Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss', 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.', 136, '1999-03-31', '');
 
 -- --------------------------------------------------------
 
@@ -186,8 +187,8 @@ CREATE TABLE `showtime` (
   `show_id` int(10) NOT NULL,
   `Movie_id` int(10) NOT NULL,
   `Hall_id` int(10) NOT NULL,
-  `show_time` date NOT NULL,
-  `end_time` date NOT NULL,
+  `show_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
   `price` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -196,7 +197,8 @@ CREATE TABLE `showtime` (
 --
 
 INSERT INTO `showtime` (`show_id`, `Movie_id`, `Hall_id`, `show_time`, `end_time`, `price`) VALUES
-(2, 1, 3, '2024-04-12', '2024-04-20', 20.00);
+(2, 1, 3, '2024-04-10 03:03:00', '2024-04-19 14:01:00', 20.00),
+(4, 1, 2, '2024-04-18 14:08:00', '2024-04-19 23:11:00', 18.00);
 
 -- --------------------------------------------------------
 
@@ -315,28 +317,16 @@ ALTER TABLE `cinema`
   MODIFY `cinema_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `hall`
---
-ALTER TABLE `hall`
-  MODIFY `hall_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
   MODIFY `movie_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `seat`
---
-ALTER TABLE `seat`
-  MODIFY `seat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `showtime`
 --
 ALTER TABLE `showtime`
-  MODIFY `show_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `show_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
