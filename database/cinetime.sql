@@ -156,7 +156,6 @@ CREATE TABLE `movie` (
   `synopsis` text NOT NULL,
   `duration` int(3) NOT NULL,
   `release_date` date NOT NULL,
-  `poster_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
