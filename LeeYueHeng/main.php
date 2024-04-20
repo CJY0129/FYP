@@ -77,26 +77,30 @@
         </h3>
     </div>
 </header>
-    <div class="slideshow-container">
+<div class="slideshow-container">
 
-        <div class="mySlides fade">
-            <img src="movie1.jpg" style="width:300px; height: 400px">
-            <div class="text">Caption Text</div>
-        </div>
+<div class="mySlides fade">
+    <a href="Moviedetails/moviedesc.php?id=1">
+        <img src="Moviedetails/movie1.jpg" style="width:300px; height: 400px">
+    </a>
+    <div class="text">Endgame</div>
+</div>
 
-        <div class="mySlides fade">
-            <a href="main.php">
-              <img src="movie2.jpg" style="width:300px; height: 400px">
-            </a>
-            <div class="text">Caption Two</div>
-        </div>
+<div class="mySlides fade">
+    <a href="Moviedetails/moviedesc.php?id=2">
+        <img src="Moviedetails/movie2.jpg" style="width:300px; height: 400px">
+    </a>
+    <div class="text">Jaws</div>
+</div>
 
-        <div class="mySlides fade">
-            <img src="movie3.jpg" style="width:300px; height: 400px">
-            <div class="text">Caption Three</div>
-        </div>
+<div class="mySlides fade">
+    <a href="Moviedetails/moviedesc.php?id=3">
+        <img src="Moviedetails/movie3.jpg" style="width:300px; height: 400px">
+    </a>
+    <div class="text">Jaws</div>
+</div>
 
-    </div>
+</div>
     <br>
 
 

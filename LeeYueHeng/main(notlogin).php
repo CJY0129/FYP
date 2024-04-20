@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,43 +8,46 @@
 </head>
 <body>
     <header>
-    <div id="container">
-        <h1>CineTime</h1>
-        <h3>
-            <nav>
-            <ul>
-            <li><a href="Nowshowing.php" class="left-links">Now Showing</a></li>
-            <li><a href="Upcoming.php" class="left-links">Upcoming</a></li>
-            <li><a href="Comingsoon.php" class="left-links">Coming Soon</a></li>
-            <?php if(isset($_SESSION['user_id'])): ?>
-                <form method="post">
-                    <li><button type="submit" name="logout" class="right-links">Logout</button></li>
-                </form>
-            <?php else: ?>
-                <li><a href="customer/Login.php" class="right-links">Login/Sign up</a></li>
-            <?php endif; ?>
-            </ul>
-            </nav>
-        </h3>
-    </div>
-</header>
+        <div id="container">
+            <h1>CineTime</h1>
+            <h3>
+                <nav>
+                    <ul>
+                        <li><a href="Nowshowing.php" class="left-links">Now Showing</a></li>
+                        <li><a href="Upcoming.php" class="left-links">Upcoming</a></li>
+                        <li><a href="Comingsoon.php" class="left-links">Coming Soon</a></li>
+                        <?php if(isset($_SESSION['user_id'])): ?>
+                            <form method="post">
+                                <li><button type="submit" name="logout" class="right-links">Logout</button></li>
+                            </form>
+                        <?php else: ?>
+                            <li><a href="customer/Login.php" class="right-links">Login/Sign up</a></li>
+                        <?php endif; ?>
+                    </ul>
+                </nav>
+            </h3>
+        </div>
+    </header>
+    
     <div class="slideshow-container">
 
         <div class="mySlides fade">
-            <img src="movie1.jpg" style="width:300px; height: 400px">
-            <div class="text">Caption Text</div>
-        </div>
-
-        <div class="mySlides fade">
-            <a href="main.php">
-              <img src="movie2.jpg" style="width:300px; height: 400px">
+            <a href="Moviedetails/moviedesc.php?id=1">
+                <img src="Moviedetails/movie1.jpg" style="width:300px; height: 400px">
             </a>
-            <div class="text">Caption Two</div>
+            <div class="text">Endgame</div>
         </div>
 
         <div class="mySlides fade">
-            <img src="movie3.jpg" style="width:300px; height: 400px">
-            <div class="text">Caption Three</div>
+            <a href="Moviedetails/moviedesc.php?id=2">
+                <img src="Moviedetails/movie2.jpg" style="width:300px; height: 400px">
+            </a>
+            <div class="text">Jaws</div>
+        </div>
+
+        <div class="mySlides fade">
+            <img src="Moviedetails/movie3.jpg" style="width:300px; height: 400px">
+            <div class="text">68</div>
         </div>
 
     </div>
@@ -58,18 +60,13 @@
         function showSlides() {
             let i;
             let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";  
             }
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}    
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
             slides[slideIndex-1].style.display = "block";  
-            dots[slideIndex-1].className += " active";
-            setTimeout(showSlides, 5000); // Change image every 2 seconds
+            setTimeout(showSlides, 5000); // Change image every 5 seconds
         }
     </script>
 </body>
