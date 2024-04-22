@@ -83,7 +83,7 @@
                         <input type="submit" value="Submit" class="btn btn-primary">
                       </div>
                     </form>
-                  </div>
+                  </div>  
                 </div>
               </div>
               <!-- Modal Form-->

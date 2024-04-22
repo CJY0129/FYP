@@ -100,6 +100,7 @@ if (!isset($_SESSION['admin_id'])) {
             <li><a href="home.php?show=forms"><i class="icon-grid"></i>Forms</a></li>
             <li><a href="home.php?show=tables"><i class="fa fa-bar-chart"></i>Tables</a></li>
             <li><a href="home.php?show=booking"><i class="icon-padnote"></i>Booking</a></li>
+            <li><a href="home.php?show=movie"><i class="icon-writing-whiteboard"></i>Movies</a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="#">Page</a></li>
@@ -123,12 +124,14 @@ if (!isset($_SESSION['admin_id'])) {
         <?php
           if (isset($_GET['show']) && $_GET['show'] == 'showtime') {
             include("showtime.php");
-          } elseif (isset($_GET['show']) && $_GET['show'] == 'forms') {
+          } else if (isset($_GET['show']) && $_GET['show'] == 'forms') {
             include("forms.php");
-          } elseif (isset($_GET['show']) && $_GET['show'] == 'tables') {
+          } else if (isset($_GET['show']) && $_GET['show'] == 'tables') {
             include("tables.php");
-          } elseif (isset($_GET['show']) && $_GET['show'] == 'booking') {
+          } else if (isset($_GET['show']) && $_GET['show'] == 'booking') {
             include("booking.php");
+          } elseif (isset($_GET['show']) && $_GET['show'] == 'movie') {
+            include("movie.php");
           } else {
             include("showtime.php");
           }
@@ -137,7 +140,6 @@ if (!isset($_SESSION['admin_id'])) {
         <footer class="footer">
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
-              <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
                <p class="no-margin-bottom">2024 &copy; CineTime.</p>
             </div>
           </div>
