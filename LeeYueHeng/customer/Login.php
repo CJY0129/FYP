@@ -33,6 +33,7 @@
             <input type="submit" value="Login">
         </form>
     </div>
+    <a href="Signup.php">Sign up now</a>
     <a href="../main(notlogin).php">Go back to main page</a>
 
     <script>
