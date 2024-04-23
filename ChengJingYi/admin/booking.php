@@ -29,7 +29,7 @@
 
                   // Check if there are any rows returned
                   if (mysqli_num_rows($result) > 0) {
-                    echo '<table class="table">';
+                    echo '<table class="table table-striped table-sm">';
                     echo '<thead>';
                     echo '<tr>';
                     echo '<th>Booking ID</th>';
