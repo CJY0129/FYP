@@ -1,4 +1,7 @@
 <?php
+// Start the session
+session_start();
+
 // Include the database connection file
 include("connection.php");
 
@@ -18,19 +21,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // If user exists, redirect to main page
-        header("Location: ../main.php"); // Change "main.php" to the actual main page URL
+        // If user exists, fetch user ID
+        $row = $result->fetch_assoc();
+        $userid = $row['user_id'];
+        
+        // Store user ID in session
+        $_SESSION['user_id'] = $userid;
+
+        // Redirect to main page with user ID parameter
+        header("Location: ../main.php");
         exit();
     } else {
         // If user doesn't exist, set error message
-        echo $error_msg = "Invalid username or password";
+        $error_msg = "Invalid username or password";
         // Redirect back to the login page with error message
-        header("Location: login.php?error=" . urlencode($error_msg)); // Change "login.php" to the actual login page URL
+        header("Location: login.php?error=" . urlencode($error_msg));
         exit();
     }
 } else {
     // If the form is not submitted, redirect back to the login page
-    header("Location: login.php"); // Change "login.php" to the actual login page URL
+    header("Location: login.php");
     exit();
 }
 ?>

@@ -1,7 +1,7 @@
 body {
     background-image: url("../theater-bg.jpg");
     color: #fff;
-
+    margin: 0;
 }
 
 .container {

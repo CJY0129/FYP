@@ -1,17 +1,4 @@
-<?php 
-include("connection.php");
-
-// Check if the 'userid' parameter is set in the URL
-if(isset($_GET['userid'])) {
-    // Retrieve the user ID from the URL
-    $user_id = $_GET['userid'];
-    
-    // Fetch user data from the database based on the user ID
-    $sql = "SELECT * FROM user WHERE user_id = $user_id";
-    $result = $conn->query($sql);
-    $rows = $result->fetch_all(MYSQLI_ASSOC);
-}
-?>
+<?php include("connection.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">

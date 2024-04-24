@@ -1,3 +1,4 @@
+@ -1,37 +1,38 @@
 <?php
 include("connection.php");
 
@@ -7,29 +8,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $last_name = $_POST['last_name'];
     $gender = $_POST['gender'];
     $email = $_POST['email'];
-    $phone_number = $_POST['phone_number'];
+     $phone_number = $_POST['phone_number'];
 
-    // Check if the 'userid' parameter is set in the URL
-    if(isset($_GET['userid'])) {
-        // Retrieve the user ID from the URL
-        $user_id = $_GET['userid'];
-        
-        // Update query
-        $update_query = "UPDATE user SET first_name='$first_name', last_name='$last_name', Gender='$gender', email='$email', phone_number='$phone_number' WHERE user_id=$user_id";
+    // Update query
+     $update_query = "UPDATE user SET First_Name='$first_name', last_Name='$last_name', Gender='$gender', Email='$email', Phone_number='$phone_number' WHERE user_id=1"; // Assuming ID=1 for demonstration
 
-        if ($conn->query($update_query) === TRUE) {
-            // Update successful
-            echo "<script>alert('Information updated!');</script>";
-            echo "<script>window.location.href='Customer.php?userid=$user_id';</script>"; // Redirect back to the Customer.php page
-            exit; // Terminate script execution after redirection
-        } else {
-            // Error handling
-            echo "Error updating record: " . $conn->error;
-        }
+    if ($conn->query($update_query) === TRUE) {
+        // Update successful
+        echo "<script>alert('Information updated!');</script>";
+        echo "<script>window.location.href='customer.php';</script>"; // Redirect back to the customer.php page
+        exit; // Terminate script execution after redirection
+    } else {
+        // Error handling
+        echo "Error updating record: " . $conn->error;
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
