@@ -95,9 +95,9 @@ body {
 
   .connection
   {
-  color: black;
-  background-color: white;
-  
+  color: white;
+  background-color: black;
+  text-align: center;
   }
   
   

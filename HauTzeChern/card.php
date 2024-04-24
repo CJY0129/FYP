@@ -29,11 +29,10 @@
       <h2>Make A Payment</h2>
       <form action="payment_process.php" method="POST">
 
-      <div class="form-group">
-        <label for="connection">Booking Details<br><br></label>
-
-  <?php include("booking for.php");?>
-</div>
+      <div class="connection">
+      <label for="connection">Booking Details<br><br></label>
+      <?php include("booking for.php");?>
+      </div>
 
       <div class="mode">
         <label for="mode">Card Type</label>

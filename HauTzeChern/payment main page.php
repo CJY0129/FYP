@@ -23,36 +23,28 @@
     </div>
   </header>
 
-  <div class="form-group">
-        <label for="connection">Booking Details</label>
-  <?php include("booking for.php");?>
-</div>
-  <section class="payment">
-    <div class="container">
-      <h3>Select payment method</h3>
-      <button type="button" class="pay-now-btn">
-      
-        <a href="online banking.php">Online Banking</a>
+  <main>
+    <section class="booking-details">
+      <div class="container">
+        <h2>Booking Details</h2>
+        <?php include("booking for.php"); ?>
+      </div>
+    </section>
 
-    </button>
+    <section class="payment-methods">
+      <div class="container">
+        <h3>Select payment method</h3>
+        <ul>
+          <li><a href="online banking.php">Online Banking</a></li>
+          <li><a href="card.php">Credit card/Debit card</a></li>
+          <li><a href="receipt.php">Pay at counter</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
-    <button type="button" class="pay-now-btn">
-      
-        <a href="card.php">Credit card/Debit card</a>
-        </button>
-       
-
-    
-
-    <button type="button" class="pay-now-btn">
-        
-        <a href="receipt.php">Pay at counter</a>
-    </button>
-      
-    </div>
-  </section>
   <footer>
-    <div class="foot_container">
+    <div class="container">
       <p>&copy; 2024 CineTime</p>
     </div>
   </footer>
