@@ -1,7 +1,7 @@
 <?php
 
 
-// Define an array of banks with their respective URLs for online banking portals
+
 $banks = array(
     "CIMB" => "https://www.cimbclicks.com.my/",
     "Maybank" => "https://www.maybank2u.com.my/",
@@ -9,18 +9,16 @@ $banks = array(
     "RHB" => "https://www.rhbgroup.com/"
 );
 
-// Check if a bank is selected
+
 if (isset($_POST['bank'])) {
-    // Retrieve the selected bank
+   
     $selectedBank = $_POST['bank'];
 
-    // Check if the selected bank exists in the array
+  
     if (array_key_exists($selectedBank, $banks)) {
-        // Redirect the user to the selected bank's online banking portal
         header("Location: " . $banks[$selectedBank]);
         exit;
     } else {
-        // If the selected bank is not found, display an error message
         $error = "Invalid bank selection.";
     }
 }
