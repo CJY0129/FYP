@@ -51,6 +51,7 @@ body {
   .payment .form-group {
     color: aliceblue;
     margin-bottom: 20px;
+    padding-bottom:  10px; 
   }
   
   .payment label {
@@ -84,3 +85,11 @@ body {
     text-align: center;
     color: #fff;
   }
+
+  .mode
+  {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+

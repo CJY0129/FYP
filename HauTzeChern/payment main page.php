@@ -32,6 +32,14 @@
     </button>
 
     <button type="button" class="pay-now-btn">
+      
+        <a href="card.php">Credit card/Debit card</a>
+        </button>
+       
+
+    
+
+    <button type="button" class="pay-now-btn">
         
         <a href="receipt.php">Pay at counter</a>
     </button>
