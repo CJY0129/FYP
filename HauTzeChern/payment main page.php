@@ -1,4 +1,4 @@
-<?php include("booking for.php");?>
+<?php ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,11 @@
       </nav>
     </div>
   </header>
+
+  <div class="form-group">
+        <label for="connection">Booking Details</label>
+  <?php include("booking for.php");?>
+</div>
   <section class="payment">
     <div class="container">
       <h3>Select payment method</h3>
