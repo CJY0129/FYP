@@ -34,6 +34,7 @@
         </form>
     </div>
     <a href="Signup.php">Sign up now</a>
+    <a href="../main.php">Sign up as Guest</a>
     <a href="../main(notlogin).php">Go back to main page</a>
 
     <script>

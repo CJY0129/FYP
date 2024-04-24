@@ -1,3 +1,15 @@
+<?php
+// Start the session
+session_start();
+
+// Check if the user is logged in
+if(isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    // Now you can use $user_id as the logged-in user's ID
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,39 +32,47 @@
             <div class="dropdown">
             <button class="dropbtn">
             <i class='fas fa-user-circle'></i><!-- Font Awesome user icon -->
-                <?php
-                // Assuming you have established a database connection
-                include("customer/connection.php");
+            <?php
+// Assuming you have established a database connection
+include("customer/connection.php");
 
-                // Assuming you have a session or some other means of identifying the user
-                $user_id = 1; // Example user ID
+// Assuming you have a session or some other means of identifying the user
+if(isset($user_id) && $user_id != NULL) {
+    // Fetch user data from the database
+    $sql = "SELECT * FROM user WHERE user_id = $user_id"; // Adjust this query according to your database structure
+    $result = $conn->query($sql); 
 
-                // Fetch user data from the database
-                $sql = "SELECT * FROM user WHERE user_id = $user_id"; // Adjust this query according to your database structure
-                $result = $conn->query($sql); 
+    // Check if the query returned any rows
+    if ($result->num_rows > 0) {
+        // Fetch the data from the result set
+        $row = $result->fetch_assoc();
 
-                // Check if the query returned any rows
-                if ($result->num_rows > 0) {
-                    // Fetch the data from the result set
-                    $row = $result->fetch_assoc();
+        // Extract gender and first name information from the fetched row
+        $gender = $row['Gender'];
+        $firstname = $row['first_name'];
 
-                    // Extract gender and first name information from the fetched row
-                    $gender = $row['Gender'];
-                    $firstname = $row['first_name'];
+        // Output Mr. or Ms. followed by the first name
+        if ($gender == 'M') {
+            echo 'Mr. ' . $firstname;
+        } else {
+            echo 'Ms. ' . $firstname;
+        }
+    } else {
+        echo "No user found"; // Handle case where no user is found
+    }
+} else {
+    $firstname="Guest";
+    echo $firstname;
+}
+?>
 
-                    // Output Mr. or Ms. followed by the first name
-                    if ($gender == 'M') {
-                        echo 'Mr. ' . $firstname;
-                    } else {
-                        echo 'Ms. ' . $firstname;
-                    }
-                } else {
-                    echo "No user found"; // Handle case where no user is found
-                }
-                ?>
             </button>
                 <div class="dropdown-content">
-                    <a href="customer/Customer.php">View Profile</a>
+                    <?php
+                    if(isset($user_id) && $user_id != NULL) {
+                    echo'<a href="customer/Customer.php?userid='. $user_id .'">View Profile</a>';
+                    }
+                    ?>
                     <a href="#" onclick="confirmLogout()">Log out</a>
                 </div>
                 <script>
@@ -63,6 +83,7 @@
                         {
                             // If user clicks "OK" (true), redirect to the logout page
                             window.location.href = "main(notlogin).php";
+                            exit();
                         } 
                         else 
                         {
@@ -122,7 +143,7 @@
             }
             slides[slideIndex-1].style.display = "block";  
             dots[slideIndex-1].className += " active";
-            setTimeout(showSlides, 5000); // Change image every 2 seconds
+            setTimeout(showSlides, 3000); // Change image every 2 seconds
         }
     </script>
 </body>
