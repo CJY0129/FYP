@@ -9,11 +9,12 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cinema Website - Payment</title>
+  <link rel="stylesheet" type="text/css" href="cs2.css">
 </head>
 
 <body>
 
-  <h3>no receipt here. Still work in progress</h3>
+
 
 
 </body>

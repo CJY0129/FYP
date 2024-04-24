@@ -1,4 +1,6 @@
-<?php include("booking for.php");?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,10 +8,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cinema Website - Payment</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="cs2.css">
 </head>
 <body>
   <header>
+    
     <div class="container">
       <h1>CineTime</h1>
       <nav>
@@ -22,10 +25,18 @@
       </nav>
     </div>
   </header>
+  
   <section class="payment">
     <div class="container">
       <h2>Make A Payment</h2>
       <form action="payment_process.php" method="POST">
+
+      <div class="form-group">
+        <label for="connection">Booking Details<br><br></label>
+
+  <?php include("booking for.php");?>
+</div>
+
       <div class="mode">
         <label for="mode">Card Type</label>
           <select name="mode">
@@ -34,7 +45,6 @@
             <option value = "Public Bank" >Public Bank</option>
             <option value = "RHB" >RHB</option>
 </select>
-    
 
 </div>
 
