@@ -1,5 +1,26 @@
 
-<?php ?>
+<?php 
+$banks = array(
+    "CIMB" => "https://www.cimbclicks.com.my/",
+    "Maybank" => "https://www.maybank2u.com.my/",
+    "Public Bank" => "https://www.pbebank.com/",
+    "RHB" => "https://www.rhbgroup.com/"
+);
+
+
+if (isset($_POST['bank'])) {
+   
+    $selectedBank = $_POST['bank'];
+
+  
+    if (array_key_exists($selectedBank, $banks)) {
+        header("Location: " . $banks[$selectedBank]);
+        exit;
+    } else {
+        $error = "Invalid bank selection.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
