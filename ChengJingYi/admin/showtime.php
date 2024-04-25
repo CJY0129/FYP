@@ -113,8 +113,6 @@ if (isset($_GET['show']) && $_GET['show'] == 'showtime')
     }
   </script>
  <script>
-  
-
 
   document.addEventListener('DOMContentLoaded', function () {
     const editButtons = document.querySelectorAll('.edit-btn');
