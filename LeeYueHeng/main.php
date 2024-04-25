@@ -37,7 +37,8 @@ if(isset($_SESSION['user_id'])) {
 include("customer/connection.php");
 
 // Assuming you have a session or some other means of identifying the user
-if(isset($user_id) && $user_id != NULL) {
+
+if (isset($_GET['user_id']) && $_GET['user_id'] !=0 ) {
     // Fetch user data from the database
     $sql = "SELECT * FROM user WHERE user_id = $user_id"; // Adjust this query according to your database structure
     $result = $conn->query($sql); 
@@ -67,34 +68,18 @@ if(isset($user_id) && $user_id != NULL) {
     $firstname="Guest";
     echo $firstname;
 }
+
 ?>
 
             </button>
                 <div class="dropdown-content">
                     <?php
                     if(isset($user_id) && $user_id != NULL) {
-                    echo'<a href="customer/Customer.php?userid='. $user_id .'">View Profile</a>';
+                        echo'<a href="customer/Customer.php?userid='. $user_id .'">View Profile</a>';
                     }
                     ?>
-                    <a href="#" onclick="confirmLogout()">Log out</a>
+                    <a href="customer/Logout.php">Log out</a>
                 </div>
-                <script>
-                    function confirmLogout() 
-                    {
-                        var confirmation = confirm("Are you sure you want to log out?");
-                        if (confirmation) 
-                        {
-                            // If user clicks "OK" (true), redirect to the logout page
-                            window.location.href = "main(notlogin).php";
-                            exit();
-                        } 
-                        else 
-                        {
-                            // If user clicks "Cancel" (false), do nothing
-                            return false;
-                        }
-                }
-                </script>
             </div>
             </ul>
             </nav>
@@ -144,5 +129,6 @@ if(isset($user_id) && $user_id != NULL) {
             setTimeout(showSlides, 5000); // Change image every 5 seconds
         }
     </script>
+
 </body>
 </html>

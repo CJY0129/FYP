@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_id'] = $userid;
 
         // Redirect to main page with user ID parameter
-        header("Location: ../main.php");
+        header("Location: ../main.php?user_id=". $userid);
         exit();
     } else {
         // If user doesn't exist, set error message
@@ -43,4 +43,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: login.php");
     exit();
 }
+
 ?>
