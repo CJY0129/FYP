@@ -1,7 +1,9 @@
 <?php
+include("connect.php");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    include("connect.php");
+
 
     $movie_id = $_POST['movie_id'];
     $hall_id = $_POST['hall_id'];

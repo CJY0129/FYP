@@ -1,4 +1,5 @@
-<?php include("booking for.php");?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +11,7 @@
 </head>
 <body>
   <header>
+    
     <div class="container">
       <h1>CineTime</h1>
       <nav>
@@ -22,10 +24,17 @@
       </nav>
     </div>
   </header>
+  
   <section class="payment">
     <div class="container">
       <h2>Make A Payment</h2>
       <form action="payment_process.php" method="POST">
+
+      <div class="connection">
+      <label for="connection">Booking Details<br><br></label>
+      <?php include("booking for.php");?>
+      </div>
+
       <div class="mode">
         <label for="mode">Card Type</label>
           <select name="mode">
@@ -34,7 +43,6 @@
             <option value = "Public Bank" >Public Bank</option>
             <option value = "RHB" >RHB</option>
 </select>
-    
 
 </div>
 
