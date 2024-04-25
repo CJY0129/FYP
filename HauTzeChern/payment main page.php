@@ -27,7 +27,9 @@
     <section class="booking-details">
       <div class="container">
         <h2>Booking Details</h2>
-        <?php include("booking for.php"); ?>
+        <?php include("booking for.php"); 
+          include("connect_user.php");
+          ?>
       </div>
     </section>
 

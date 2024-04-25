@@ -1,33 +1,13 @@
 
-<?php 
-$banks = array(
-    "CIMB" => "https://www.cimbclicks.com.my/",
-    "Maybank" => "https://www.maybank2u.com.my/",
-    "Public Bank" => "https://www.pbebank.com/",
-    "RHB" => "https://www.rhbgroup.com/"
-);
 
 
-if (isset($_POST['bank'])) {
-   
-    $selectedBank = $_POST['bank'];
-
-  
-    if (array_key_exists($selectedBank, $banks)) {
-        header("Location: " . $banks[$selectedBank]);
-        exit;
-    } else {
-        $error = "Invalid bank selection.";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cinema Website - Payment</title>
-  <link rel="stylesheet" type="text/css" href="cs2.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <header>

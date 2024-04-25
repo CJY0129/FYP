@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cinema Website - Payment</title>
-  <link rel="stylesheet" type="text/css" href="cs2.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <header>
@@ -25,10 +25,14 @@
 
 <body>
 
-<div class="form-group">
-        <label for="connection">Booking Details</label>
 
-  <?php include("booking for.php");?>
+<div class="container">
+<h2>Your Receipt</h2>
+        
+
+  <?php include("booking for.php");
+   include("connect_user.php");
+   ?>
 </div>
 
 <footer>
