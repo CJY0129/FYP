@@ -58,9 +58,12 @@ if(isset($user_id) && $user_id != NULL) {
             echo 'Ms. ' . $firstname;
         }
     } else {
-        echo "No user found"; // Handle case where no user is found
+        // If no user found, assume it's a guest
+        $firstname = "Guest";
+        echo $firstname;
     }
 } else {
+    // If user_id is not set, assume it's a guest
     $firstname="Guest";
     echo $firstname;
 }
