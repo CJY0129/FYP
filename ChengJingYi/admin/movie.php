@@ -155,9 +155,9 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       echo '</div>';
                       echo '<div class="form-group">';
                       echo '<label for="poster">Poster</label>';
-                      echo '<input type="file" class="form-control-file" id="poster" name="poster">';
+                      echo '<input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)">';
+                      echo '<img id="poster-preview" src="#" alt="Poster Preview" style="display: none; max-width: 50%; margin-top: 10px;">';
                       echo '</div>';
-                      // Add input fields for other movie details here
                       echo '<button type="submit" class="btn btn-primary">Save Changes</button>';
                       echo '</form>';
                       echo '</div>';
@@ -180,6 +180,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                     return confirm("Are you sure you want to delete this showtime?");  
                   }
               </script>
+              
 
                   </div>
                 </div>
