@@ -1,4 +1,6 @@
 <?php
+session_start(); // Start or resume a session
+
 // Check if the 'id' parameter is set in the URL
 if(isset($_GET['id'])) {
     // Retrieve the movie ID from the URL
@@ -12,7 +14,7 @@ if(isset($_GET['id'])) {
     include("connection.php");
 
     // Query to retrieve movie details based on the ID
-    $sql = "SELECT title, poster_path FROM movie WHERE movie_id = $id";
+    $sql = "SELECT * FROM movie WHERE movie_id = $id";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -20,6 +22,12 @@ if(isset($_GET['id'])) {
         $row = $result->fetch_assoc();
         $title = $row["title"];
         $poster_path = $row["poster_path"];
+        $genre=$row["genre"];
+        $director=$row["director"];
+        $cast=$row["cast"];
+        $desc=$row["synopsis"];
+        $duration=$row["duration"];
+        $release=$row["release_date"];
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -32,7 +40,7 @@ if(isset($_GET['id'])) {
         <body>
         <header>
         <div id="container">
-        <h1><a href="../main.php">CineTime</h1>
+        <h1><a href="../main.php">CineTime</a></h1>
         <h3>
             <nav>
             <ul>
@@ -107,6 +115,12 @@ if(isset($user_id) && $user_id != NULL) {
             <h1><?php echo $title; ?></h1>
             <div>
                 <img src="<?php echo $poster_path; ?>" alt="<?php echo $title; ?>" style="width: 200px;">
+                <h3><?php echo "Genre: " . $genre; ?></h3>
+                <p><?php echo "Director: " . $director; ?></p>
+                <p><?php echo "Cast: " . $cast; ?></p>
+                <p><?php echo "Description: " . $desc; ?></p>
+                <p><?php echo "Duration: " . $duration; ?></p>
+                <p><?php echo "Release Date: " . $release; ?></p>
             </div>
         </body>
         </html>

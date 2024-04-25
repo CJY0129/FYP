@@ -17,7 +17,7 @@ if(isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" type="text/css" href="maindes.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-cTz51lJqGg2K2H/J2zEe7lL2/5C6+M7k5WjHt/5Y/ObduamDdp2rVsW1yeO8vlHChz3xU0ZgD/HgFONcR40gMw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
