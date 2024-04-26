@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2024 at 05:48 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Apr 26, 2024 at 12:08 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -68,7 +68,7 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`booking_id`, `user_id`, `show_id`, `seat_id`, `booking_time`, `total_price`, `total_person`, `status`) VALUES
-(2, 1, 2, 2, '2024-04-03 10:06:08', 20.00, 20, 0);
+(2, 2, 2, 2, '2024-04-03 10:06:08', '20.00', 20, 0);
 
 -- --------------------------------------------------------
 
@@ -90,6 +90,24 @@ CREATE TABLE `cinema` (
 
 INSERT INTO `cinema` (`cinema_id`, `name`, `location`, `city`, `num_of_hall`) VALUES
 (1, 'MMU mall CineTime', 'Bukit Beruang', 'Melaka', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `csmovie`
+--
+
+CREATE TABLE `csmovie` (
+  `movie_id` int(10) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `genre` varchar(255) NOT NULL,
+  `director` varchar(255) NOT NULL,
+  `cast` text NOT NULL,
+  `synopsis` text NOT NULL,
+  `duration` int(3) NOT NULL,
+  `release_date` date NOT NULL,
+  `poster_path` longblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -199,8 +217,26 @@ CREATE TABLE `showtime` (
 --
 
 INSERT INTO `showtime` (`show_id`, `Movie_id`, `Hall_id`, `show_time`, `end_time`, `price`) VALUES
-(2, 1, 3, '2024-04-10 03:03:00', '2024-04-19 14:01:00', 20.00),
-(13, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00);
+(2, 1, 3, '2024-04-10 03:03:00', '2024-04-19 14:01:00', '20.00'),
+(13, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ucmovie`
+--
+
+CREATE TABLE `ucmovie` (
+  `movie_id` int(10) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `genre` varchar(255) NOT NULL,
+  `director` varchar(255) NOT NULL,
+  `cast` text NOT NULL,
+  `synopsis` text NOT NULL,
+  `duration` int(3) NOT NULL,
+  `release_date` date NOT NULL,
+  `poster_path` longblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -214,6 +250,7 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
+  `Gender` char(1) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone_number` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -222,8 +259,9 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone_number`) VALUES
-(1, 'CJY', 'cjy123', 'Cheng', 'Jing Yi', '1211208060@gmail.com', '0172471629');
+INSERT INTO `user` (`user_id`, `username`, `password`, `first_name`, `last_name`, `Gender`, `email`, `phone_number`) VALUES
+(2, 'test', 'test123', 'Lee', 'Yue Heng', 'F', 'leeyueheng04@gmail.com', '0196674998'),
+(3, 'CJY', 'cjy123', 'Cheng', 'Jing Yi', 'M', '1211208060@gmail.com', '0172471629');
 
 --
 -- Indexes for dumped tables

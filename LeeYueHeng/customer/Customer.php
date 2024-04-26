@@ -24,7 +24,7 @@ if(isset($_GET['userid'])) {
 </head>
 
 <body>
-    <a href="../main.php" style="float: right; color: rgba(255, 255, 255, 0.651);">Back</a>
+    <a href="../main.php?user_id=" style="float: right; color: rgba(255, 255, 255, 0.651);">Back</a>
     <div id="mainbox">
         <h2>Your Profile</h2>
         <?php

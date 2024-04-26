@@ -38,7 +38,7 @@ include("customer/connection.php");
 
 // Assuming you have a session or some other means of identifying the user
 
-if (isset($_GET['user_id']) && $_GET['user_id'] !=0 ) {
+if (isset($_GET['user_id']) && $_GET['user_id'] !=1 ) {
     // Fetch user data from the database
     $sql = "SELECT * FROM user WHERE user_id = $user_id"; // Adjust this query according to your database structure
     $result = $conn->query($sql); 
