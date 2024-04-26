@@ -47,74 +47,78 @@ if(isset($_GET['id'])) {
             <li><a href="Nowshowing.php" class="left-links">Now Showing</a></li>
             <li><a href="Upcoming.php" class="left-links">Upcoming</a></li>
             <li><a href="Comingsoon.php" class="left-links">Coming Soon</a></li>
-            <div class="dropdown">
-            <button class="dropbtn">
-            <i class='fas fa-user-circle'></i><!-- Font Awesome user icon -->
-            <?php
-// Assuming you have established a database connection
-include("../customer/connection.php");
+            <?php 
+            if($user_id == 0)
+            {
+                echo '<li><a href="../customer/Login.php" class="right-links">Login/Sign up</a></li>';
+            }
+            else
+            {
+                echo '<div class="dropdown">
+                <button class="dropbtn">
+                <i class="fas fa-user-circle"></i><!-- Font Awesome user icon -->';
 
-// Assuming you have a session or some other means of identifying the user
-if(isset($user_id) && $user_id != NULL) {
-    // Fetch user data from the database
-    $sql = "SELECT * FROM user WHERE user_id = $user_id"; // Adjust this query according to your database structure
-    $result = $conn->query($sql); 
+                // Assuming you have established a database connection
+                include("../customer/connection.php");
 
-    // Check if the query returned any rows
-    if ($result->num_rows > 0) {
-        // Fetch the data from the result set
-        $row = $result->fetch_assoc();
+                // Assuming you have a session or some other means of identifying the user
+                if(isset($user_id) && $user_id != NULL) {
+                        // Fetch user data from the database
+                        $sql = "SELECT * FROM user WHERE user_id = $user_id"; // Adjust this query according to your database structure
+                        $result = $conn->query($sql); 
 
-        // Extract gender and first name information from the fetched row
-        $gender = $row['Gender'];
-        $firstname = $row['first_name'];
+                        // Check if the query returned any rows
+                if ($result->num_rows > 0) {
+                    // Fetch the data from the result set
+                    $row = $result->fetch_assoc();
 
-        // Output Mr. or Ms. followed by the first name
-        if ($gender == 'M') {
-            echo 'Mr. ' . $firstname;
+                    // Extract gender and first name information from the fetched row
+                    $gender = $row['Gender'];
+                    $firstname = $row['first_name'];
+
+                    // Output Mr. or Ms. followed by the first name
+                if ($gender == 'M') {
+                    echo 'Mr. ' . $firstname;
+                } else {
+                    echo 'Ms. ' . $firstname;
+                 }
+            } else {
+                echo "No user found"; // Handle case where no user is found
+            }
         } else {
-            echo 'Ms. ' . $firstname;
+            $firstname="Guest";
+            echo $firstname;
         }
-    } else {
-        echo "No user found"; // Handle case where no user is found
     }
-} else {
-    $firstname="Guest";
-    echo $firstname;
-}
-?>
+    ?>
 
             </button>
                 <div class="dropdown-content">
                     <a href="../customer/Customer.php">View Profile</a>
                     <a href="#" onclick="confirmLogout()">Log out</a>
                 </div>
-                <script>
-                    function confirmLogout() 
-                    {
-                        var confirmation = confirm("Are you sure you want to log out?");
-                        if (confirmation) 
-                        {
-                            // If user clicks "OK" (true), redirect to the logout page
-                            window.location.href = "../main(notlogin).php";
-                        } 
-                        else 
-                        {
-                            // If user clicks "Cancel" (false), do nothing
-                            return false;
-                        }
-                }
-                </script>
-            </div>
-            </ul>
+                </div>
+                </li> <!-- Missing closing tag -->
+                </ul>
             </nav>
         </h3>
     </div>
+    <?php
+    function displayImage($imageData) {
+        if (!empty($imageData)) {
+          return '<img src="data:image/jpeg;base64,' . base64_encode($imageData) . '" alt="Movie Poster" width="100" height="150">';
+        } else {
+          return 'No Poster Available';
+        }
+      }
+      ?>
 </header>
 
             <h1><?php echo $title; ?></h1>
             <div>
-                <img src="<?php echo $poster_path; ?>" alt="<?php echo $title; ?>" style="width: 200px;">
+                <?php
+            echo '<td>' . displayImage($row['poster_path']) . '</td>';
+            ?>
                 <h3><?php echo "Genre: " . $genre; ?></h3>
                 <p><?php echo "Director: " . $director; ?></p>
                 <p><?php echo "Cast: " . $cast; ?></p>
@@ -134,4 +138,5 @@ if(isset($user_id) && $user_id != NULL) {
 } else {
     echo "No movie ID provided.";
 }
+
 ?>
