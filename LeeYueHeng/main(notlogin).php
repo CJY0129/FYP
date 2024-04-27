@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +20,8 @@
                         <li><a href="Nowshowing.php" class="left-links">Now Showing</a></li>
                         <li><a href="Upcoming.php" class="left-links">Upcoming</a></li>
                         <li><a href="Comingsoon.php" class="left-links">Coming Soon</a></li>
-                        <?php if(isset($_SESSION['user_id'])): ?>
-                            <form method="post">
-                                <li><button type="submit" name="logout" class="right-links">Logout</button></li>
-                            </form>
-                        <?php else: ?>
-                            <li><a href="customer/Login.php" class="right-links">Login/Sign up</a></li>
-                        <?php endif; ?>
+                        <li><a href="customer/Login.php" class="right-links">Login/Sign up</a></li>
+                        
                     </ul>
                 </nav>
             </h3>
@@ -32,23 +31,23 @@
     <div class="slideshow-container">
 
         <div class="mySlides fade">
-            <a href="Moviedetails/moviedesc.php?id=1&user_id=0">
+            <a href="Moviedetails/moviedesc.php?id=1&user_id">
                 <img src="Moviedetails/movie1.jpg" style="width:300px; height: 400px">
             </a>
             <div class="text">Endgame</div>
         </div>
 
         <div class="mySlides fade">
-            <a href="Moviedetails/moviedesc.php?id=2&user_id=0">
+            <a href="Moviedetails/moviedesc.php?id=2&user_id">
                 <img src="Moviedetails/movie2.jpg" style="width:300px; height: 400px">
             </a>
             <div class="text">Jaws</div>
         </div>
 
         <div class="mySlides fade">
-        <a href="Moviedetails/moviedesc.php?id=3&user_id=0">
+        <a href="Moviedetails/moviedesc.php?id=3&user_id">
             <img src="Moviedetails/movie3.jpg" style="width:300px; height: 400px">
-                        </a>
+        </a>
             <div class="text">68</div>
         </div>
 

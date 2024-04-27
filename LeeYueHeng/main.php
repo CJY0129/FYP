@@ -78,7 +78,24 @@ if (isset($_GET['user_id']) && $_GET['user_id'] !=1 ) {
                         echo'<a href="customer/Customer.php?userid='. $user_id .'">View Profile</a>';
                     }
                     ?>
-                    <a href="customer/Logout.php">Log out</a>
+                    <a href="#" onclick="confirmLogout()">Log out</a>
+                    <script>
+                    function confirmLogout() 
+                    {
+                        var confirmation = confirm("Are you sure you want to log out?");
+                        if (confirmation) 
+                        {
+                            // If user clicks "OK" (true), redirect to the logout page
+                            window.location.href = "main(notlogin).php";
+                            exit();
+                        } 
+                        else 
+                        {
+                            // If user clicks "Cancel" (false), do nothing
+                            return false;
+                        }
+                }
+                </script>
                 </div>
             </div>
             </ul>
