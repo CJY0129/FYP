@@ -6,12 +6,11 @@ if (isset($_GET['id'])) {
     // Retrieve the movie ID from the URL
     $id = $_GET['id'];
 
-    $user_id=0;
     // Check if user is logged in and get user_id
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
     } 
-
+    
     // Include the database connection
     include("connection.php");
 
@@ -48,7 +47,7 @@ if (isset($_GET['id'])) {
                     ?>
                         <h1><a href="../main(notlogin).php">CineTime</a></h1>
                     <?php else : ?>
-                        <h1><a href="../main.php">CineTime</a></h1>
+                        <h1><a href="../main.php?user_id=<?php echo $user_id; ?>">CineTime</a></h1>
                     <?php endif; ?>
                     <h3>
                         <nav>
