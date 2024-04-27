@@ -1,5 +1,7 @@
 <?php 
     session_start();
+        $user_id = 0;
+    
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +22,9 @@
                         <li><a href="Nowshowing.php" class="left-links">Now Showing</a></li>
                         <li><a href="Upcoming.php" class="left-links">Upcoming</a></li>
                         <li><a href="Comingsoon.php" class="left-links">Coming Soon</a></li>
-                        <li><a href="customer/Login.php" class="right-links">Login/Sign up</a></li>
-                        
+                        <?php if($user_id == 0): ?>
+                            <li><a href="customer/Login.php" class="right-links">Login/Sign up</a></li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
             </h3>
@@ -29,28 +32,26 @@
     </header>
     
     <div class="slideshow-container">
-
         <div class="mySlides fade">
-            <a href="Moviedetails/moviedesc.php?id=1&user_id">
+            <a href="Moviedetails/moviedesc.php?id=1&user_id=<?php echo $user_id; ?>">
                 <img src="Moviedetails/movie1.jpg" style="width:300px; height: 400px">
             </a>
             <div class="text">Endgame</div>
         </div>
 
         <div class="mySlides fade">
-            <a href="Moviedetails/moviedesc.php?id=2&user_id">
+            <a href="Moviedetails/moviedesc.php?id=2&user_id=<?php echo $user_id; ?>">
                 <img src="Moviedetails/movie2.jpg" style="width:300px; height: 400px">
             </a>
             <div class="text">Jaws</div>
         </div>
 
         <div class="mySlides fade">
-        <a href="Moviedetails/moviedesc.php?id=3&user_id">
-            <img src="Moviedetails/movie3.jpg" style="width:300px; height: 400px">
-        </a>
+            <a href="Moviedetails/moviedesc.php?id=3&user_id=<?php echo $user_id; ?>">
+                <img src="Moviedetails/movie3.jpg" style="width:300px; height: 400px">
+            </a>
             <div class="text">68</div>
         </div>
-
     </div>
     <br>
 
