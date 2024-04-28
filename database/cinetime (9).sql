@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2024 at 12:08 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Apr 28, 2024 at 05:09 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,19 +56,12 @@ CREATE TABLE `booking` (
   `booking_id` int(10) NOT NULL,
   `user_id` int(10) NOT NULL,
   `show_id` int(10) NOT NULL,
-  `seat_id` int(10) NOT NULL,
+  `seat_num` int(10) NOT NULL,
   `booking_time` datetime NOT NULL,
   `total_price` decimal(5,2) NOT NULL,
   `total_person` int(10) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `booking`
---
-
-INSERT INTO `booking` (`booking_id`, `user_id`, `show_id`, `seat_id`, `booking_time`, `total_price`, `total_person`, `status`) VALUES
-(2, 2, 2, 2, '2024-04-03 10:06:08', '20.00', 20, 0);
 
 -- --------------------------------------------------------
 
@@ -180,26 +173,6 @@ INSERT INTO `movie` (`movie_id`, `title`, `genre`, `director`, `cast`, `synopsis
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seat`
---
-
-CREATE TABLE `seat` (
-  `seat_id` int(10) NOT NULL,
-  `hall_id` int(10) NOT NULL,
-  `seat_row` char(2) NOT NULL,
-  `seat_col` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `seat`
---
-
-INSERT INTO `seat` (`seat_id`, `hall_id`, `seat_row`, `seat_col`) VALUES
-(2, 3, 'A', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `showtime`
 --
 
@@ -217,8 +190,8 @@ CREATE TABLE `showtime` (
 --
 
 INSERT INTO `showtime` (`show_id`, `Movie_id`, `Hall_id`, `show_time`, `end_time`, `price`) VALUES
-(2, 1, 3, '2024-04-10 03:03:00', '2024-04-19 14:01:00', '20.00'),
-(13, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0.00');
+(2, 1, 3, '2024-04-10 03:03:00', '2024-04-19 14:01:00', 20.00),
+(13, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0.00);
 
 -- --------------------------------------------------------
 
@@ -281,8 +254,7 @@ ALTER TABLE `admin`
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`booking_id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `show_id` (`show_id`),
-  ADD KEY `seat_id` (`seat_id`);
+  ADD KEY `show_id` (`show_id`);
 
 --
 -- Indexes for table `cinema`
@@ -309,13 +281,6 @@ ALTER TABLE `hall_type`
 --
 ALTER TABLE `movie`
   ADD PRIMARY KEY (`movie_id`);
-
---
--- Indexes for table `seat`
---
-ALTER TABLE `seat`
-  ADD PRIMARY KEY (`seat_id`),
-  ADD KEY `hall_id` (`hall_id`);
 
 --
 -- Indexes for table `showtime`
@@ -382,7 +347,7 @@ ALTER TABLE `user`
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `seat_id` FOREIGN KEY (`seat_id`) REFERENCES `seat` (`seat_id`),
+  ADD CONSTRAINT `seat_id` FOREIGN KEY (`seat_num`) REFERENCES `seat` (`seat_id`),
   ADD CONSTRAINT `show_id` FOREIGN KEY (`show_id`) REFERENCES `showtime` (`show_id`),
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
@@ -392,12 +357,6 @@ ALTER TABLE `booking`
 ALTER TABLE `hall`
   ADD CONSTRAINT `cinema_id` FOREIGN KEY (`cinema_id`) REFERENCES `cinema` (`cinema_id`),
   ADD CONSTRAINT `hall_type` FOREIGN KEY (`hall_type_id`) REFERENCES `hall_type` (`hall_type_id`);
-
---
--- Constraints for table `seat`
---
-ALTER TABLE `seat`
-  ADD CONSTRAINT `hall_id` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`hall_id`);
 
 --
 -- Constraints for table `showtime`

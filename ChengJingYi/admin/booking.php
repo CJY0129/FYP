@@ -35,7 +35,7 @@
                     echo '<th>Booking ID</th>';
                     echo '<th>User ID</th>';
                     echo '<th>Show ID</th>';
-                    echo '<th>Seat ID</th>';
+                    echo '<th>Seat Num</th>';
                     echo '<th>Booking Time</th>';
                     echo '<th>Total Person</th>';
                     echo '<th>Total Price</th>';
@@ -49,7 +49,7 @@
                       echo '<td>' . $row['booking_id'] . '</td>';
                       echo '<td>' . $row['user_id'] . '</td>';
                       echo '<td>' . $row['show_id'] . '</td>';
-                      echo '<td>' . $row['seat_id'] . '</td>';
+                      echo '<td>' . $row['seat_num'] . '</td>';
                       echo '<td>' . $row['booking_time'] . '</td>';
                       echo '<td>' . $row['total_person'] . '</td>';
                       echo '<td>' . $row['total_price'] . '</td>';
