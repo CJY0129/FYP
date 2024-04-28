@@ -33,6 +33,7 @@ if (!isset($_SESSION['admin_id'])) {
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/CT.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -100,7 +101,7 @@ if (!isset($_SESSION['admin_id'])) {
             <li><a href="home.php?show=forms"><i class="icon-grid"></i>Forms</a></li>
             <li><a href="home.php?show=tables"><i class="fa fa-bar-chart"></i>Tables</a></li>
             <li><a href="home.php?show=booking"><i class="icon-padnote"></i>Booking</a></li>
-            <li><a href="home.php?show=movie"><i class="icon-writing-whiteboard"></i>Movies</a></li>
+            <li><a href="home.php?show=movie"><i class="icon icon-computer"></i>Movies</a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="#">Page</a></li>

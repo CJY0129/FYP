@@ -11,19 +11,19 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
 {
   if (isset($_GET['success']) && $_GET['success'] == '1') 
   {
-    echo '<div class="alert alert-danger">New Movie added succesfully.</div>';
+    echo '<div class="alert alert-success">New Movie added succesfully.</div>';
   }
   else if(isset($_GET['success']) && $_GET['success'] == '2') 
   {
-    echo '<div class="alert alert-danger">Movie updated succesfully.</div>';
+    echo '<div class="alert alert-success">Movie updated succesfully.</div>';
   }
   else if(isset($_GET['success']) && $_GET['success'] == '3') 
   {
-    echo '<div class="alert alert-danger">Movie deleted succesfully.</div>';
+    echo '<div class="alert alert-success">Movie deleted succesfully.</div>';
   }
   else if(isset($_GET['success']) && $_GET['success'] == '4') 
   {
-    echo '<div class="alert alert-danger">New Movie added succesfully(without image).</div>';
+    echo '<div class="alert alert-success">New Movie added succesfully(without image).</div>';
   }
   
 
@@ -108,8 +108,8 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       echo '<td>' . $row['duration'] . '</td>';
                       echo '<td>' . $row['release_date'] . '</td>';
                       echo '<td>' . displayImage($row['poster_path']) . '</td>';
-                      echo '<td><button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal' . $row['movie_id'] . '">Edit</button></td>
-                      <td><a class="btn btn-primary" href="delete_movie.php?show_id='. $row['movie_id'].'" onclick="return confirmDelete();">Delete</a></td>';
+                      echo '<td><button type="button" class="icon fa fa-edit" data-toggle="modal" data-target="#editModal' . $row['movie_id'] . '"></button>
+                      <a class="fa fa-trash-o" href="delete_movie.php?show_id='. $row['movie_id'].'" onclick="return confirmDelete();"></a></td>';
                       echo '</tr>';
 
                       // Modal for editing movie
@@ -154,9 +154,9 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       echo '<input type="text" class="form-control" id="release_date" name="release_date" value="' . $row['release_date'] . '">';
                       echo '</div>';
                       echo '<div class="form-group">';
-                      echo '<label for="poster">Poster</label>';
+                      echo '<label class="form-control-label">Poster</label>';
                       echo '<input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)">';
-                      echo '<img id="poster-preview" src="#" alt="Poster Preview" style="display: none; max-width: 50%; margin-top: 10px;">';
+                      echo '<img id="poster-preview-add" src="#" alt="Poster Preview" style="display: none; max-width: 50%; margin-top: 10px;">';
                       echo '</div>';
                       echo '<button type="submit" class="btn btn-primary">Save Changes</button>';
                       echo '</form>';
@@ -172,7 +172,6 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                     echo 'No movies found.';
                   }
 
-              // Close the database connection
               mysqli_close($conn);
               ?>
               <script>
@@ -189,70 +188,67 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
             </div>
         </section>
         <section class="no-padding-top no-padding-bottom">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
                 <div class="block margin-bottom-sm">
-                    <div class="title"><strong>Add Movie</strong></div>
-                    <div class="table-responsive">
-                        <div class="block-body">
-                            <form method="post" action="submit_movie.php" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label class="form-control-label">Title</label>
-                                    <input type="text" name="title" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label">Genre</label>
-                                    <input type="text" name="genre" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label">Director</label>
-                                    <input type="text" name="director" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label">Cast</label>
-                                    <input type="text" name="cast" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label">Synopsis</label>
-                                    <textarea name="synopsis" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label">Duration</label>
-                                    <input type="text" name="duration" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-control-label">Release Date</label>
-                                    <input type="date" name="release_date" class="form-control">
-                                </div>
-                                <!-- Add input for image file and preview -->
-                                <div class="form-group">
-                                    <label class="form-control-label">Poster</label>
-                                    <input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)">
-                                    <img id="poster-preview" src="#" alt="Poster Preview" style="display: none; max-width: 50%; margin-top: 10px;">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Add Movie" class="btn btn-primary">
-                                </div>
-                            </form>
+                  <div class="title"><strong>Add Movie</strong></div>
+                  <div class="table-responsive">
+                    <div class="block-body">
+                      <form method="post" action="submit_movie.php" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <label class="form-control-label">Title</label>
+                          <input type="text" name="title" class="form-control">
                         </div>
+                        <div class="form-group">
+                          <label class="form-control-label">Genre</label>
+                          <input type="text" name="genre" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label">Director</label>
+                          <input type="text" name="director" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label">Cast</label>
+                          <input type="text" name="cast" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label">Synopsis</label>
+                          <textarea name="synopsis" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label">Duration</label>
+                          <input type="text" name="duration" class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label">Release Date</label>
+                          <input type="date" name="release_date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                        <label class="form-control-label">Poster</label>
+                        <input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)">
+                        <img id="poster-preview-add" src="#" alt="Poster Preview" style="display: none; max-width: 50%; margin-top: 10px;">
+                        </div>
+                        <div class="form-group">
+                          <input type="submit" value="Add Movie" class="btn btn-primary">
+                        </div>
+                      </form>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-</section>
+              <script>
+                function previewImage(event) {
+                  var posterPreview = event.target.parentElement.querySelector('img');
+                  var file = event.target.files[0];
+                  var reader = new FileReader();
+                  reader.onload = function() {
+                    posterPreview.src = reader.result;
+                    posterPreview.style.display = 'block';
+                  };
+                  reader.readAsDataURL(file);
+                } 
+              </script>
 
-<script>
-    function previewImage(event) {
-        var posterPreview = document.getElementById('poster-preview');
-        var file = event.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function() {
-            posterPreview.src = reader.result;
-            posterPreview.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-    }
-</script>
 

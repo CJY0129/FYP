@@ -10,15 +10,15 @@ if (isset($_GET['show']) && $_GET['show'] == 'showtime')
 {
   if (isset($_GET['success']) && $_GET['success'] == '1') 
   {
-    echo '<div class="alert alert-danger">New Showtime added succesfully.</div>';
+    echo '<div class="alert alert-success">New Showtime added succesfully.</div>';
   }
   else if(isset($_GET['success']) && $_GET['success'] == '2') 
   {
-    echo '<div class="alert alert-danger">Showtime deleted succesfully.</div>';
+    echo '<div class="alert alert-success">Showtime deleted succesfully.</div>';
   }
   else if(isset($_GET['success']) && $_GET['success'] == '3') 
   {
-    echo '<div class="alert alert-danger">Showtime updated succesfully.</div>';
+    echo '<div class="alert alert-success">Showtime updated succesfully.</div>';
   }
 
 
