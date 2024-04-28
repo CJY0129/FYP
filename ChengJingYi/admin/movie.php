@@ -108,8 +108,8 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       echo '<td>' . $row['duration'] . '</td>';
                       echo '<td>' . $row['release_date'] . '</td>';
                       echo '<td>' . displayImage($row['poster_path']) . '</td>';
-                      echo '<td><button type="button" class="icon fa fa-edit" data-toggle="modal" data-target="#editModal' . $row['movie_id'] . '"></button>
-                      <a class="fa fa-trash-o" href="delete_movie.php?show_id='. $row['movie_id'].'" onclick="return confirmDelete();"></a></td>';
+                      echo '<td><button type="button" class="close" data-toggle="modal" data-target="#editModal' . $row['movie_id'] . '"><i class="fa fa-edit" style="color:#ff4759;"></i></button>
+                      <a class="fa fa-trash-o" style="font-size:25px" href="delete_movie.php?show_id='. $row['movie_id'].'" onclick="return confirmDelete();"></a></td>';
                       echo '</tr>';
 
                       // Modal for editing movie
