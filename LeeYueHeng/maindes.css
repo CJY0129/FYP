@@ -52,6 +52,17 @@ nav ul li a {
   padding-right: 20px;
 }
 
+.logout-btn {
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  float: right; /* Align to the right */
+  margin-right: 59px; /* Adjust margin-right for spacing */
+  margin-top: 10px; /* Added margin-top to match profile button */
+}
+
 /* Dropdown Button */
 .dropbtn {
   background-color: #333;

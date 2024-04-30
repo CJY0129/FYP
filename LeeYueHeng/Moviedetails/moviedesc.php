@@ -9,6 +9,10 @@ if (isset($_GET['id'])) {
     // Check if user is logged in and get user_id
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
+    } elseif (isset($_GET['user_id'])) {
+        $user_id = $_GET['user_id'];
+    } else {
+        $user_id = 1; // Default user_id for guest
     } 
     
     // Include the database connection
@@ -61,24 +65,25 @@ if (isset($_GET['id'])) {
                                     <button class="dropbtn">
                                     <i class="fas fa-user-circle"></i><!-- Font Awesome user icon -->';
 
-                                    // Assuming you have established a database connection
-                                    include("../customer/connection.php");
 
                                     // Assuming you have a session or some other means of identifying the user
-                                    if (isset($_GET['user_id']) && $_GET['user_id'] !=1 ){
+                                    if (isset($_SESSION['user_id']) && ($_SESSION['user_id'] != 0 && $_SESSION['user_id'] != 1)) {
+                                        // Assuming you have established a database connection
+                                        include("../customer/connection.php");
+                                    
                                         // Fetch user data from the database
                                         $sql = "SELECT * FROM user WHERE user_id = $user_id"; // Adjust this query according to your database structure
                                         $result = $conn->query($sql);
-
+                                    
                                         // Check if the query returned any rows
                                         if ($result->num_rows > 0) {
                                             // Fetch the data from the result set
                                             $row = $result->fetch_assoc();
-
+                                    
                                             // Extract gender and first name information from the fetched row
                                             $gender = $row['Gender'];
                                             $firstname = $row['first_name'];
-
+                                    
                                             // Output Mr. or Ms. followed by the first name
                                             if ($gender == 'M') {
                                                 echo 'Mr. ' . $firstname;
@@ -92,6 +97,7 @@ if (isset($_GET['id'])) {
                                         $firstname = "Guest";
                                         echo $firstname;
                                     }
+                                    
                                 } else {
                                     echo '<li><a href="../customer/Login.php" class="right-links">Login/Sign up</a></li>';
                                 }
@@ -121,6 +127,7 @@ if (isset($_GET['id'])) {
                     </nav>
                     </h3>
                 </div>
+                <?php include("connection.php"); ?>
                 <?php
                 function displayImage($imageData)
                 {

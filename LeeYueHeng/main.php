@@ -5,7 +5,17 @@ session_start();
 // Check if the user is logged in
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    // Now you can use $user_id as the logged-in user's ID
+} elseif (isset($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
+} else {
+    $user_id = 1; // Default user_id for guest
+}
+
+// Logout
+if (isset($_POST['logout'])) {
+    unset($_SESSION['user_id']);
+    header("Location: main(notlogin).php");
+    exit;
 }
 
 ?>
@@ -78,21 +88,9 @@ if (isset($_SESSION['user_id'])) {
                                     echo '<a href="customer/Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
                                 }
                                 ?>
-                                <a href="#" onclick="confirmLogout()">Log out</a>
-                                <script>
-                                    function confirmLogout() {
-                                        var confirmation = confirm("Are you sure you want to log out?");
-                                        if (confirmation) {
-                                            // If user clicks "OK" (true), redirect to the logout page
-                                            window.location.href = "main(notlogin).php";
-                                            session_unset();
-                                            session_destroy();
-                                        } else {
-                                            // If user clicks "Cancel" (false), do nothing
-                                            return false;
-                                        }
-                                    }
-                                </script>
+                                <form method="post" action="">
+                                    <input type="submit" name="logout" value="Log out">
+                                </form>
                             </div>
                         </div>
                     </ul>
@@ -101,7 +99,6 @@ if (isset($_SESSION['user_id'])) {
         </div>
     </header>
     <div class="slideshow-container">
-        <p>user id = <?php echo $user_id ?></p>
         <div class="mySlides fade">
 
             <a href="Moviedetails/moviedesc.php?id=1&user_id=<?php echo $user_id; ?>">
@@ -139,7 +136,9 @@ if (isset($_SESSION['user_id'])) {
                 slides[i].style.display = "none";
             }
             slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1 }
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
             slides[slideIndex - 1].style.display = "block";
             setTimeout(showSlides, 5000); // Change image every 5 seconds
         }
