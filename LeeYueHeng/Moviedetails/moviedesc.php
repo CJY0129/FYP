@@ -14,6 +14,17 @@ if (isset($_GET['id'])) {
     } else {
         $user_id = 1; // Default user_id for guest
     } 
+
+    // Logout
+// Logout
+if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+    session_unset();
+    session_destroy();
+    header("Location: ../main(notlogin).php");
+    exit;
+}
+
+
     
     // Include the database connection
     include("connection.php");
@@ -47,7 +58,7 @@ if (isset($_GET['id'])) {
             <header>
                 <div id="container">
                     <?php
-                    if ($user_id == 0) :
+                    if (isset($_GET['user_id']) && $_GET['user_id'] ==0 ):
                     ?>
                         <h1><a href="../main(notlogin).php">CineTime</a></h1>
                     <?php else : ?>
@@ -104,22 +115,13 @@ if (isset($_GET['id'])) {
                                 ?>
                             </button>
                             <div class="dropdown-content">
-                                <a href="../customer/Customer.php">View Profile</a>
-                                <a href="#" onclick="confirmLogout()">Log out</a>
-                                <script>
-                                    function confirmLogout() {
-                                        var confirmation = confirm("Are you sure you want to log out?");
-                                        if (confirmation) {
-                                            // If user clicks "OK" (true), redirect to the logout page
-                                            window.location.href = "../main(notlogin).php";
-                                            session_unset();
-                                            session_destroy();
-                                        } else {
-                                            // If user clicks "Cancel" (false), do nothing
-                                            return false;
-                                        }
-                                    }
-                                </script>
+                            <?php
+                                if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != NULL) {
+                                    echo '<a href="../customer/Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
+                                }
+                                ?>
+                                <a href="?logout=1">Log out</a>
+
                             </div>
                     </div>
                     </li>
