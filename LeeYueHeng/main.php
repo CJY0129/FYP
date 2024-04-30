@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Logout
-if (isset($_POST['logout'])) {
+if (isset($_GET['logout'])) {
     unset($_SESSION['user_id']);
     header("Location: main(notlogin).php");
     exit;
@@ -88,9 +88,7 @@ if (isset($_POST['logout'])) {
                                     echo '<a href="customer/Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
                                 }
                                 ?>
-                                <form method="post" action="">
-                                    <input type="submit" name="logout" value="Log out">
-                                </form>
+                                <a href="?logout=1">Log out</a>
                             </div>
                         </div>
                     </ul>
