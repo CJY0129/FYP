@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $genre = $_POST['genre'];
     $director = $_POST['director'];
     $cast = $_POST['cast'];
-    $synopsis = $_POST['synopsis'];
+    $synopsis = mysqli_real_escape_string($conn, $_POST['synopsis']); // Escape the value of the synopsis variable
     $duration = $_POST['duration'];
     $releaseDate = $_POST['release_date'];
 
