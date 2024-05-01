@@ -13,6 +13,7 @@ if ($conn->connect_error) {
 }
 
 $sql = "SELECT * FROM booking";
+"SELECT title FROM movie WHERE movie_id = " . $row['Movie_id'];
 $result = $conn->query($sql);
 
 // Your existing code for establishing database connection and executing query
@@ -24,7 +25,7 @@ if ($result->num_rows > 0) {
         echo "Booking ID: " . $row["booking_id"]. "<br>";
         echo "User ID: " . $row["user_id"]. "<br>";
         echo "Show ID: " . $row["show_id"]. "<br>";
-        echo "Seat ID: " . $row["seat_id"]. "<br>";
+        echo "Seat Num: " . $row["seat_num"]. "<br>";
         
         echo "Booking Time: " . $row["booking_time"]. "<br>";
         echo "Total Price: " . $row["total_price"]. "<br>";
