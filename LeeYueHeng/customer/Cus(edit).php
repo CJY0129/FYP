@@ -1,4 +1,17 @@
-<?php include("connection.php"); ?>
+<?php 
+include("connection.php"); 
+session_start(); 
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} elseif (isset($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
+}
+
+$sql = "SELECT * FROM user WHERE user_id = $user_id";
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +29,7 @@
         if(isset($rows[0])) {
             $customer = $rows[0];
         ?>
-        <form method="post" action="update_profile.php"> <!-- Modified action to point to update_profile.php -->
+        <form method="post" action="update_profile.php?user_id=<?php echo $user_id; ?>"> <!-- Modified action to include user_id -->
             <table border="1">
                 <tr>
                     <th>First Name / Last name</th>
@@ -44,7 +57,7 @@
                     </td>
                 </tr>
             </table>
-            <button type="submit" >Finish edit</button>
+            <button type="submit">Finish edit</button>
         </form>
         <?php 
         } else {

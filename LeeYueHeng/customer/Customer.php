@@ -1,4 +1,5 @@
 <?php 
+session_start(); // Start or resume a session
 include("connection.php");
 
 // Check if the 'userid' parameter is set in the URL
@@ -49,7 +50,11 @@ if(isset($_GET['userid'])) {
                 <td><?php echo $customer["phone_number"]; ?></td>
             </tr>
         </table>
-        <p><a href="Cus(edit).php?userid">Edit</a></p>
+        <?php
+                        if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != NULL) {
+                            echo '<a href="Cus(edit).php?userid='. $_SESSION['user_id'].'">Edit</a>';
+                        }
+                        ?>
         <?php
         } else {
             echo "User not found";
