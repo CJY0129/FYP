@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2024 at 03:29 PM
+-- Generation Time: May 01, 2024 at 03:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,6 +62,13 @@ CREATE TABLE `booking` (
   `total_person` int(10) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`booking_id`, `user_id`, `show_id`, `seat_num`, `booking_time`, `total_price`, `total_person`, `status`) VALUES
+(10, 3, 1, 1, '2024-05-01 15:52:14', 18.00, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -345,7 +352,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cinema`
@@ -379,7 +386,6 @@ ALTER TABLE `user`
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `seat_id` FOREIGN KEY (`seat_num`) REFERENCES `seat` (`seat_id`),
   ADD CONSTRAINT `show_id` FOREIGN KEY (`show_id`) REFERENCES `showtime` (`show_id`),
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
