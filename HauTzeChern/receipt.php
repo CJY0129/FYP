@@ -35,7 +35,8 @@
   
   include("connect_user.php");
   include("booking for.php");
-  
+  include("showtime.php");
+  include("checkconnect.php")
    ?>
 </div>
 </section>
