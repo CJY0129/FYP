@@ -35,11 +35,11 @@
    
     // Retrieve booked seats for the selected showtime
     $show_id = 2; // Assuming show_id is hardcoded for demonstration purposes
-    $sql = "SELECT seat_id FROM booking WHERE show_id = $show_id";
+    $sql = "SELECT seat_num FROM booking WHERE show_id = $show_id";
     $result = $conn->query($sql);
     $booked_seats = array(); // Initialize an empty array to store booked seats
     while ($row = $result->fetch_assoc()) {
-        $booked_seats[] = $row['seat_id']; // Add each booked seat to the array
+        $booked_seats[] = $row['seat_num']; // Add each booked seat to the array
     }
 
     
