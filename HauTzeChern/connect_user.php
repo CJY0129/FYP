@@ -14,10 +14,13 @@ $result = $conn->query($sql);
 
 // Your existing code for establishing database connection and executing query
 
+
+
 if ($result->num_rows > 0) {
     // Output data of each row
     while($row = $result->fetch_assoc()) {
         echo '<div class="connection">';
+        
         echo "Username: " . $row["username"]. "<br>";
         echo "Email: " . $row["email"]. "<br>";
         echo "Phone Number: " . $row["phone_number"]. "<br>";

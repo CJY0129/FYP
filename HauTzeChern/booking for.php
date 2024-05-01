@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
         echo "User ID: " . $row["user_id"]. "<br>";
         echo "Show ID: " . $row["show_id"]. "<br>";
         echo "Seat ID: " . $row["seat_id"]. "<br>";
-        echo "Ticket Type ID: " . $row["ticket_type_id"]. "<br>";
+        
         echo "Booking Time: " . $row["booking_time"]. "<br>";
         echo "Total Price: " . $row["total_price"]. "<br>";
         echo "Total Person: " . $row["total_person"]. "<br>";
