@@ -64,7 +64,7 @@
         </div>
         <button>
 
-        <a href="receipt.php">Pay Now</a>
+        <a href="paysuccess.php">Pay Now</a>
 </button>
       </form>
     </div>

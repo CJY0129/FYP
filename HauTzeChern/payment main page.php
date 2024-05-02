@@ -38,7 +38,7 @@
         <h3>Select payment method</h3>
         <ul>
           <li><a href="online banking.php">Online Banking</a></li>
-          <li><a href="card.php">Credit card/Debit card</a></li>
+          <li><a href="https://buy.stripe.com/7sI02G7eN3CHaIMfYY">Credit card/Debit card</a></li>
           <li><a href="receipt.php">Pay at counter</a></li>
         </ul>
       </div>

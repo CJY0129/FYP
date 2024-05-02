@@ -29,7 +29,8 @@
 <section class="payment">
 <div class="container">
   
-<h2>Your Receipt</h2>
+<h2>Payment Success. Thank You</h2>
+<h2>Below is Your Receipt</h2>
         
 
   <?php 
@@ -38,6 +39,7 @@
   include("booking for.php");
   
    ?>
+        
 </div>
 </section>
 <footer>
