@@ -1,6 +1,10 @@
 body {
-    background-image: url('theater-bg.jpg');
-    
+    background-image: url('theater-bg.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    overflow: hidden;
+    position: relative;
+    background-color: black;
     margin: 0; /* Reset default margin */
 }
 
@@ -9,47 +13,126 @@ body {
   margin: 0 auto;
 }
 
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 0;
-  font-size: 80%;
+
+.header {
+	padding: 18px 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 99;
+}
+.header-area {
+    display: grid;
+    grid-template-rows: repeat(2,1fr);
+    grid-template-columns: repeat(12,1fr);
+    align-items: center;
+    grid-gap: 20px;
+}
+.logo {
+    grid-column: span 2;
+    grid-row: span 2;
+    padding-right: 15px;
+}
+.header-right {
+    grid-column: span 10;
+    text-align: right;
+    display: flex;
+    align-items: center;
 }
 
-header h1 {
-  margin: 0;
-  padding-left: 20px;
-  float: left;
+.menu-area {
+    grid-column: span 10;
 }
-
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+.mainmenu {
+    text-align: right;
 }
-
-nav ul li {
-  display: inline;
-  margin-right: 10px;
+.mainmenu li {
+    display: inline-block;
+	position: relative;
 }
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
+.mainmenu li a:not(.theme-btn) {
+    display: inline-block;
+	margin-right: 30px;
+	padding: 3px 0;
 }
-.left-links {
-    float: left;
-    padding-right: 40px;
+.slicknav_menu {
+	padding: 0;
+    background: transparent;
+}
+.mainmenu {
+    display: block;
+}
+.slicknav_menu {
+	display: none;
+}
+.header.sticky {
+	border-bottom: 1px solid #fff;
+	background: #000;
+}
+.mainmenu li:hover ul {
+    transform: scaleY(1);
+}
+.mainmenu li ul li {
+	display: block;
+}
+.mainmenu li ul {
+    position: absolute;
+    top: 100%;
+    background: #000;
+    padding: 5px 15px;
+    left: 0;
+    text-align: left;
+    min-width: 200px;
+    transform: scaleY(0);
+    transition: all 0.4s;
+}
+.mainmenu li a.active, .mainmenu li a:hover {
+    color: #eb315a;
+}
+.header-right form {
+    display: flex;
+    max-width: 380px;
+    border: 1px solid #eee;
+    border-radius: 30px;
+    margin-left: auto;
+}
+.header-right form button {
+    background: transparent;
     color: #fff;
-   text-align: center;
-   padding-left: 10px;
+    border: none;
+    padding-right: 10px;
+}
+option {
+	color: #000;
+}
+.header-right form select {
+    background: url('../img/select-icon.png') no-repeat right center;
+    color: #fff;
+    padding: 0 20px 0 30px;
+    border: none;
+	-moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-.right-links {
-  float: right;
-  color: #fff;
-  text-align: center;
-  padding-right: 20px;
+.header-right form input {
+    width: auto;
+	background: transparent;
+	color: #fff;
+    border: none;
+    margin: 0;
+    border-left: 1px solid #ddd;
+    margin-left: 20px;
+}
+
+.header-right ul li a:hover {
+	color: #eb315a;
+}
+.header-right ul li {
+    padding: 8px 0 0;
+    margin-left: 15px;
+    display: inline-block;
 }
 
 .logout-btn {

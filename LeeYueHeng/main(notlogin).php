@@ -1,7 +1,6 @@
 <?php 
     session_start();
-        $user_id = 0;
-    
+    $user_id = 0;
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="maindes.css"/>
 </head>
 <body>
+<div id="preloader"></div>
     <header>
         <div id="container">
             <h1>CineTime</h1>
@@ -55,21 +55,7 @@
     </div>
     <br>
 
-    <script>
-        let slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}    
-            slides[slideIndex-1].style.display = "block";  
-            setTimeout(showSlides, 5000); // Change image every 5 seconds
-        }
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

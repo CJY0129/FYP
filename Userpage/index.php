@@ -1,5 +1,7 @@
 <?php
 include('connect.php');
+session_start();
+    $user_id = 0;
 ?>
 <!DOCTYPE HTML>
 <html lang="zxx">
@@ -51,8 +53,7 @@ include('connect.php');
 							<button><i class="icofont icofont-search"></i></button>
 						</form>
 						<ul>
-							<li><a href="#">Welcome Guest!</a></li>
-							<li><a class="login-popup" href="#">Login</a></li>
+							<li><a class="login-popup" href="#">Login</a></li>	
 						</ul>
 					</div>
 					<div class="menu-area">
@@ -61,15 +62,6 @@ include('connect.php');
                             <ul id="primary-menu">
                                 <li><a class="active" href="index.php">Home</a></li>
                                 <li><a href="movies.html">Movies</a></li>
-                                <li><a href="celebrities.html">CelebritiesList</a></li>
-                                <li><a href="top-movies.html">Top Movies</a></li>
-                                <li><a href="blog.html">News</a></li>
-								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
-									<ul>
-										<li><a href="blog-details.html">Blog Details</a></li>
-										<li><a href="movie-details.html">Movie Details</a></li>
-									</ul>
-								</li>
                                 <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
                             </ul>
 					    </div>
@@ -80,28 +72,16 @@ include('connect.php');
 		<div class="login-area">
 			<div class="login-box">
 				<a href="#"><i class="icofont icofont-close"></i></a>
-				<h2>LOGIN</h2>
+				<h2>Login</h2>
 				<form action="#">
-					<h6>USERNAME OR EMAIL ADDRESS</h6>
+					<h6>Username</h6>
 					<input type="text" />
-					<h6>PASSWORD</h6>
+					<h6>Password</h6>
 					<input type="text" />
-					<div class="login-remember">
-						<input type="checkbox" />
-						<span>Remember Me</span>
-					</div>
 					<div class="login-signup">
-						<span>SIGNUP</span>
+						<span>Signup</span>
 					</div>
-					<a href="#" class="theme-btn">LOG IN</a>
-					<span>Or Via Social</span>
-					<div class="login-social">
-						<a href="#"><i class="icofont icofont-social-facebook"></i></a>
-						<a href="#"><i class="icofont icofont-social-twitter"></i></a>
-						<a href="#"><i class="icofont icofont-social-linkedin"></i></a>
-						<a href="#"><i class="icofont icofont-social-google-plus"></i></a>
-						<a href="#"><i class="icofont icofont-camera"></i></a>
-					</div>
+					<a href="#" class="theme-btn">Log in</a>
 				</form>
 				
 			</div>
@@ -438,9 +418,9 @@ if ($result->num_rows > 0) {
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
 							<ul>
-								<li data-filter=".Latest" class="active">Latest</li>
-								<li data-filter=".soon">Comming Soon</li>
-								<li data-filter=".up">Up Coming</li>
+								<li data-filter=".Latest" class="active">Now Showing</li>
+								<li data-filter=".soon">Upcoming</li>
+								<li data-filter=".up">Coming Soon</li>
 							</ul>
 						</div>
 					</div>

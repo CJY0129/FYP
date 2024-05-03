@@ -372,11 +372,13 @@ option {
     -webkit-appearance: none;
     appearance: none;
 }
-
+input{
+    color :#000;
+}
 .header-right form input {
     width: auto;
 	background: transparent;
-	color: #fff;
+	color: black;
     border: none;
     margin: 0;
     border-left: 1px solid #ddd;
