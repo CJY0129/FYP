@@ -1,3 +1,7 @@
+
+<?php
+include('connect.php');
+?>
 <!DOCTYPE HTML>
 <html lang="zxx">
 	
@@ -5,9 +9,9 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Moviepoint - Online Movie,Vedio and TV Show HTML Template</title>
+		<title>CINETIME</title>
 		<!-- Favicon Icon -->
-		<link rel="icon" type="image/png" href="assets/img/favcion.png" />
+		<link rel="icon" type="image/png" href="assets/img/CT.ico" />
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
 		<!-- Slick nav CSS -->
@@ -35,7 +39,7 @@
 			<div class="container">
 				<div class="header-area">
 					<div class="logo">
-						<a href="index-2.html"><img src="assets/img/logo.png" alt="logo" /></a>
+						<a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
 					</div>
 					<div class="header-right">
 						<form action="#">
@@ -56,7 +60,7 @@
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
                             <ul id="primary-menu">
-                                <li><a class="active" href="index-2.html">Home</a></li>
+                                <li><a class="active" href="index.php">Home</a></li>
                                 <li><a href="movies.html">Movies</a></li>
                                 <li><a href="celebrities.html">CelebritiesList</a></li>
                                 <li><a href="top-movies.html">Top Movies</a></li>
@@ -337,284 +341,91 @@
 		<section class="hero-area" id="home">
 			<div class="container">
 				<div class="hero-area-slider">
-					<div class="row hero-area-slide">
-						<div class="col-lg-6 col-md-5">
-							<div class="hero-area-content">
-								<img src="assets/img/slide2.png" alt="about" />
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-7">
-							<div class="hero-area-content pr-50">
-								<h2>The Devil Princess</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-								<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
-								<h3>Cast:</h3>
-								<div class="slide-cast">
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast1.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast2.html" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast3.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast4.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast5.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast6.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast7.png" alt="about" />
-									</div>
-									<div class="single-slide-cast text-center">
-										5+
-									</div>
-								</div>
-								<div class="slide-trailor">
-									<h3>Watch Trailer</h3>
-									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row hero-area-slide">
-						<div class="col-lg-6 col-md-5">
-							<div class="hero-area-content">
-								<img src="assets/img/slide1.png" alt="about" />
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-7">
-							<div class="hero-area-content pr-50">
-								<h2>Last Avatar</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-								<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
-								<h3>Cast:</h3>
-								<div class="slide-cast">
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast1.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast2.html" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast3.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast4.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast5.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast6.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast7.png" alt="about" />
-									</div>
-									<div class="single-slide-cast text-center">
-										5+
-									</div>
-								</div>
-								<div class="slide-trailor">
-									<h3>Watch Trailer</h3>
-									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row hero-area-slide">
-						<div class="col-lg-6 col-md-5">
-							<div class="hero-area-content">
-								<img src="assets/img/slide3.png" alt="about" />
-							</div>
-						</div>
-						<div class="col-lg-6 col-md-7">
-							<div class="hero-area-content pr-50">
-								<h2>The Deer God</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-								<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
-								<h3>Cast:</h3>
-								<div class="slide-cast">
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast1.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast2.html" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast3.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast4.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast5.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast6.png" alt="about" />
-									</div>
-									<div class="single-slide-cast">
-										<img src="assets/img/cast/cast7.png" alt="about" />
-									</div>
-									<div class="single-slide-cast text-center">
-										5+
-									</div>
-								</div>
-								<div class="slide-trailor">
-									<h3>Watch Trailer</h3>
-									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					
+				<?php
+				// Get today's date
+				$today = date('Y-m-d');
+
+				// Fetch movies with showtimes for today or after
+				$sql = "SELECT m.* FROM movie m
+        		INNER JOIN showtime s ON m.movie_id = s.Movie_id
+				WHERE s.show_time >= '$today'
+				GROUP BY m.movie_id"; // Group by movie to avoid duplicates if multiple showtimes exist for a movie
+        		$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo '<div class="row hero-area-slide">';
+        echo '<div class="col-lg-6 col-md-5">';
+        echo '<div class="hero-area-content">';
+        // Display movie poster
+        if (!empty($row['poster_path'])) {
+            $poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+            $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+            echo '<img src="' . $poster_src . '" alt="Movie Poster">';
+        } else {
+            echo '<p>No poster available</p>';
+        }
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="col-lg-6 col-md-7">';
+        echo '<div class="hero-area-content pr-50">';
+        echo '<h2>' . $row['title'] . '</h2>';
+        echo '<p>' . $row['synopsis'] . '</p>';
+        echo '<h3>Cast: ' . $row['cast'] . '</h3>';
+        echo '<div class="slide-trailor">';
+        echo '<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Buy Now</a>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo "No movies found.";
+}
+
+
+?>
+</div>
+<div class="hero-area-thumb">
+	<div class="thumb-prev">
+		<div class="row hero-area-slide">
+			<div class="col-lg-6">
+				<div class="hero-area-content">
 				</div>
-				<div class="hero-area-thumb">
-					<div class="thumb-prev">
-						<div class="row hero-area-slide">
-							<div class="col-lg-6">
-								<div class="hero-area-content">
-									<img src="assets/img/slide3.png" alt="about" />
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="hero-area-content pr-50">
-									<h2>Last Avatar</h2>
-									<div class="review">
-										<div class="author-review">
-											<i class="icofont icofont-star"></i>
-											<i class="icofont icofont-star"></i>
-											<i class="icofont icofont-star"></i>
-											<i class="icofont icofont-star"></i>
-											<i class="icofont icofont-star"></i>
-										</div>
-										<h4>180k voters</h4>
-									</div>
-									<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
-									<h3>Cast:</h3>
-									<div class="slide-cast">
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast1.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast2.html" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast3.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast4.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast5.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast6.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast7.png" alt="about" />
-										</div>
-										<div class="single-slide-cast text-center">
-											5+
-										</div>
-									</div>
-									<div class="slide-trailor">
-										<h3>Watch Trailer</h3>
-										<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="thumb-next">
-						<div class="row hero-area-slide">
-							<div class="col-lg-6">
-								<div class="hero-area-content">
-									<img src="assets/img/slide1.png" alt="about" />
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="hero-area-content pr-50">
-									<h2>The Deer God</h2>
-									<div class="review">
-										<div class="author-review">
-											<i class="icofont icofont-star"></i>
-											<i class="icofont icofont-star"></i>
-											<i class="icofont icofont-star"></i>
-											<i class="icofont icofont-star"></i>
-											<i class="icofont icofont-star"></i>
-										</div>
-										<h4>180k voters</h4>
-									</div>
-									<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
-									<h3>Cast:</h3>
-									<div class="slide-cast">
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast1.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast2.html" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast3.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast4.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast5.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast6.png" alt="about" />
-										</div>
-										<div class="single-slide-cast">
-											<img src="assets/img/cast/cast7.png" alt="about" />
-										</div>
-										<div class="single-slide-cast text-center">
-											5+
-										</div>
-									</div>
-									<div class="slide-trailor">
-										<h3>Watch Trailer</h3>
-										<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-									</div>
-								</div>
-							</div>
-						</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="hero-area-content pr-50">
+					<h2></h2>
+					<p></p>
+					<h3></h3>
+					<div class="slide-trailor">
+						<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Buy Now</a>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="thumb-next">
+		<div class="row hero-area-slide">
+			<div class="col-lg-6">
+				<div class="hero-area-content">
+				</div>
+				</div>
+			<div class="col-lg-6">
+				<div class="hero-area-content pr-50">
+					<h2></h2>
+					<p></p>
+					<h3></h3>
+					<div class="slide-trailor">
+						<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Buy Now</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		</div>
 		</section><!-- hero area end -->
 		<!-- portfolio section start -->
 		<section class="portfolio-area pt-60">
@@ -628,10 +439,9 @@
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
 							<ul>
-								<li data-filter="*" class="active">Latest</li>
+								<li data-filter=".Latest" class="active">Latest</li>
 								<li data-filter=".soon">Comming Soon</li>
-								<li data-filter=".top">Top Rated</li>
-								<li data-filter=".released">Recently Released</li>
+								<li data-filter=".up">Up Coming</li>
 							</ul>
 						</div>
 					</div>
@@ -640,144 +450,99 @@
 				<div class="row">
 					<div class="col-lg-9">
 						<div class="row portfolio-item">
-							<div class="col-md-4 col-sm-6 soon released">
-								<div class="single-portfolio">
-									<div class="single-portfolio-img">
-										<img src="assets/img/portfolio/portfolio1.png" alt="portfolio" />
-										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-											<i class="icofont icofont-ui-play"></i>
-										</a>
-									</div>
-									<div class="portfolio-content">
-										<h2>Boyz II Men</h2>
-										<div class="review">
-											<div class="author-review">
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-											</div>
-											<h4>180k voters</h4>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 top">
-								<div class="single-portfolio">
-									<div class="single-portfolio-img">
-										<img src="assets/img/portfolio/portfolio2.png" alt="portfolio" />
-										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-											<i class="icofont icofont-ui-play"></i>
-										</a>
-									</div>
-									<div class="portfolio-content">
-										<h2>Tale of Revemge</h2>
-										<div class="review">
-											<div class="author-review">
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-											</div>
-											<h4>180k voters</h4>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 soon">
-								<div class="single-portfolio">
-									<div class="single-portfolio-img">
-										<img src="assets/img/portfolio/portfolio3.png" alt="portfolio" />
-										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-											<i class="icofont icofont-ui-play"></i>
-										</a>
-									</div>
-									<div class="portfolio-content">
-										<h2>The Lost City of Z</h2>
-										<div class="review">
-											<div class="author-review">
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-											</div>
-											<h4>180k voters</h4>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 top released">
-								<div class="single-portfolio">
-									<div class="single-portfolio-img">
-										<img src="assets/img/portfolio/portfolio4.png" alt="portfolio" />
-										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-											<i class="icofont icofont-ui-play"></i>
-										</a>
-									</div>
-									<div class="portfolio-content">
-										<h2>Beast Beauty</h2>
-										<div class="review">
-											<div class="author-review">
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-											</div>
-											<h4>180k voters</h4>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 released">
-								<div class="single-portfolio">
-									<div class="single-portfolio-img">
-										<img src="assets/img/portfolio/portfolio5.png" alt="portfolio" />
-										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-											<i class="icofont icofont-ui-play"></i>
-										</a>
-									</div>
-									<div class="portfolio-content">
-										<h2>In The Fade</h2>
-										<div class="review">
-											<div class="author-review">
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-											</div>
-											<h4>180k voters</h4>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-6 soon top">
-								<div class="single-portfolio">
-									<div class="single-portfolio-img">
-										<img src="assets/img/portfolio/portfolio6.png" alt="portfolio" />
-										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-											<i class="icofont icofont-ui-play"></i>
-										</a>
-									</div>
-									<div class="portfolio-content">
-										<h2>Last Hero</h2>
-										<div class="review">
-											<div class="author-review">
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-												<i class="icofont icofont-star"></i>
-											</div>
-											<h4>180k voters</h4>
-										</div>
-									</div>
-								</div>
-							</div>
+							<?php
+							//Latest movie
+							$sql = "SELECT m.* FROM movie m
+							INNER JOIN showtime s ON m.movie_id = s.Movie_id
+							WHERE s.show_time >= '$today'
+							GROUP BY m.movie_id"; // Group by movie to avoid duplicates if multiple showtimes exist for a movie
+							$result = $conn->query($sql);
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									echo '<div class="col-md-4 col-sm-6 Latest">';
+									echo '<div class="single-portfolio">';
+									echo '<div class="single-portfolio-img">';
+									// Display movie poster
+									if (!empty($row['poster_path'])) {
+										$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+										$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+										echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
+									} else {
+										echo '<p>No poster available</p>';
+									}
+									echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube">';
+									echo '<i class="icofont icofont-ui-play"></i>';
+									echo '</a>';
+									echo '</div>';
+									echo '<div class="portfolio-content">';
+									echo '<h2>' . $row['title'] . '</h2>';
+									echo '</div>';
+									echo '</div>';
+									echo '</div>';
+								}
+							}
+
+							//Coming soon movie
+							$sql = "SELECT * FROM csmovie";
+							$result = $conn->query($sql);
+
+							if ($result->num_rows > 0) {
+    							while ($row = $result->fetch_assoc()) {
+        							echo '<div class="col-md-4 col-sm-6 soon released">';
+        							echo '<div class="single-portfolio">';
+        							echo '<div class="single-portfolio-img" style="width: 265px; height: 425px;">';
+        							// Display movie poster
+        							if (!empty($row['poster_path'])) {
+            							$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+            							$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+            							echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
+        							} else {
+            							echo '<p>No poster available</p>';
+        							}
+									echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube">';
+									echo '<i class="icofont icofont-ui-play"></i>';
+									echo '</a>';
+        							echo '</div>';
+        							echo '<div class="portfolio-content">';
+        							echo '<h2>' . $row['title'] . '</h2>';
+        							echo '</div>';
+        							echo '</div>';
+        							echo '</div>';
+    							}
+							}
+								
+							//Upcoming movie
+							$sql = "SELECT * FROM ucmovie";
+							$sql = "SELECT * FROM ucmovie";
+							$result = $conn->query($sql);
+							
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									echo '<div class="col-md-4 col-sm-6 soon released">';
+									echo '<div class="single-portfolio">';
+									echo '<div class="single-portfolio-img" style="width: 265px; height: 425px;">';
+									// Display movie poster
+									if (!empty($row['poster_path'])) {
+										$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+										$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+										echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
+									} else {
+										echo '<p>No poster available</p>';
+									}
+									echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube">';
+									echo '<i class="icofont icofont-ui-play"></i>';
+									echo '</a>';
+									echo '</div>';
+									echo '<div class="portfolio-content">';
+									echo '<h2>' . $row['title'] . '</h2>';
+									echo '</div>';
+									echo '</div>';
+									echo '</div>';
+								}
+							}
+
+							?>
+
 						</div>
 					</div>
 					<div class="col-lg-3 text-center text-lg-left">
@@ -788,6 +553,35 @@
 							<img src="assets/img/sidebar/sidebar4.png" alt="sidebar" />
 						</div>
 					</div>
+					<?php
+					$sql = "SELECT * FROM ucmovie";
+					$result = $conn->query($sql);
+					
+					if ($result->num_rows > 0) {
+						while ($row = $result->fetch_assoc()) {
+							echo '<div class="col-md-4 col-sm-6 soon">';
+							echo '<div class="single-portfolio">';
+							echo '<div class="single-portfolio-img" style="width: 265px; height: 425px;">';
+							// Display movie poster
+							if (!empty($row['poster_path'])) {
+								$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+								$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+								echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 100%; height: 100%;">';
+							} else {
+								echo '<p>No poster available</p>';
+							}
+							echo '</div>';
+							echo '<div class="portfolio-content">';
+							echo '<h2>' . $row['title'] . '</h2>';
+							echo '</div>';
+							echo '</div>';
+							echo '</div>';
+						}
+					}
+
+					
+					
+					?>
 				</div>
 			</div>
 		</section><!-- portfolio section end -->
@@ -847,98 +641,16 @@
 				</div>
 			</div>
 		</section><!-- video section end -->
-		<!-- news section start -->
-		<section class="news">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-					    <div class="section-title pb-20">
-							<h1><i class="icofont icofont-coffee-cup"></i> Latest News</h1>
-						</div>
-					</div>
-				</div>
-				<hr />
-			</div>
-			<div class="news-slide-area">
-				<div class="news-slider">
-					<div class="single-news">
-						<div class="news-bg-1"></div>
-						<div class="news-date">
-							<h2><span>NOV</span> 25</h2>
-							<h1>2017</h1>
-						</div>
-						<div class="news-content">
-							<h2>The Witch Queen</h2>
-							<p>Witch Queen is a tall woman with a slim build. She has pink hair, which is pulled up under her hat, and teal eyes.</p>
-						</div>
-						<a href="#">Read More</a>
-					</div>
-					<div class="single-news">
-						<div class="news-bg-2"></div>
-						<div class="news-date">
-							<h2><span>NOV</span> 25</h2>
-							<h1>2017</h1>
-						</div>
-						<div class="news-content">
-							<h2>The Witch Queen</h2>
-							<p>Witch Queen is a tall woman with a slim build. She has pink hair, which is pulled up under her hat, and teal eyes.</p>
-						</div>
-						<a href="#">Read More</a>
-					</div>
-					<div class="single-news">
-						<div class="news-bg-3"></div>
-						<div class="news-date">
-							<h2><span>NOV</span> 25</h2>
-							<h1>2017</h1>
-						</div>
-						<div class="news-content">
-							<h2>The Witch Queen</h2>
-							<p>Witch Queen is a tall woman with a slim build. She has pink hair, which is pulled up under her hat, and teal eyes.</p>
-						</div>
-						<a href="#">Read More</a>
-					</div>
-				</div>
-				<div class="news-thumb">
-					<div class="news-next">
-						<div class="single-news">
-							<div class="news-bg-3"></div>
-							<div class="news-date">
-								<h2><span>NOV</span> 25</h2>
-								<h1>2017</h1>
-							</div>
-							<div class="news-content">
-								<h2>The Witch Queen</h2>
-								<p>Witch Queen is a tall woman with a slim build. She has pink hair, which is pulled up under her hat, and teal eyes.</p>
-							</div>
-							<a href="#">Read More</a>
-						</div>
-					</div>
-					<div class="news-prev">
-						<div class="single-news">
-							<div class="news-bg-2"></div>
-							<div class="news-date">
-								<h2><span>NOV</span> 25</h2>
-								<h1>2017</h1>
-							</div>
-							<div class="news-content">
-								<h2>The Witch Queen</h2>
-								<p>Witch Queen is a tall woman with a slim build. She has pink hair, which is pulled up under her hat, and teal eyes.</p>
-							</div>
-							<a href="#">Read More</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section><!-- news section end -->
+					
 		<!-- footer section start -->
 		<footer class="footer">
 			<div class="container">
 				<div class="row">
                     <div class="col-lg-3 col-sm-6">
 						<div class="widget">
-							<img src="assets/img/logo.png" alt="about" />
-							<p>7th Harley Place, London W1G 8LZ United Kingdom</p>
-							<h6><span>Call us: </span>(+880) 111 222 3456</h6>
+							<img src="assets/img/CTlogo.png" alt="about" />
+							<p>MMU,Melaka</p>
+							<h6><span>Call us: </span>(+60) 111 222 3456</h6>
 						</div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
@@ -980,7 +692,7 @@
 					<div class="row">
 						<div class="col-lg-6 text-center text-lg-left">
 							<div class="copyright-content">
-								<p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
+							<p class="no-margin-bottom">2024 &copy; CineTime.</p>
 							</div>
 						</div>
 						<div class="col-lg-6 text-center text-lg-right">
