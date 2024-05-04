@@ -45,7 +45,7 @@
     ------------------------------ */
 	var heroSlider = $('.hero-area-slider');
 	heroSlider.owlCarousel({
-		loop:true,
+		loop: false, // Change loop to false
 		dots: true,
 		autoplay: false,
 		autoplayTimeout:4000,
@@ -74,7 +74,7 @@
 	});
 	var newsSlider = $('.news-slider');
 	newsSlider.owlCarousel({
-		loop:true,
+		loop: false, // Change loop to false
 		dots: true,
 		autoplay: false,
 		autoplayTimeout:4000,
@@ -103,7 +103,7 @@
 	});
 	var videoSlider = $('.video-slider');
 	videoSlider.owlCarousel({
-		loop:true,
+		loop: false, // Change loop to false
 		dots: true,
 		autoplay: false,
 		autoplayTimeout:4000,
@@ -162,9 +162,10 @@
 	/*----------------------------
     START - Preloader
     ------------------------------ */
-	jQuery(window).load(function(){
-		jQuery("#preloader").fadeOut(500);
+	jQuery(window).on('load', function() {
+		jQuery("#preloader").delay(500).fadeOut("slow");
 	});
+	
 	
 
 }(jQuery));
