@@ -25,7 +25,7 @@ $user_id = 0;
 		<!-- Popup CSS -->
 		<link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
 		<!-- Main style CSS -->
-		<link rel="stylesheet" type="text/css" href="test.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="diao.css" media="all" />
 		<!-- Responsive CSS -->
 		<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
 		<!--[if lt IE 9]>
@@ -44,7 +44,7 @@ $user_id = 0;
 						<a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
 					</div>
 					<div class="header-right">
-						<form action="#">
+						<!--<form action="#">
 							<select>
 								<option value="Movies">Movies</option>
 								<option value="Movies">Movies</option>
@@ -52,6 +52,8 @@ $user_id = 0;
 							</select>
 							<input type="text"/>
 							<button><i class="icofont icofont-search"></i></button>
+						</form>-->
+						<form >
 						</form>
 						<ul>
 							<li><a href="#">Welcome Guest!</a></li>
@@ -106,254 +108,91 @@ $user_id = 0;
 				
 			</div>
 		</div>
-		<div class="buy-ticket">
-			<div class="container">
-				<div class="buy-ticket-area">
-					<a href="#"><i class="icofont icofont-close"></i></a>
-					<div class="row">
-						<div class="col-lg-8">
-							<div class="buy-ticket-box">
-								<h4>Buy Tickets</h4>
-								<h5>Seat</h5>
-								<h6>Screen</h6>
-								<div class="ticket-box-table">
-									<table class="ticket-table-seat">
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-									</table>
-									<table>
-										<tr>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>3</td>
-										</tr>
-										<tr>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td>5</td>
-										</tr>
-									</table>
-									<table class="ticket-table-seat">
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-									</table>
-									<table>
-										<tr>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>3</td>
-										</tr>
-										<tr>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td>5</td>
-										</tr>
-									</table>
-									<table class="ticket-table-seat">
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-									</table>
-								</div>
-								<div class="ticket-box-available">
-									<input type="checkbox" />
-									<span>Available</span>
-									<input type="checkbox" checked />
-									<span>Unavailable</span>
-									<input type="checkbox" />
-									<span>Selected</span>
-								</div>
-								<a href="#" class="theme-btn">previous</a>
-								<a href="#" class="theme-btn">Next</a>
-							</div>
-						</div>
-						<div class="col-lg-3 offset-lg-1">
-							<div class="buy-ticket-box mtr-30">
-								<h4>Your Information</h4>
-								<ul>
-									<li>
-										<p>Location</p>
-										<span>HB Cinema Box Corner</span>
-									</li>
-									<li>
-										<p>TIME</p>
-										<span>2018.07.09   20:40</span>
-									</li>
-									<li>
-										<p>Movie name</p>
-										<span>Home Alone</span>
-									</li>
-									<li>
-										<p>Ticket number</p>
-										<span>2 Adults, 2 Children, 2 Seniors</span>
-									</li>
-									<li>
-										<p>Price</p>
-										<span>89$</span>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!-- header section end -->
-		<!-- hero area start -->
-		<section class="hero-area" id="home">
-			<div class="container">
-				<div class="hero-area-slider">
-				<?php
-                // Get current date and time
+		<?php
 $today = date('Y-m-d H:i:s');
 
 // Calculate 10 minutes before the current time
 $tenMinutesBefore = date('Y-m-d H:i:s', strtotime('-10 minutes'));
 
 // SQL query to retrieve movies based on show_time
-$sql = "SELECT m.*, h.hall_type_id
+$sql = "SELECT m.*, s.show_time, s.show_id
+        FROM movie AS m
+        INNER JOIN showtime AS s ON m.movie_id = s.movie_id
+        WHERE s.show_time >= '$tenMinutesBefore'
+        ORDER BY m.title, s.show_time";
+
+$result = $conn->query($sql);
+
+?>
+
+<div class="buy-ticket">
+    <div class="container">
+        <div class="buy-ticket-area">
+            <a href="#"><i class="icofont icofont-close"></i></a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="buy-ticket-box">
+                        <h4>Movie Showtime</h4>
+                        <div class="movie-container">
+						<?php
+	if ($result->num_rows > 0) {	
+    $movies = []; // Array to store unique movie IDs
+    while ($row = $result->fetch_assoc()) {
+        // Check if the movie ID is not already in the array
+        if (!in_array($row['movie_id'], $movies)) {
+            // Add movie ID to the array
+            $movies[] = $row['movie_id'];
+            // Display the movie poster
+            echo '<div class="movie-item">';
+            if (!empty($row['poster_path'])) {
+                $poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+                $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+                echo '<img src="' . $poster_src . '" alt="Movie Poster" width="65" height="225">';
+            } else {
+                echo '<p>No poster available</p>';
+            }
+            echo '<p>Movie name</p>';
+            echo '<span>' . $row['title'] . '</span>';
+			echo '</div>';
+            
+        }
+		echo '<div class="all showtime">';
+		echo '<p>TIME</p>';
+		echo '<a href="other_page.php?show_id=' . $row['show_id'] . '">' . date('Y.m.d H:i', strtotime($row['show_time'])) . '</a>';
+        echo '</div>';
+    }
+} else {
+    echo "<p>No movies found.</p>";
+}
+?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- header section end -->
+		<!-- hero area start -->
+		<section class="hero-area" id="home">
+			<div class="container">
+				<div class="hero-area-slider">
+				<?php
+                // Get current date and time
+
+
+// SQL query to retrieve movies based on show_time
+$sql = "SELECT DISTINCT m.*
         FROM showtime s
         INNER JOIN movie m ON s.movie_id = m.movie_id
-        INNER JOIN hall h ON s.hall_id = h.hall_id
         WHERE s.show_time >= '$tenMinutesBefore'
         ORDER BY s.show_time";
+
 
 
 $result = $conn->query($sql);
@@ -377,7 +216,6 @@ if ($result->num_rows > 0) {
         echo '<div class="hero-area-content pr-50">';
         echo '<h2>' . $row['title'] . '</h2>';
         echo '<p>' . $row['synopsis'] . '</p>';
-        echo '<h3>Hall Type: ' . $row['hall_type_id'] . '</h3>';
         echo '<h3>Cast: ' . $row['cast'] . '</h3>';
         echo '<div class="slide-trailor">';
         echo '<a class="theme-btn theme-btn2" href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '"> More information</a>';
@@ -415,45 +253,49 @@ if ($result->num_rows > 0) {
             ?>
 </div>
 <div class="hero-area-thumb">
-	<div class="thumb-prev">
-		<div class="row hero-area-slide">
-			<div class="col-lg-6">
-				<div class="hero-area-content">
-                    
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="hero-area-content pr-50">
-					<h2>asdasdasdas</h2>
-					<p>asdasdasdsadas</p>
-					<h3>adasdasdasdas</h3>
-					<div class="slide-trailor">
-						<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Buy Now</a>
+					<div class="thumb-prev">
+						<div class="row hero-area-slide">
+							<div class="col-lg-6">
+								<div class="hero-area-content">
+									<img src="assets/img/CineTime1.jpg" alt="about" />
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="hero-area-content pr-50">
+									<h2>Last Avatar</h2>
+									<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+									<h3>Cast:</h3>
+									
+									<div class="slide-trailor">
+										<h3>Watch Trailer</h3>
+										<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="thumb-next">
+						<div class="row hero-area-slide">
+							<div class="col-lg-6">
+								<div class="hero-area-content">
+									<img src="assets/img/CineTime1.jpg" alt="about" />
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="hero-area-content pr-50">
+									<h2>The Deer God</h2>
+									<p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
+									<h3>Cast:</h3>
+									
+									<div class="slide-trailor">
+										<h3>Watch Trailer</h3>
+										<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<div class="thumb-next">
-		<div class="row hero-area-slide">
-			<div class="col-lg-6">
-				<div class="hero-area-content">
-                    
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="hero-area-content pr-50">
-					<h2>asdasdasdasdasdasd</h2>
-					<p>asdasdasdasdasd</p>
-					<h3>asdasdadadasd</h3>
-					<div class="slide-trailor">
-						<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Buy Now</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 		</div>
 		</section><!-- hero area end -->
 		<!-- portfolio section start -->

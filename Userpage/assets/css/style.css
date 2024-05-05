@@ -569,9 +569,27 @@ hr {
 .single-portfolio-img:hover .popup-youtube i {
 	opacity: 1;
 }
+
 .single-portfolio-img .popup-youtube i {
 	opacity: 0;
 }
+
+.single-portfolio-img:hover .popup-youtube2 i { /* add this */
+	opacity: 1;
+}
+
+.single-portfolio-img .popup-youtube2 i { /* add this */
+	opacity: 0;
+}
+
+.single-portfolio-img:hover .popup-2 i { /* add this */
+    opacity: 1;
+}
+.single-portfolio-img .popup-2 i { /* add this */
+	opacity: 0;
+}
+
+
 .video-area img,
 .single-portfolio-img img {
 	transition: 0.9s;
@@ -621,7 +639,52 @@ hr {
     display: inline-block;
     transition: all 0.4s;
     position: absolute;
+    top: 120px;
+    bottom: 0;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+.popup-youtube2 i:hover { /* add this */
+    color: #fece50;
+    border: 2px solid #fece50;
+    background-color:black ;
+} 
+.popup-youtube2 i { /* add this */
+    width: 150px;
+    height: 60px;
+    line-height: 60px;
+	color: #fff;
+    border: 2px solid #fff;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.4s;
+    position: absolute;
     top: 0;
+    bottom: 100px;
+    margin: auto;
+    left: 0;
+    right: 0;
+
+}
+
+.popup-2 i:hover { /* add this */
+    color: #fece50;
+    border: 2px solid #fece50;
+    background-color:black ;
+}
+.popup-2 i { /* add this */
+    width: 150px;
+    height: 60px;
+    line-height: 60px;
+	color: #fff;
+    border: 2px solid #fff;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.4s;
+    position: absolute;
+    top: 100px;
     bottom: 0;
     margin: auto;
     left: 0;
