@@ -1112,29 +1112,74 @@ hr {
 .ticket-box-available {
     margin: 50px 0;
 }
-.buy-ticket-box ul li p {
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 2px;
+.buy-ticket-box {
+    border: 1px solid #ccc;
+    padding: 10px; /* Reduced padding */
+    margin-bottom: 5px; /* Reduced margin bottom */
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Center text */
+}
+
+.buy-ticket-box img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 3px; /* Reduced margin bottom */
+}
+
+.buy-ticket-box p {
+    margin: 0;
+    margin-bottom: 3px; /* Reduced margin bottom */
+}
+
+.buy-ticket-box p strong {
+    font-weight: bold;
+}
+
+.buy-ticket-box p a {
+    color: black;
+    text-decoration: none;
+}
+
+.buy-ticket-box p a:hover {
+    color: #eb315a;
+    text-decoration: underline;
+}
+
+.buy-ticket-box p:not(:last-child) {
+    margin-bottom: 3px; /* Reduced margin bottom */
+}
+
+.buy-ticket-box ul {
+    position: relative;
+    list-style: none; /* Remove default list styling */
+    padding-left: 0; /* Remove default padding */
+}
+
+.buy-ticket-box ul::before {
+    background: #aaa;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
 }
 
 .buy-ticket-box ul li {
-    margin-bottom: 25px;
+    margin-bottom: 10px; /* Reduced margin bottom */
 }
 
 .buy-ticket-box ul li:last-child {
     margin-bottom: 0;
 }
 
-.buy-ticket-box ul {
-    position: relative;
-}
-
-.buy-ticket-box ul::before {
-
-    background: #aaa;
-    content: "";
-    position: absolute;
+.buy-ticket-box ul li p {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 2px;
 }
 
 

@@ -60,3 +60,24 @@ h2
     margin-top: 10px;
     font-weight: bold;
 }
+
+.moviecontainer {
+    max-width: 100%; /* Adjust width as needed */
+  margin: 0 auto; /* Center container horizontally */
+  background-color: #c0153a; /* Background color */
+  padding: 20px; /* Add some padding for spacing */
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Align items vertically */
+}
+
+.moviecontainer img {
+    width: 150px; /* Adjust image width as needed */
+  height: 250px; /* Adjust image height as needed */
+  margin-right: 20px; /* Add space between image and text */
+}
+
+.moviecontainer h3,
+.moviecontainer p {
+    margin: 5px 0; /* Add some margin between title, showtime, and cinema */
+  color: #fff; /* Set text color to white */
+}

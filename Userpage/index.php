@@ -25,7 +25,7 @@ $user_id = 0;
 		<!-- Popup CSS -->
 		<link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
 		<!-- Main style CSS -->
-		<link rel="stylesheet" type="text/css" href="diao.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
 		<!-- Responsive CSS -->
 		<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
 		<!--[if lt IE 9]>
@@ -109,17 +109,15 @@ $user_id = 0;
 			</div>
 		</div>
 		<?php
-$today = date('Y-m-d H:i:s');
 
-// Calculate 10 minutes before the current time
-$tenMinutesBefore = date('Y-m-d H:i:s', strtotime('-10 minutes'));
 
 // SQL query to retrieve movies based on show_time
-$sql = "SELECT m.*, s.show_time, s.show_id
-        FROM movie AS m
-        INNER JOIN showtime AS s ON m.movie_id = s.movie_id
-        WHERE s.show_time >= '$tenMinutesBefore'
-        ORDER BY m.title, s.show_time";
+$sql = "SELECT m.movie_id, m.title, m.poster_path, s.show_time, s.end_time, s.price 
+FROM movie AS m 
+INNER JOIN showtime AS s ON m.movie_id = s.Movie_id 
+WHERE s.show_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)
+GROUP BY m.movie_id
+ORDER BY s.show_time ASC";
 
 $result = $conn->query($sql);
 
@@ -130,45 +128,44 @@ $result = $conn->query($sql);
         <div class="buy-ticket-area">
             <a href="#"><i class="icofont icofont-close"></i></a>
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="buy-ticket-box">
-                        <h4>Movie Showtime</h4>
-                        <div class="movie-container">
-						<?php
-	if ($result->num_rows > 0) {	
-    $movies = []; // Array to store unique movie IDs
-    while ($row = $result->fetch_assoc()) {
-        // Check if the movie ID is not already in the array
-        if (!in_array($row['movie_id'], $movies)) {
-            // Add movie ID to the array
-            $movies[] = $row['movie_id'];
-            // Display the movie poster
-            echo '<div class="movie-item">';
-            if (!empty($row['poster_path'])) {
-                $poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
-                $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
-                echo '<img src="' . $poster_src . '" alt="Movie Poster" width="65" height="225">';
-            } else {
-                echo '<p>No poster available</p>';
-            }
-            echo '<p>Movie name</p>';
-            echo '<span>' . $row['title'] . '</span>';
-			echo '</div>';
-            
-        }
-		echo '<div class="all showtime">';
-		echo '<p>TIME</p>';
-		echo '<a href="other_page.php?show_id=' . $row['show_id'] . '">' . date('Y.m.d H:i', strtotime($row['show_time'])) . '</a>';
-        echo '</div>';
-    }
-} else {
-    echo "<p>No movies found.</p>";
-}
-?>
-
-                        </div>
-                    </div>
-                </div>
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="col-lg-3">'; // Set col-lg-6 for half width on large screens
+                        echo '<div class="buy-ticket-box">';
+                        
+						if (!empty($row['poster_path'])) {
+							$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+							$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+							echo '<img src="' . $poster_src . '" alt="Movie Poster" width="165" height="325">';
+						} else {
+							echo '<p>No poster available</p>';
+						}
+                        echo '<p><strong>' . $row["title"] . '</strong></p>';
+                        
+                        // Query to get all upcoming showtimes for this movie
+                        $movieId = $row["movie_id"];
+                        $showtimesQuery = "SELECT show_id,show_time, end_time, price
+                                           FROM showtime
+                                           WHERE Movie_id = $movieId AND show_time > NOW()
+                                           ORDER BY show_time ASC";
+                        $showtimesResult = mysqli_query($conn, $showtimesQuery);
+                        if (mysqli_num_rows($showtimesResult) > 0) {
+							echo '<p>SHOWTIME</p>';
+                            while ($showtimeRow = mysqli_fetch_assoc($showtimesResult)) {
+								echo '<p><a href="seat_select.php?show_id=' . $showtimeRow["show_id"] . '">' . $showtimeRow["show_time"] . '</a></p>';
+                            }
+							
+                        } else {
+                            echo "<p>No upcoming showtimes found for this movie.</p>";
+                        }
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                } else {
+					echo "<p style='color: red; font-weight: bold;'>No movies found with upcoming showtimes within 10 minutes before the current time.</p>";
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -190,7 +187,7 @@ $result = $conn->query($sql);
 $sql = "SELECT DISTINCT m.*
         FROM showtime s
         INNER JOIN movie m ON s.movie_id = m.movie_id
-        WHERE s.show_time >= '$tenMinutesBefore'
+        WHERE s.show_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)
         ORDER BY s.show_time";
 
 
@@ -325,7 +322,7 @@ if ($result->num_rows > 0) {
 							//Latest movie
 							$sql = "SELECT m.* FROM movie m
 							INNER JOIN showtime s ON m.movie_id = s.Movie_id
-							WHERE s.show_time >= '$today'
+							WHERE s.show_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)
 							GROUP BY m.movie_id"; // Group by movie to avoid duplicates if multiple showtimes exist for a movie
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
