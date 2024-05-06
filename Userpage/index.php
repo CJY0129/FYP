@@ -56,7 +56,6 @@ $user_id = 0;
 						<form >
 						</form>
 						<ul>
-							<li><a href="#">Welcome Guest!</a></li>
 							<li><a class="login-popup" href="#">Login</a></li>
 						</ul>
 					</div>
@@ -308,8 +307,8 @@ if ($result->num_rows > 0) {
 					    <div class="portfolio-menu">
 							<ul>
 								<li data-filter=".Latest" class="active">Latest</li>
-								<li data-filter=".soon">Comming Soon</li>
-								<li data-filter=".up">Up Coming</li>
+								<li data-filter=".up">Upcoming</li>
+								<li data-filter=".soon">Coming Soon</li>
 							</ul>
 						</div>
 					</div>
@@ -433,62 +432,7 @@ if ($result->num_rows > 0) {
 				</div>
 			</div>
 		</section><!-- portfolio section end -->
-		<!-- video section start -->
-		<section class="video ptb-90">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-					    <div class="section-title pb-20">
-							<h1><i class="icofont icofont-film"></i> Trailers & Videos</h1>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="row">
-                    <div class="col-md-9">
-						<div class="video-area">
-							<img src="assets/img/video/video1.png" alt="video" />
-							<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-								<i class="icofont icofont-ui-play"></i>
-							</a>
-							<div class="video-text">
-								<h2>Angle of Death</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-							</div>
-						</div>
-                    </div>
-                    <div class="col-md-3">
-						<div class="row">
-							<div class="col-md-12 col-sm-6">
-								<div class="video-area">
-									<img src="assets/img/video/video2.png" alt="video" />
-									<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-										<i class="icofont icofont-ui-play"></i>
-									</a>
-								</div>
-							</div>
-							<div class="col-md-12 col-sm-6">
-								<div class="video-area">
-									<img src="assets/img/video/video3.png" alt="video" />
-									<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-										<i class="icofont icofont-ui-play"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-                    </div>
-				</div>
-			</div>
-		</section><!-- video section end -->
+		
 					
 		<!-- footer section start -->
 		<footer class="footer">

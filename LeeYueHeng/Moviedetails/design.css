@@ -1,7 +1,12 @@
 body {
-    background-image: url("../theater-bg.jpg");
+    position: relative;
+    background-image: url('../theater-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    background-color: black;
     color: #fff;
-    margin: 0;
 }
 
 .container {
