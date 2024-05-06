@@ -56,8 +56,7 @@ $user_id = 0;
 						<form >
 						</form>
 						<ul>
-							<li><a href="#">Welcome Guest!</a></li>
-							<li><a class="login-popup" href="#">Login</a></li>
+							<li><a class="login-popup" href="customer/Login.php">Login</a></li>
 						</ul>
 					</div>
 					<div class="menu-area">
@@ -422,73 +421,11 @@ if ($result->num_rows > 0) {
 
 						</div>
 					</div>
-					<div class="col-lg-3 text-center text-lg-left">
-					    <div class="portfolio-sidebar">
-							<img src="assets/img/sidebar/sidebar1.png" alt="sidebar" />
-							<img src="assets/img/sidebar/sidebar2.png" alt="sidebar" />
-							<img src="assets/img/sidebar/sidebar3.png" alt="sidebar" />
-							<img src="assets/img/sidebar/sidebar4.png" alt="sidebar" />
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</section><!-- portfolio section end -->
-		<!-- video section start -->
-		<section class="video ptb-90">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-					    <div class="section-title pb-20">
-							<h1><i class="icofont icofont-film"></i> Trailers & Videos</h1>
-						</div>
-					</div>
-				</div>
-				<hr />
-				<div class="row">
-                    <div class="col-md-9">
-						<div class="video-area">
-							<img src="assets/img/video/video1.png" alt="video" />
-							<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-								<i class="icofont icofont-ui-play"></i>
-							</a>
-							<div class="video-text">
-								<h2>Angle of Death</h2>
-								<div class="review">
-									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-									</div>
-									<h4>180k voters</h4>
-								</div>
-							</div>
-						</div>
-                    </div>
-                    <div class="col-md-3">
-						<div class="row">
-							<div class="col-md-12 col-sm-6">
-								<div class="video-area">
-									<img src="assets/img/video/video2.png" alt="video" />
-									<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-										<i class="icofont icofont-ui-play"></i>
-									</a>
-								</div>
-							</div>
-							<div class="col-md-12 col-sm-6">
-								<div class="video-area">
-									<img src="assets/img/video/video3.png" alt="video" />
-									<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-										<i class="icofont icofont-ui-play"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-                    </div>
-				</div>
-			</div>
-		</section><!-- video section end -->
+		
 					
 		<!-- footer section start -->
 		<footer class="footer">
@@ -522,16 +459,7 @@ if ($result->num_rows > 0) {
 							</ul>
 						</div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-						<div class="widget">
-							<h4>Newsletter</h4>
-							<p>Subscribe to our newsletter system now to get latest news from us.</p>
-							<form action="#">
-								<input type="text" placeholder="Enter your email.."/>
-								<button>SUBSCRIBE NOW</button>
-							</form>
-						</div>
-                    </div>
+                    
 				</div>
 				<hr />
 			</div>
