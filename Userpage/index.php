@@ -175,9 +175,25 @@ $result = $conn->query($sql);
 
 <!-- header section end -->
 		<!-- hero area start -->
+		
 		<section class="hero-area" id="home">
 			<div class="container">
+				<div class="row flexbox-center">
+					<div class="col-lg-6 text-center text-lg-left"  style="margin-top: 200px; margin-bottom:-190px;">
+					    <div class="section-title">
+							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+						</div>
+					</div>
+					<div class="col-lg-6 text-center text-lg-right">
+					    <div class="portfolio-menu">
+							
+						</div>
+					</div>
+				</div>
+				<hr / style="margin-top: 200px; margin-bottom:-230px;">
+				
 				<div class="hero-area-slider">
+					
 				<?php
                 // Get current date and time
 
