@@ -35,13 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // If user doesn't exist, set error message
         $error_msg = "Invalid username or password";
         // Redirect back to the login page with error message
-        header("Location: login.php?error=" . urlencode($error_msg));
+        header("Location: ../../Userpage/index.php?error=" . urlencode($error_msg));
         exit();
     }
 } else {
     // If the form is not submitted, redirect back to the login page
-    header("Location: login.php");
+    header("Location: ../../Userpage/indexphp");
     exit();
 }
-
 ?>

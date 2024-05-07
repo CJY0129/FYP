@@ -56,7 +56,7 @@ $user_id = 0;
 						<form >
 						</form>
 						<ul>
-							<li><a class="login-popup" href="#">Login</a></li>
+							<li><a class="login-popup"href="#"Welcome Guest</a></li>
 						</ul>
 					</div>
 					<div class="menu-area">
@@ -79,33 +79,28 @@ $user_id = 0;
 			</div>
 		</header>
 		<div class="login-area">
-    <div class="login-box">
-        <a href="#"><i class="icofont icofont-close"></i></a>
-        <h2>LOGIN</h2>
-        <!-- Check if error message exists -->
-        <?php if (!empty($_GET['error'])): ?>
-            <div class="error-message"><?php echo $_GET['error']; ?></div>
-        <?php endif; ?>
-        <form method="post" action="../LeeYueHeng/customer/Checklogin.php">
-            <h6>USERNAME</h6>
-            <input type="text" name="username" value="">
-            <h6>PASSWORD</h6>
-            <input type="password" name="password" value="">
-			<?php if (!empty($_GET['error'])): ?>
-            <div class="error-message"><?php echo $_GET['error']; ?></div>
-        <?php endif; ?>
-            <div class="login-signup">
-                <span>SIGNUP</span>
-            </div>
-            <input type="submit" value="Login">
-            <div class="login-social">
-                <a href="../LeeYueHeng/main.php?user_id=1">Sign up as Guest</a> <!-- Changed 'null' to null -->
-            </div>
-        </form>
-    </div>
-</div>
-
-
+			<div class="login-box">
+				<a href="#"><i class="icofont icofont-close"></i></a>
+				<h2>LOGIN</h2>
+				<form action="#">
+					<h6>USERNAME</h6>
+					<input type="text" name="username" value="">
+					<h6>PASSWORD</h6>
+                    <input type="password" name="password" value="">
+					
+					<div class="login-signup">
+						<span>SIGNUP</span>
+					</div>
+					<a href="../LeeYueHeng/customer/Login.php" class="theme-btn">log in</a>
+					
+					<div class="login-social">
+					<a href="../LeeYueHeng/main.php?user_id=1">Sign up as Guest</a> <!-- Changed 'null' to null -->
+                	
+					</div>
+				</form>
+				
+			</div>
+		</div>
 		<?php
 
 
