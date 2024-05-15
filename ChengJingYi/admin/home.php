@@ -98,8 +98,8 @@ if (!isset($_SESSION['admin_id'])) {
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
           <ul class="list-unstyled">
             <li><a href="home.php?show=showtime"><i class="icon-home"></i>Showtime</a></li>
-            <li><a href="home.php?show=forms"><i class="icon-grid"></i>Forms</a></li>
-            <li><a href="home.php?show=tables"><i class="fa fa-bar-chart"></i>Tables</a></li>
+            <!--<li><a href="home.php?show=forms"><i class="icon-grid"></i>Forms</a></li>-->
+            <!--<li><a href="home.php?show=tables"><i class="fa fa-bar-chart"></i>Tables</a></li>-->
             <li><a href="home.php?show=booking"><i class="icon-padnote"></i>Booking</a></li>
             <li><a href="home.php?show=movie"><i class="icon icon-computer"></i>Movies</a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
