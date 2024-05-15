@@ -21,12 +21,24 @@ h2
 
 }
 
+p{
+
+    font-size: 18px;
+    
+}
+
 .seats {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 5px;
 }
+
+h3{
+    color: #fff;
+    font-size: 25px;
+}
+
 
 .seat {
     width: 40px;
@@ -81,3 +93,10 @@ h2
     margin: 5px 0; /* Add some margin between title, showtime, and cinema */
   color: #fff; /* Set text color to white */
 }
+
+.left-box,.right-box{
+    width: 50%;
+    height: 70px;
+    float: left;
+  }
+

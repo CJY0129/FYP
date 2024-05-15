@@ -151,7 +151,7 @@ $result = $conn->query($sql);
                         if (mysqli_num_rows($showtimesResult) > 0) {
 							echo '<p>SHOWTIME</p>';
                             while ($showtimeRow = mysqli_fetch_assoc($showtimesResult)) {
-								echo '<p><a href="seat_select.php?show_id=' . $showtimeRow["show_id"] . '">' . $showtimeRow["show_time"] . '</a></p>';
+								echo '<p><a href="booking.php?show_id=' . $showtimeRow["show_id"] . '">' . $showtimeRow["show_time"] . '</a></p>';
                             }
 							
                         } else {
