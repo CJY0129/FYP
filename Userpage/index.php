@@ -2,6 +2,31 @@
 include('connect.php');
 session_start();
 $user_id = 0;
+include("connectuser.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Query to select user with provided username and password
+    $sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // If user exists, fetch user ID
+        $row = $result->fetch_assoc();
+        $userid = $row['user_id'];
+        
+        // Store user ID in session
+        $_SESSION['user_id'] = $userid;
+
+        // Return success response with user ID
+        echo json_encode(['success' => true, 'user_id' => $userid]);
+    } else {
+        // Return error response
+        echo json_encode(['success' => false, 'error_msg' => 'Invalid username or password']);
+    }
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="zxx">
@@ -27,6 +52,9 @@ $user_id = 0;
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <!-- Responsive CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -79,20 +107,14 @@ $user_id = 0;
 </header>
 <div class="login-area">
     <div class="login-box">
-        <a href="#"><i class="icofont icofont-close"></i></a>
-        <h2>LOGIN</h2>
-        <!-- Check if error message exists -->
-        <?php if (!empty($_GET['error'])): ?>
-            <div class="error-message"><?php echo $_GET['error']; ?></div>
-        <?php endif; ?>
-        <form method="post" action="../LeeYueHeng/customer/Checklogin.php">
+    <form method="post" action="../LeeYueHeng/customer/Checklogin.php">
             <h6>USERNAME</h6>
             <input type="text" name="username" value="">
             <h6>PASSWORD</h6>
             <input type="password" name="password" value="">
-            <?php if (!empty($_GET['error'])): ?>
-                <div class="error-message"><?php echo $_GET['error']; ?></div>
-            <?php endif; ?>
+			<?php if (!empty($_GET['error'])): ?>
+            <div class="error-message"><?php echo $_GET['error']; ?></div>
+        <?php endif; ?>
             <div class="login-signup">
                 <span>SIGNUP</span>
             </div>
@@ -101,6 +123,7 @@ $user_id = 0;
                 <a href="../LeeYueHeng/main.php?user_id=1">Sign up as Guest</a> <!-- Changed 'null' to null -->
             </div>
         </form>
+
     </div>
 </div>
 
@@ -150,7 +173,6 @@ $result = $conn->query($sql);
         <div class="row flexbox-center">
             <div class="col-lg-6 text-center text-lg-left"  style="margin-top: 200px; margin-bottom:-190px;">
                 <div class="section-title">
-                    <h1><i class="icofont icofont-movie"></
 					<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
 </div>
 </div>
@@ -160,7 +182,7 @@ $result = $conn->query($sql);
 </div>
 </div>
 </div>
-<hr / style="margin-top: 200px; margin-bottom:-230px;">
+<hr style="margin-top: 200px; margin-bottom:-230px;"/>
 
 <div class="hero-area-slider">
 
@@ -473,6 +495,34 @@ Back to top<i class="icofont icofont-arrow-up"></i>
 <!-- main JS -->
 <script src="assets/js/main.js"></script>
 </body>
+<script>
+        $(document).ready(function() {
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault(); // Prevent form from submitting normally
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'login.php', // PHP script to handle the login
+                    data: $(this).serialize(), // Serialize form data
+                    success: function(response) {
+                        console.log(response); // Log the response for debugging
+                        var data = JSON.parse(response);
+                        if (data.success) {
+                            // Redirect to main page if login is successful
+                            window.location.href = 'Main.php?user_id=' + data.user_id;
+                        } else {
+                            // Show error message if login fails
+                            $('.error-message').text(data.error_msg);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error: " + textStatus, errorThrown);
+                        $('.error-message').text('An error occurred while processing your request.');
+                    }
+                });
+            });
+        });
+    </script>
 <?php
 $conn->close();
 ?>
