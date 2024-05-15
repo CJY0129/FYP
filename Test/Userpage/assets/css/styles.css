@@ -1210,6 +1210,12 @@ hr {
 	padding: 0 15px;
 }
 
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
 .login-box {
     max-width: 380px;
     background: #fff;
@@ -1402,4 +1408,3 @@ hr {
 /*--------------------------------------
 --------- Pre Loader Style END ---------
 ---------------------------------------*/
-
