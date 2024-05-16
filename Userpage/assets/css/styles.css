@@ -298,6 +298,85 @@ input::-webkit-input-placeholder {
     align-items: center;
 }
 
+.dropbtn {
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    float: right; /* Align to the right */
+    margin-right: 59px; /* Adjust margin-right for spacing */
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    float: right; /* Align to the right */
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    right: 0; /* Align to the right */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a, 
+  form input[type="submit"] {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover,
+  form input[type="submit"]:hover {
+    background-color: darkgray;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    right: 0; /* Align to the right */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a, 
+  form input[type="submit"] {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover,
+  form input[type="submit"]:hover {
+    background-color: darkgray;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
 .menu-area {
     grid-column: span 10;
 }

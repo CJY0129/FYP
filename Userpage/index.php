@@ -97,24 +97,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<form >
 						</form>
 						<div class="header-right">
-                    <ul>
-                    <?php
-                        if ($_SESSION['user_id'] == 0) {
-                            echo '<li><a class="login-popup" href="#">Login</a></li>';
-                        } else if($_SESSION['user_id'] == 1){
-                            echo '<li><a href="#">Welcome Guest!</a></li>';
-                            echo '<li><a href="logout.php">Logout</a></li>'; // Add logout link for guest
+            <ul>
+                <?php
+                    if ($_SESSION['user_id'] == 0) {
+                        echo '<li><a class="login-popup" href="#">Login</a></li>';
+                    } else {
+                        echo '<li class="nav-item dropdown">';
+                        echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+                        if ($_SESSION['user_id'] == 1) {
+                            echo 'Welcome Guest!';
                         } else {
                             if ($_SESSION['Gender'] == 'M') {
-                                echo '<li><a href="#">Welcome Mr. ' . $_SESSION['first_name'] . '!</a></li>';
+                                echo 'Welcome Mr. ' . $_SESSION['first_name'] . '!';
                             } else {
-                                echo '<li><a href="#">Welcome Ms. ' . $_SESSION['first_name'] . '!</a></li>';
+                                echo 'Welcome Ms. ' . $_SESSION['first_name'] . '!';
                             }
-                            echo '<li><a href="logout.php">Logout</a></li>'; // Add logout link for logged in user
                         }
-                    ?>
-                    </ul>
-                </div>
+                        echo '</a>';
+                        
+                    }
+                ?>
+				<div class="dropdown-content">
+    			<?php
+    			if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != 1) {
+    		    echo '<a href="customer/Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
+   			}
+    		?>
+    		<a href="logout.php" id="logout">Log out</a>
+		</div>
+
+            </ul>
+        </div>
 					</div>
 					<div class="menu-area">
 						<div class="responsive-menu"></div>
@@ -533,22 +546,32 @@ if ($result->num_rows > 0) {
 					</div>
 				</div>
 			</div>
-		</footer><!-- footer section end -->
-		<!-- jquery main JS -->
-		<script src="assets/js/jquery.min.js"></script>
-		<!-- Bootstrap JS -->
-		<script src="assets/js/bootstrap.min.js"></script>
-		<!-- Slick nav JS -->
-		<script src="assets/js/jquery.slicknav.min.js"></script>
-		<!-- owl carousel JS -->
-		<script src="assets/js/owl.carousel.min.js"></script>
-		<!-- Popup JS -->
-		<script src="assets/js/jquery.magnific-popup.min.js"></script>
-		<!-- Isotope JS -->
-		<script src="assets/js/isotope.pkgd.min.js"></script>
-		<!-- main JS -->
-		<script src="assets/js/main.js"></script>
-	</body>
+			</div>
+</body>
+<!-- footer section end -->
+<!-- jquery main JS -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Slick nav JS -->
+<script src="assets/js/jquery.slicknav.min.js"></script>
+<!-- owl carousel JS -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Popup JS -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<!-- Isotope JS -->
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<!-- main JS -->
+<script src="assets/js/main.js"></script>
+<script>
+    document.getElementById('logout').addEventListener('click', function(event) {
+        if (!confirm('Are you sure you want to log out?')) {
+            event.preventDefault();
+        }
+    });
+</script>
+</html>
+
 <?php
 $conn->close();
 
