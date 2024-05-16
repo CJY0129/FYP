@@ -1,40 +1,50 @@
-
 <?php
+// Prevent the browser from caching the page
+header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1
+header("Pragma: no-cache"); // HTTP 1.0
+header("Expires: 0"); // Proxies
+
 include('connect.php');
 session_start();
 $_SESSION['user_id'] = 0;
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Fetch username and password from the form
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    if (isset($_POST['login'])) {
+        // Fetch username and password from the form
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-    // Query the database to check if the username exists
-    $sql = "SELECT * FROM user WHERE username = '$username'";
-    $result = $conn->query($sql);
+        // Query the database to check if the username exists
+        $sql = "SELECT * FROM user WHERE username = '$username'";
+        $result = $conn->query($sql);
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        // Verify password
-        if ($password == $row['password']) {
-            // Password is correct, set session variables or perform further actions
-            $_SESSION['user_id'] = $row['user_id'];
-            $_SESSION['first_name'] = $row['first_name'];
-            // Redirect to another page or perform actions after successful login
-			echo'<script>alert("Login success");</script>';
-
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            // Verify password
+            if ($password == $row['password']) {
+                // Password is correct, set session variables or perform further actions
+                $_SESSION['user_id'] = $row['user_id'];
+                $_SESSION['first_name'] = $row['first_name'];
+                $_SESSION['Gender'] = $row['Gender'];
+                // Redirect to another page or perform actions after successful login
+                echo '<script>alert("Login successful");</script>';
+            } else {
+                // Password is incorrect
+                echo '<script>alert("Incorrect Username and password");</script>';
+            }
         } else {
-            // Password is incorrect
-			echo'<script>alert("Incorrect password");</script>';
-
+            // Username not found
+            echo '<script>alert("Incorrect Username and password");</script>';
         }
-    } else {
-        // Username not found
-		echo'<script>alert("Username not found");</script>';
+    } elseif (isset($_POST['guest'])) {
+        // Sign in as guest
+        $_SESSION['user_id'] = 1;
+        echo '<script>alert("Signed in as Guest successfully");</script>';
     }
 }
 ?>
+
 <!DOCTYPE HTML>
 <html lang="zxx">
 	
@@ -86,17 +96,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						</form>-->
 						<form >
 						</form>
-						<ul>
-						<?php
-    						if ($_SESSION['user_id'] == 0) {
-        						echo '<li><a href="#">Welcome Guest!</a></li>';
-        						echo '<li><a class="login-popup" href="#">Login</a></li>';
-    						} else {
-        						echo '<li><a href="#">Welcome ' . $_SESSION['first_name'] . '!</a></li>';
-        						
-    						}
-						?>
-						</ul>
+						<div class="header-right">
+                    <ul>
+                    <?php
+                        if ($_SESSION['user_id'] == 0) {
+                            echo '<li><a class="login-popup" href="#">Login</a></li>';
+                        } else if($_SESSION['user_id'] == 1){
+                            echo '<li><a href="#">Welcome Guest!</a></li>';
+                            echo '<li><a href="logout.php">Logout</a></li>'; // Add logout link for guest
+                        } else {
+                            if ($_SESSION['Gender'] == 'M') {
+                                echo '<li><a href="#">Welcome Mr. ' . $_SESSION['first_name'] . '!</a></li>';
+                            } else {
+                                echo '<li><a href="#">Welcome Ms. ' . $_SESSION['first_name'] . '!</a></li>';
+                            }
+                            echo '<li><a href="logout.php">Logout</a></li>'; // Add logout link for logged in user
+                        }
+                    ?>
+                    </ul>
+                </div>
 					</div>
 					<div class="menu-area">
 						<div class="responsive-menu"></div>
@@ -118,25 +136,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</div>
 		</header>
 		<div class="login-area">
-    <div class="login-box">
-        <a href="#"><i class="icofont icofont-close"></i></a>
-        <h2>LOGIN</h2>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <h6>USERNAME</h6>
-            <input type="text" name="username" required>
-            <h6>PASSWORD</h6>
-            <input type="password" name="password" required>
-            <div class="login-signup">
-                <span><a href="signup.php">SIGNUP</a></span>
-            </div>
-            <button type="submit" class="theme-btn">LOG IN</button>
-        </form>
+        <div class="login-box">
+            <a href="#"><i class="icofont icofont-close"></i></a>
+            <h2>LOGIN</h2>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <h6>USERNAME</h6>
+                <input type="text" name="username" required>
+                <h6>PASSWORD</h6>
+                <input type="password" name="password" required>
+                <div class="login-signup">
+                    <span><a href="signup.php">SIGNUP</a></span>
+                </div>
+                <button type="submit" name="login" class="theme-btn">LOG IN</button>
+            </form>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <button type="submit" name="guest" class="theme-btn">SIGN IN AS GUEST</button>
+            </form>
+        </div>
     </div>
-</div>
 
 
-		<?php
-
+<?php
 
 // SQL query to retrieve movies based on show_time
 $sql = "SELECT m.movie_id, m.title, m.poster_path, s.show_time, s.end_time, s.price 
@@ -227,44 +247,13 @@ $result = $conn->query($sql);
 
 
 // SQL query to retrieve movies based on show_time
-$sql = "SELECT DISTINCT m.*
-        FROM showtime s
-        INNER JOIN movie m ON s.movie_id = m.movie_id
-        WHERE s.show_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)
-        ORDER BY s.show_time";
-
-
+// SQL query to select one random movie
+$sql = "SELECT movie_id, title, poster_path, synopsis, cast FROM movie ORDER BY RAND() LIMIT 1";
 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo '<div class="row hero-area-slide">';
-        echo '<div class="col-lg-6 col-md-5">';
-        echo '<div class="hero-area-content">';
-        // Display movie poster
-        if (!empty($row['poster_path'])) {
-            $poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
-            $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
-            echo '<img src="' . $poster_src . '" alt="Movie Poster" width="265" height="425">';
-        } else {
-            echo '<p>No poster available</p>';
-        }
-        echo '</div>';
-        echo '</div>';
-        echo '<div class="col-lg-6 col-md-7">';
-        echo '<div class="hero-area-content pr-50">';
-        echo '<h2>' . $row['title'] . '</h2>';
-        echo '<p>' . $row['synopsis'] . '</p>';
-        echo '<h3>Cast: ' . $row['cast'] . '</h3>';
-        echo '<div class="slide-trailor">';
-        echo '<a class="theme-btn theme-btn2" href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '"> More information</a>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-    }
-} else {
+    $row = $result->fetch_assoc();
     echo '<div class="row hero-area-slide">';
     echo '<div class="col-lg-6 col-md-5">';
     echo '<div class="hero-area-content">';
@@ -280,6 +269,24 @@ if ($result->num_rows > 0) {
     echo '</div>';
     echo '<div class="col-lg-6 col-md-7">';
     echo '<div class="hero-area-content pr-50">';
+    echo '<h2>' . $row['title'] . '</h2>';
+    echo '<p>' . $row['synopsis'] . '</p>';
+    echo '<h3>Cast: ' . $row['cast'] . '</h3>';
+    echo '<div class="slide-trailor">';
+    echo '<a class="theme-btn theme-btn2" href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '"> More information</a>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
+} else {
+    echo '<div class="row hero-area-slide">';
+    echo '<div class="col-lg-6 col-md-5">';
+    echo '<div class="hero-area-content">';
+    echo '<img src="assets/img/CineTime1.jpg" alt="Movie Poster" width="265" height="425">';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="col-lg-6 col-md-7">';
+    echo '<div class="hero-area-content pr-50">';
     echo '<h2>No Movies Today</h2>';
     echo '<p></p>';
     echo '<h3>Cast: </h3>';
@@ -289,6 +296,7 @@ if ($result->num_rows > 0) {
     echo '</div>';
     echo '</div>';
 }
+
 
             ?>
 </div>
