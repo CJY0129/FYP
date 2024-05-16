@@ -5,7 +5,7 @@ session_start(); // Start or resume a session
 if (isset($_GET['logout']) && $_GET['logout'] == 1) {
     session_unset();
     session_destroy();
-    header("Location: ../main(notlogin).php");
+    header("Location: ../../Userpage/index.php");
     exit;
 }
 
@@ -168,6 +168,7 @@ $conn->close();
         <p><?php echo "Duration: " . $duration; ?></p>
         <p><?php echo "Release Date: " . $release; ?></p>
     </div>
+    <button onclick="history.back()">Go Back</button>
 </body>
 
 </html>
