@@ -1272,10 +1272,6 @@ hr {
 /*----------------------------------
 -------- login PAGE CSS START -------
 ------------------------------------*/
-
-/*----------------------------------
---------- login PAGE CSS END --------
------------------------------------*/
 .login-area {
     position: absolute;
     top: 0;
@@ -1373,18 +1369,11 @@ hr {
     background: #3a559f;
     text-align: center;
 }
-.login-social a i.icofont-social-twitter {
-    background: #50abf1;
-}
-.login-social a i.icofont-social-linkedin {
-    background: #dd4b39;
-}
-.login-social a i.icofont-social-google-plus {
-    background: #0084b1;
-}
-.login-social a i.icofont-camera {
-    background: #c536a4;
-}
+/*----------------------------------
+--------- login PAGE CSS END --------
+-----------------------------------*/
+
+
 /*----------------------------------
 -------- blog PAGE CSS START -------
 ------------------------------------*/

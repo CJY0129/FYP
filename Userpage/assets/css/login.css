@@ -1,0 +1,140 @@
+/* General Styles */
+body {
+    line-height: 24px;
+    font-size: 14px;
+    color: #b6b7b9;
+    background: #13151f;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-top: 300px;
+}
+
+/* Reset CSS */
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.6s;
+}
+button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+/* Header Styles */
+.header {
+    background-color: #1a1d2b;
+    padding: 20px 0;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.header .menu-area {
+    display: flex;
+    align-items: center;
+}
+
+.header .mainmenu ul {
+    display: flex;
+}
+
+.header .mainmenu ul li {
+    margin-left: 30px;
+}
+
+.header .mainmenu ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.header .mainmenu ul li a:hover {
+    background-color: #eb315a;
+}
+
+/* Login Area */
+.login-area {
+    background-color: #13151f;
+    padding: 50px 0;
+}
+
+.login-box {
+    background-color: #24262d;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-box h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.login-box h6 {
+    color: #b6b7b9;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.login-box .login-signup {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.login-box .login-signup a {
+    color: #eb315a;
+}
+
+.login-box .theme-btn {
+    background: #eb315a;
+    border: 1px solid #eb315a;
+    color: #fff;
+    border-radius: 35px;
+    padding: 10px 25px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.login-box .theme-btn:hover {
+    background: transparent;
+    color: #eb315a;
+}
