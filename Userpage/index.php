@@ -19,26 +19,7 @@ $_SESSION['user_id'] = 0;
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>CINETIME</title>
-		<!-- Favicon Icon -->
-		<link rel="icon" type="image/png" href="assets/img/CT.ico" />
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
-		<!-- Slick nav CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/slicknav.min.css" media="all" />
-		<!-- Iconfont CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/icofont.css" media="all" />
-		<!-- Owl carousel CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
-		<!-- Popup CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
-		<!-- Main style CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
-		<!-- Responsive CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+		
 	</head>
 	<body>
 		<!-- Page loader -->
@@ -47,25 +28,6 @@ $_SESSION['user_id'] = 0;
 		<?php
 			include('header.php');
 		?>
-		<div class="login-area">
-        <div class="login-box">
-            <h2>LOGIN</h2>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <h6>USERNAME</h6>
-                <input type="text" name="username" required>
-                <h6>PASSWORD</h6>
-                <input type="password" name="password" required>
-                <div class="login-signup">
-                    <span><a href="signup.php">SIGNUP</a></span>
-                </div>
-                <button type="submit" name="login" class="theme-btn">LOG IN</button>
-            </form>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <button type="submit" name="guest" class="theme-btn">SIGN IN AS GUEST</button>
-            </form>
-        </div>
-    </div>
-
 
 <?php
 

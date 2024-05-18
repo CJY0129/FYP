@@ -1,18 +1,39 @@
 <?php
 session_start();
-$_SESSION['user_id'] = 0;
+include('connection.php');
+$error_message = '';
 
+// Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['login'])) {
+        // Fetch username and password from the form
         $username = $_POST['username'];
         $password = $_POST['password'];
-        // Implement login validation here
-    } elseif (isset($_POST['guest'])) {
-        $_SESSION['user_id'] = -1; // Assign guest user ID
-        header("Location: index.php");
-        exit;
-    }
+
+        // Query the database to check if the username exists
+        $sql = "SELECT * FROM user WHERE username = '$username'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            // Verify password
+            if ($password == $row['password']) {
+                // Password is correct, set session variables
+                $_SESSION['user_id'] = $row['user_id'];
+                // Redirect to index.php
+                header("Location: main.php");
+                exit();
+            } else {
+                // Password is incorrect
+                $error_message = "Incorrect username or password. Please try again.";
+            }
+        } else {
+            // Username not found
+            $error_message = "Incorrect username or password. Please try again.";
+        }
+    } 
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -53,30 +74,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </header>
- <div class="login-area">
-        <div class="container">
-            <div class="login-box">
-                <h2>LOGIN</h2>
-                <form method="post" action="checklogin.php">
-                    <h6>USERNAME</h6>
-                    <input type="text" name="username" required>
-                    <h6>PASSWORD</h6>
-                    <input type="password" name="password" required>
-                    <div class="login-signup">
-                        <span><a href="signup.php">SIGNUP</a></span>
-                    </div>
-                    <button type="submit" name="login" class="theme-btn">LOG IN</button>
-                </form>
-            </div>
+
+<h2>LOGIN</h2>
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <h6>USERNAME</h6>
+    <input type="text" name="username" required>
+    <h6>PASSWORD</h6>
+    <input type="password" name="password" required>
+    <?php if ($error_message): ?>
+    <div class="error-message"><?php echo $error_message; ?></div>
+<?php endif; ?>
+        <div class="login-signup">
+            <span class="signup-link"><a href="signup.php">SIGN UP</a></span>
+            <button type="submit" name="login" class="theme-btn">LOG IN</button>
         </div>
-    </div>
+
+</form>
+
 <?php include('footer.php'); ?>
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const error = urlParams.get('error');
-    if (error) {
-        alert(decodeURIComponent(error));
-    }
-</script>
 </body>
 </html>

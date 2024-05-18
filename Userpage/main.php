@@ -6,16 +6,32 @@ header("Expires: 0"); // Proxies
 
 include('connect.php');
 session_start();
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
-} elseif (isset($_GET['user_id'])) {
-    $user_id = $_GET['user_id'];
+
+// Check if user is logged in and session variables are set
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php"); // Redirect to login page if not logged in
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Fetch user details from the database
+$sql = "SELECT Gender, first_name FROM user WHERE user_id = $user_id";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Set session variables based on retrieved data
+    $row = $result->fetch_assoc();
+    $_SESSION['Gender'] = $row['Gender'];
+    $_SESSION['first_name'] = $row['first_name'];
 } else {
-    $user_id = 1; // Default user_id for guest
+    // Handle case where user details are not found
+    // Redirect to login page or display an error message
 }
 
 
 ?>
+
 
 <!DOCTYPE HTML>
 <html lang="zxx">
@@ -69,34 +85,24 @@ if (isset($_SESSION['user_id'])) {
 						<form >
 						</form>
 						<div class="header-right">
-            <ul>
+    <ul>
+        <li>
+            <?php
+            if ($_SESSION['Gender'] == 'M') {
+                echo 'Welcome Mr. ' . $_SESSION['first_name'] . '!';
+            } else {
+                echo 'Welcome Ms. ' . $_SESSION['first_name'] . '!';
+            }
+            ?>
+            <div class="dropdown-content">
                 <?php
-                if (isset($_SESSION['user_id'])) {
-                     if ($_SESSION['user_id'] == 1) {
-                            echo 'Welcome Guest!';
-                        } else {
-                            if ($_SESSION['Gender'] == 'M') {
-                                echo 'Welcome Mr. ' . $_SESSION['first_name'] . '!';
-                            } else {
-                                echo 'Welcome Ms. ' . $_SESSION['first_name'] . '!';
-                            }
-                        }
-                        echo '</a>';
-                        
-                    
+                echo '<a href="customer/Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
                 ?>
-				<div class="dropdown-content">
-    			<?php
-    			if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != 1) {
-    		    echo '<a href="customer/Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
-   			}
-        }
-    		?>
-    		<a href="logout.php" id="logout">Log out</a>
-		</div>
-
-            </ul>
-        </div>
+                <a href="logout.php" id="logout">Log out</a>
+            </div>
+        </li>
+    </ul>
+</div>
 					</div>
 					<div class="menu-area">
 						<div class="responsive-menu"></div>
@@ -444,60 +450,7 @@ if ($result->num_rows > 0) {
 		
 					
 		<!-- footer section start -->
-		<footer class="footer">
-			<div class="container">
-				<div class="row">
-                    <div class="col-lg-3 col-sm-6">
-						<div class="widget">
-							<img src="assets/img/CTlogo.png" alt="about" />
-							<p>MMU,Melaka</p>
-							<h6><span>Call us: </span>(+60) 111 222 3456</h6>
-						</div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-						<div class="widget">
-							<h4>Legal</h4>
-							<ul>
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Security</a></li>
-							</ul>
-						</div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-						<div class="widget">
-							<h4>Account</h4>
-							<ul>
-								<li><a href="#">My Account</a></li>
-								<li><a href="#">Watchlist</a></li>
-								<li><a href="#">Collections</a></li>
-								<li><a href="#">User Guide</a></li>
-							</ul>
-						</div>
-                    </div>
-                    
-				</div>
-				<hr />
-			</div>
-			<div class="copyright">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6 text-center text-lg-left">
-							<div class="copyright-content">
-							<p class="no-margin-bottom">2024 &copy; CineTime.</p>
-							</div>
-						</div>
-						<div class="col-lg-6 text-center text-lg-right">
-							<div class="copyright-content">
-								<a href="#" class="scrollToTop">
-									Back to top<i class="icofont icofont-arrow-up"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			</div>
+		<?php include('footer.php');?>
 </body>
 <!-- footer section end -->
 <!-- jquery main JS -->
@@ -520,6 +473,7 @@ if ($result->num_rows > 0) {
             event.preventDefault();
         }
     });
+	
 </script>
 </html>
 

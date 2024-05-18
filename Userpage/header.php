@@ -35,8 +35,8 @@
                     <ul>
                         <?php
                         if ($_SESSION['user_id'] == 0) {
-                            echo '<li><a class="login-popup" href="#">Welcome Guest</a></li>';
-                            echo '<li><a class="login-popup" href="#">Login</a></li>';
+                            echo '<li>Welcome Guest</li>';
+                            echo '<li><a href="Login.php">Login</a></li>';
                         } else {
                             echo '<li class="nav-item dropdown">';
                             echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
