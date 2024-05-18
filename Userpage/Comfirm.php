@@ -29,7 +29,7 @@
         }
 
         input{
-            color:black;
+            color:white;
         }
 
       

@@ -1,17 +1,13 @@
 
-.container {
+.seatcontainer {
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
 
 }
 
-body
-{
-    background-color: #161515;
-}
 
-h2
+.seatcontainer h2
 {
     margin-left:98px;
     color:#b82222;
@@ -32,17 +28,18 @@ p{
     flex-wrap: wrap;
     justify-content: center;
     gap: 5px;
+    
 }
 
-h3{
-    color: #fff;
-    font-size: 25px;
+.seat p {
+    color:black;
 }
 
 
 .seat {
     width: 40px;
     height: 40px;
+    color:black;
     background-color: #ffffff;
     border: 1px solid #000000e7;
     border-radius: 30px;
@@ -75,11 +72,11 @@ h3{
 
 .moviecontainer {
     max-width: 100%; /* Adjust width as needed */
-  margin: 0 auto; /* Center container horizontally */
-  background-color: #c0153a; /* Background color */
-  padding: 20px; /* Add some padding for spacing */
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Align items vertically */
+    margin: 0 auto; /* Center container horizontally */
+    background-color: #c0153a; /* Background color */
+    padding: 20px; /* Add some padding for spacing */
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
 }
 
 .moviecontainer img {

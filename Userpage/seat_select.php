@@ -1,4 +1,5 @@
-    <div class="container">
+   
+   <div class="seatcontainer">
         <h2>screen</h2>
         <div class="seats">
             <!-- Seats will be dynamically generated here -->

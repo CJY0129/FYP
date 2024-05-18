@@ -40,6 +40,8 @@ body {
 /*----------------------------
 ---------- RESET CSS ---------
 ----------------------------*/
+
+
 h1,h2,h3,h4,h5,h6 {
     font-weight: 500;
 	color: #fff;
@@ -268,6 +270,7 @@ input::-webkit-input-placeholder {
 	left: 0;
 	width: 100%;
 	z-index: 99;
+    
 }
 .header-area {
     display: grid;
