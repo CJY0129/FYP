@@ -41,7 +41,7 @@
         if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == 0) {
             echo '<h2>Personal Details</h2>';
             echo '<div class="form-container">
-                    <form action="process_payment.php" method="POST">
+                    <form action="payment.php" method="POST">
                         <input type="text" name="name" placeholder="Full Name" required>
                         <input type="email" name="email" placeholder="Email" required>
                         <input type="text" name="phone" placeholder="Phone Number" >

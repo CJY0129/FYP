@@ -29,6 +29,7 @@ $showtime = $row['show_time'];
 $poster = $row['poster_path'];
 $cinema_id = $row['cinema_id'];
 
+
 // Fetch cinema name from the cinema table using cinema ID
 $sql = "SELECT name FROM cinema WHERE cinema_id = $cinema_id";
 $result = $conn->query($sql);
@@ -49,6 +50,7 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $hall_id = $row['hall_id'];
 $number_of_seats = $row['number_of_seat'];
+$_SESSION['hall_id']=$row['hall_id'];
 ?>
 
 

@@ -18,4 +18,5 @@ header("Content-Type: " . $result->getMimeType());
 
 echo $result->getString();
 
+$result->saveToFile("QR.png");
 
