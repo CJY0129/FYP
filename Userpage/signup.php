@@ -38,10 +38,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <!-- Include your CSS files here -->
+    <title>Login/Sign up</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/login.css"/>
+    <link rel="icon" type="image/png" href="assets/img/CT.ico" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/slicknav.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/icofont.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
+<header class="header">
+    <div class="container">
+        <div class="header-area">
+            <div class="logo">
+                <a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
+            </div>
+            <div class="menu-area">
+                <div class="responsive-menu"></div>
+                <div class="mainmenu">
+                    <ul id="primary-menu">
+                        <li><a class="active" href="index.php">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 <h2>Sign Up</h2>
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -65,10 +94,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if ($error_message): ?>
     <div class="error-message"><?php echo $error_message; ?></div>
     <?php endif; ?>
-    <button type="submit" name="signup">Sign Up</button>
+    <button type="submit" name="signup" class="theme-btn">Sign Up</button>
 </form>
 
 <!-- Include your footer if needed -->
-
+<?php include('footer.php'); ?>
 </body>
 </html>
