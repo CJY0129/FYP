@@ -60,8 +60,9 @@
                                     $admin_password = $_POST['registerPassword'];
                                     $admin_name = $_POST['registerName'];
                                     $admin_phone = $_POST['registerPhone'];
-                                    $is_admin = isset($_POST['isAdmin']) ? 1 : 0;
-                                    $is_super_admin = isset($_POST['isSuperAdmin']) ? 1 : 0;
+                                    $adminLevel = isset($_POST['adminLevel']) ? $_POST['adminLevel'] : '';
+                                    $is_admin = ($adminLevel === 'admin') ? 1 : 0;
+                                    $is_super_admin = ($adminLevel === 'superAdmin') ? 1 : 0;
 
                                     // Check if username or email already exists
                                     $checkUserSql = "SELECT * FROM admin WHERE username='$admin_username' OR Email='$admin_email'";
@@ -106,13 +107,14 @@
                                         <label for="register-phone" class="label-material">Phone Number</label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="is-admin" type="checkbox" name="isAdmin" class="input-material">
+                                        <input id="is-admin" type="radio" name="adminLevel" value="admin" class="input-material">
                                         <label for="is-admin" class="label-material">Is Admin</label>
                                     </div>
                                     <div class="form-group-material">
-                                        <input id="is-super-admin" type="checkbox" name="isSuperAdmin" class="input-material">
+                                        <input id="is-super-admin" type="radio" name="adminLevel" value="superAdmin" class="input-material">
                                         <label for="is-super-admin" class="label-material">Is Super Admin</label>
                                     </div>
+
                                     <div class="form-group text-center">
                                         <input id="register" type="submit" value="Register" class="btn btn-primary">
                                     </div>
