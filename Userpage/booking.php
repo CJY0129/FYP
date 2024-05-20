@@ -30,27 +30,37 @@ $poster = $row['poster_path'];
 $cinema_id = $row['cinema_id'];
 
 
-// Fetch cinema name from the cinema table using cinema ID
 $sql = "SELECT name FROM cinema WHERE cinema_id = $cinema_id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $name = $row['name'];
 
-// Fetch booked seats
+
 $sql = "SELECT seat_num FROM booking WHERE show_id = $show_id";
 $result = $conn->query($sql);
-$booked_seats = array(); // Initialize an empty array to store booked seats
+$booked_seats = array();
 while ($row = $result->fetch_assoc()) {
-    $booked_seats[] = $row['seat_num']; // Add each booked seat to the array
+    $seat_nums = explode(',', $row['seat_num']);
+    foreach ($seat_nums as $seat_num) {
+        $booked_seats[] = trim($seat_num); 
+    }
 }
 
-// Fetch hall details
+
+$sql = "SELECT price FROM showtime WHERE show_id = $show_id";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$_SESSION['price'] = $row['price'];
+
+
 $sql = "SELECT hall_id, number_of_seat FROM hall WHERE hall_id = (SELECT hall_id FROM showtime WHERE show_id = $show_id)";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$hall_id = $row['hall_id'];
+$_SESSION['hall_id'] = $row['hall_id'];
 $number_of_seats = $row['number_of_seat'];
-$_SESSION['hall_id']=$row['hall_id'];
+
+
+
 ?>
 
 
@@ -154,12 +164,13 @@ if (!empty($poster)) {
 } else {
     echo 'No Poster Available';
 }
+
 ?>
 
         <ul>
             
                 <h3>  <?php echo $title; ?></h3><br><br>
-                <p class="left-box"><i class="fa fa-home" style="font-size:24px"></i> Hall <?php echo $hall_id; ?></p>
+                <p class="left-box"><i class="fa fa-home" style="font-size:24px"></i> Hall <?php echo $_SESSION['hall_id']; ?></p>
                 <p class="right-box"><i class="fa fa-clock-o" style="font-size:24px"></i> <?php echo $showtime; ?></p>
                 <p class="left-box"><i class="fa fa-map-marker" style="font-size:24px"></i> <?php echo $name; ?></p>
                 <?php

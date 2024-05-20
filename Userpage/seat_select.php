@@ -13,6 +13,7 @@
     const bookedSeats   = <?php echo json_encode($booked_seats, JSON_NUMERIC_CHECK) ?>;
     const numberOfSeats = <?php echo $number_of_seats; ?>;
     
+    
     document.addEventListener('DOMContentLoaded', function() {
     const seatsContainer = document.querySelector('.seats');
     const bookBtn = document.getElementById('bookBtn');
