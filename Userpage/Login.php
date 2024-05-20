@@ -68,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="mainmenu">
                     <ul id="primary-menu">
                         <li><a class="active" href="index.php">Home</a></li>
+                        <h2>LOGIN</h2>
                     </ul>
                 </div>
             </div>
@@ -75,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </header>
 
-<h2>LOGIN</h2>
+
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <h6>USERNAME</h6>

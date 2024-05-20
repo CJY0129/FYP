@@ -65,13 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="mainmenu">
                     <ul id="primary-menu">
                         <li><a class="active" href="index.php">Home</a></li>
+                        <h2>Sign Up</h2>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<h2>Sign Up</h2>
+
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <h6>Username</h6>
@@ -94,7 +95,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if ($error_message): ?>
     <div class="error-message"><?php echo $error_message; ?></div>
     <?php endif; ?>
-    <button type="submit" name="signup" class="theme-btn">Sign Up</button>
+    
+    <div class="login-signup">
+            <span class="signup-link"><a href="Login.php">Back</a></span>
+            <button type="submit" name="signup" class="theme-btn">Sign Up</button>
+        </div>
 </form>
 
 <!-- Include your footer if needed -->

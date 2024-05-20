@@ -3,15 +3,16 @@ body {
     line-height: 24px;
     font-size: 14px;
     color: #b6b7b9;
-    background-image: url('../img/hero-area.png');
+    background-image: url('/path/to/img/hero-area.png');
+    background-size: cover;
+    background-repeat: no-repeat;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     position: relative;
     margin: 0;
     padding: 0;
-    padding-top: 200px;
+    padding-top: 250px;
     text-align: center;
-    
 }
 
 /* Reset CSS */
@@ -80,7 +81,6 @@ button {
 form {
     background-color: #fff;
     padding: 50px 0;
-    
 }
 
 form {
@@ -106,11 +106,11 @@ form h6 {
     margin-bottom: 5px;
 }
 
-
 form input[type="text"],
-form input[type="password"] {
-    background-color: #fff; /* Change to white */
-    color: #000; /* Change text color to black for better visibility */
+form input[type="password"],
+form input[type="email"] {
+    background-color: #fff;
+    color: #000;
     width: 100%;
     padding: 10px;
     border: solid black;
@@ -118,19 +118,16 @@ form input[type="password"] {
     margin-bottom: 20px;
 }
 
-
-
 form .login-signup {  
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Change alignment to top */
-    margin-top: 20px; /* Add margin-top for spacing */
+    align-items: center;
+    margin-top: 20px;
 }
 
-
 form .signup-link {
-    flex: 1; /* This will make the "Sign Up" link take up the available space */
-    text-align: left; /* Align "Sign Up" link to the left */
+    flex: 1;
+    text-align: left;
     padding-right: 180px;
 }
 
@@ -140,8 +137,8 @@ form .login-signup a {
 
 form .theme-btn {
     margin-top: 0;
-    background: #eb315a !important; /* Change background color */
-    color: #fff !important; /* Change text color */
+    background: #eb315a !important;
+    color: #fff !important;
     border: 1px solid #eb315a !important;
     border-radius: 35px;
     padding: 10px 25px;
@@ -153,10 +150,14 @@ form .theme-btn {
 }
 
 form .theme-btn:hover {
-    background: #fff !important; /* Change background color on hover */
-    color: #eb315a !important; /* Change text color on hover */
+    background: #fff !important;
+    color: #eb315a !important;
 }
 
 .error-message {
     color: red;
+}
+
+footer {
+    margin-top: 100px; /* Adjust the margin-top to create space between the form and the footer */
 }

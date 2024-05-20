@@ -96,7 +96,7 @@ if ($result->num_rows > 0) {
             ?>
             <div class="dropdown-content">
                 <?php
-                echo '<a href="customer/Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
+                echo '<a href="Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
                 ?>
                 <a href="logout.php" id="logout">Log out</a>
             </div>
@@ -243,7 +243,7 @@ if ($result->num_rows > 0) {
     echo '<p>' . $row['synopsis'] . '</p>';
     echo '<h3>Cast: ' . $row['cast'] . '</h3>';
     echo '<div class="slide-trailor">';
-    echo '<a class="theme-btn theme-btn2" href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '"> More information</a>';
+    echo '<a class="theme-btn theme-btn2" href="moviedesc.php?id=' . $row['movie_id'] . '"> More information</a>';
     echo '</div>';
     echo '</div>';
     echo '</div>';
