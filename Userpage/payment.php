@@ -5,7 +5,7 @@ require "vendor/autoload.php";
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 
-
+SESSION_start();
 
 
 $numbers = explode(',', $_SESSION['selected_seats']);
