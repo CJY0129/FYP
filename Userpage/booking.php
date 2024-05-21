@@ -155,7 +155,7 @@ $number_of_seats = $row['number_of_seat'];
 
 		
 
-    <div class="container">
+    <div class="container" >
                         </div>
 <div class="moviecontainer" style="margin-top: 180px;">
 <?php

@@ -7,9 +7,12 @@ $conn = new mysqli($servername,'root' , '', $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
-}
 
-$sql = "SELECT * FROM user";
+
+}
+SESSION_Start();
+
+$sql = "SELECT * FROM user WHERE user_id = " . $_SESSION['user_id'] . "  ";
 $result = $conn->query($sql);
 
 // Your existing code for establishing database connection and executing query

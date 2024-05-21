@@ -48,9 +48,9 @@
                         <button type="submit">Proceed to Payment</button>
                     </form>
                   </div>';
-        } else {
-            header("Location: payment.php");
-        }
+            } else {
+                echo'<meta http-equiv="refresh" content="0;url=connect_user.php">';
+            }
         ?>
     </div>
 
