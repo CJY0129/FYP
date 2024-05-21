@@ -35,6 +35,10 @@ body {
 	font-family: 'Poppins', sans-serif;
     font-weight: 400;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
 /*----------------------------
@@ -370,6 +374,7 @@ input::-webkit-input-placeholder {
 .mainmenu li {
     display: inline-block;
 	position: relative;
+    
 }
 .mainmenu li a:not(.theme-btn) {
     display: inline-block;
@@ -856,6 +861,7 @@ hr {
 	background: url('../img/footer-bg.png') no-repeat bottom center / cover;
     position: relative;
 	padding: 90px 0 30px;
+    margin-top: 100px;
 }
 .footer::before {
     position: absolute;
@@ -1317,9 +1323,6 @@ hr {
     float: right;
 }
 
-.login-remember {
-    float: left;
-}
 
 .login-signup a {
     color: #008aff;
@@ -1454,4 +1457,5 @@ hr {
 /*--------------------------------------
 --------- Pre Loader Style END ---------
 ---------------------------------------*/
+
 

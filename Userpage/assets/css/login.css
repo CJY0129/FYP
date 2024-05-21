@@ -98,6 +98,8 @@ h2 {
     margin-bottom: 20px;
     text-align: left;
     padding-left: 200px;
+    margin-top: 0; /* Add this line */
+    
 }
 
 form h6 {
@@ -160,4 +162,50 @@ form .theme-btn:hover {
 
 footer {
     margin-top: 100px; /* Adjust the margin-top to create space between the form and the footer */
+}
+
+#mainbox {
+    margin: auto;
+    width: 80%; /* Adjust the width as needed */
+    text-align: center; /* Center align the content */;
+    color: black;
+}
+
+table {
+    margin: auto; /* Center the table */
+    border-collapse: collapse; /* Collapse border spacing */
+    background-color: white; /* Set background color */
+    color: black; /* Set text color */
+}
+
+th, td {
+    border: 1px solid black; /* Add border styling */
+    padding: 8px; /* Add padding for better spacing */
+}
+
+#box {
+    margin: auto;
+    width: 80%; /* Adjust the width as needed */
+}
+
+
+
+.profile-heading {
+    color: black;
+    margin-top: 0;
+}
+
+.edit-link {
+    color: black;
+    text-decoration: none;
+    background-color: #eb315a; /* You can adjust background color as needed */
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.edit-link:hover {
+    background-color: #fff; /* Change background color on hover */
+    color: #eb315a; /* Change text color on hover */
 }
