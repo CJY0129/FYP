@@ -1,5 +1,6 @@
    
-   <div class="seatcontainer">
+   <div class="seatcontainer" style="margin-top: 100px;
+    margin-bottom: 100px;">
         <h2>screen</h2>
         <div class="seats">
             <!-- Seats will be dynamically generated here -->

@@ -48,9 +48,9 @@
                         <button type="submit">Proceed to Payment</button>
                     </form>
                   </div>';
-        } else {
-            header("Location: payment.php");
-        }
+            } else {
+                include ("payment.php");
+            }
         ?>
     </div>
 

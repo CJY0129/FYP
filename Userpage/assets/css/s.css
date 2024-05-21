@@ -3,7 +3,7 @@
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
-
+    
 }
 
 
@@ -71,12 +71,14 @@ p{
 }
 
 .moviecontainer {
+    
     max-width: 100%; /* Adjust width as needed */
     margin: 0 auto; /* Center container horizontally */
     background-color: #c0153a; /* Background color */
     padding: 20px; /* Add some padding for spacing */
     display: flex; /* Use flexbox for layout */
     align-items: center; /* Align items vertically */
+    
 }
 
 .moviecontainer img {
