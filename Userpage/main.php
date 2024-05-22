@@ -328,7 +328,7 @@ if ($result->num_rows > 0) {
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
 							<ul>
-								<li data-filter=".Latest" class="active">Latest</li>
+								<li data-filter=".Latest" class="active">Now Showing</li>
 								<li data-filter=".up">Upcoming</li>
 								<li data-filter=".soon">Coming Soon</li>
 							</ul>
@@ -341,10 +341,7 @@ if ($result->num_rows > 0) {
 						<div class="row portfolio-item">
 							<?php
 							//Latest movie
-							$sql = "SELECT m.* FROM movie m
-							INNER JOIN showtime s ON m.movie_id = s.Movie_id
-							WHERE s.show_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)
-							GROUP BY m.movie_id"; // Group by movie to avoid duplicates if multiple showtimes exist for a movie
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie ORDER BY RAND() LIMIT 3";
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
 								while ($row = $result->fetch_assoc()) {
@@ -353,12 +350,12 @@ if ($result->num_rows > 0) {
 									echo '<div class="single-portfolio-img">';
 									// Display movie poster
 									if (!empty($row['poster_path'])) {
-										$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
-										$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
-										echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
-									} else {
-										echo '<p>No poster available</p>';
-									}
+            							$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+            							$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+            							echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
+        							} else {
+            							echo '<p>No poster available</p>';
+        							}
 									//echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube">';
                                     echo '<a href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';

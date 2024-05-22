@@ -230,11 +230,12 @@ if ($result->num_rows > 0) {
 					</div>
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
-							<ul>
-								<li data-filter=".Latest" class="active">Latest</li>
-								<li data-filter=".up">Upcoming</li>
-								<li data-filter=".soon">Coming Soon</li>
-							</ul>
+						<ul>
+                        <!-- Add id="nowShowingFilter" to target it with JavaScript -->
+                        <li id="nowShowingFilter" data-filter=".Latest" class="active">Now Showing</li>
+                        <li data-filter=".up">Upcoming</li>
+                        <li data-filter=".soon">Coming Soon</li>
+                    </ul>
 						</div>
 					</div>
 				</div>
@@ -244,10 +245,7 @@ if ($result->num_rows > 0) {
 						<div class="row portfolio-item">
 							<?php
 							//Latest movie
-							$sql = "SELECT m.* FROM movie m
-							INNER JOIN showtime s ON m.movie_id = s.Movie_id
-							WHERE s.show_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)
-							GROUP BY m.movie_id"; // Group by movie to avoid duplicates if multiple showtimes exist for a movie
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie ORDER BY RAND() LIMIT 3";
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
 								while ($row = $result->fetch_assoc()) {
@@ -304,6 +302,7 @@ if ($result->num_rows > 0) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
+									echo '<a href=movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';
