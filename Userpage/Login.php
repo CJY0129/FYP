@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="mainmenu">
                     <ul id="primary-menu">
                         <li><a class="active" href="index.php">Home</a></li>
-                        <h2>LOGIN</h2>
+                        
                     </ul>
                 </div>
             </div>
@@ -79,16 +79,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-    <h6>USERNAME</h6>
+<h2 class="profile-heading">Login</h2> 
+<h6>Username</h6>
     <input type="text" name="username" required>
-    <h6>PASSWORD</h6>
+    <h6>Password</h6>
     <input type="password" name="password" required>
     <?php if ($error_message): ?>
     <div class="error-message"><?php echo $error_message; ?></div>
 <?php endif; ?>
         <div class="login-signup">
-            <span class="signup-link"><a href="signup.php">SIGN UP</a></span>
-            <button type="submit" name="login" class="theme-btn">LOG IN</button>
+            <span class="signup-link"><a href="signup.php">Sign Up</a></span>
+            <button type="submit" name="login" class="theme-btn">Log In</button>
         </div>
 
 </form>

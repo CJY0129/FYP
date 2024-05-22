@@ -16,7 +16,6 @@ if(isset($_GET['userid'])) {
 
 <!DOCTYPE html>  
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,96 +45,92 @@ if(isset($_GET['userid'])) {
 
 <body>
 <header class="header">
-        <div class="container">
-            <div class="header-area">
-                <div class="logo">
-                    <a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
-                </div>
-                <div class="header-right">
-                    <ul>
-                        <?php
-                            echo '<li class="nav-item dropdown">';
-                            echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-                            if ($_SESSION['user_id'] == 1) {
-                                echo 'Welcome Guest!';
+    <div class="container">
+        <div class="header-area">
+            <div class="logo">
+                <a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
+            </div>
+            <div class="header-right">
+                <ul>
+                    <?php
+                        echo '<li class="nav-item dropdown">';
+                        echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+                        if ($_SESSION['user_id'] == 1) {
+                            echo 'Welcome Guest!';
+                        } else {
+                            if ($_SESSION['Gender'] == 'M') {
+                                echo 'Welcome Mr. ' . $_SESSION['first_name'] . '!';
                             } else {
-                                if ($_SESSION['Gender'] == 'M') {
-                                    echo 'Welcome Mr. ' . $_SESSION['first_name'] . '!';
-                                } else {
-                                    echo 'Welcome Ms. ' . $_SESSION['first_name'] . '!';
-                                }
+                                echo 'Welcome Ms. ' . $_SESSION['first_name'] . '!';
                             }
-                            echo '</a>';
-                        
-                        ?>
-                        <div class="dropdown-content">
-                            <a href="logout.php" id="logout">Log out</a>
-                        </div>
-                    </ul>
-                </div>
-                <div class="menu-area">
-                    <div class="responsive-menu"></div>
-                    <div class="mainmenu">
-                        <ul id="primary-menu">
-                            <?php 
-                            if ($_SESSION['user_id'] == 0) {
-                                echo '<li><a class="active" href="index.php">Home</a></li>';
-                            }
-                            if ($_SESSION['user_id'] != 0) {
-                                echo '<li><a class="active" href="main.php?user_id=">Home</a></li>';
-                            }
-                            ?>
-                            <li><a href="movies.html">Movies</a></li>
-                        </ul>
+                        }
+                        echo '</a>';
+                    ?>
+                    <div class="dropdown-content">
+                        <a href="logout.php" id="logout">Log out</a>
                     </div>
+                </ul>
+            </div>
+            <div class="menu-area">
+                <div class="responsive-menu"></div>
+                <div class="mainmenu">
+                    <ul id="primary-menu">
+                        <?php 
+                        if ($_SESSION['user_id'] == 0) {
+                            echo '<li><a class="active" href="index.php">Home</a></li>';
+                        }
+                        if ($_SESSION['user_id'] != 0) {
+                            echo '<li><a class="active" href="main.php?user_id=">Home</a></li>';
+                        }
+                        ?>
+                        <li><a href="movies.html">Movies</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </header>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        
-            <div id="mainbox">
-            <h2 class="profile-heading">Your Profile</h2>
-                <?php
-                if(isset($rows[0])) {
-                    $customer = $rows[0];
-                ?>
-                <table border="1">
-                    <tr>
-                        <th>Your Name</th>
-                        <td><?php echo $customer["first_name"] ." ". $customer["last_name"]; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Gender</th>
-                        <td><?php echo $customer["Gender"]; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Email</th>
-                        <td><?php echo $customer["email"]; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Phone Number</th>
-                        <td><?php echo $customer["phone_number"]; ?></td>
-                    </tr>
-                </table>
-                <?php
-    if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != NULL) {
-        echo '<a class="edit-link" href="Cus(edit).php?userid='. $_SESSION['user_id'].'">Edit</a>';
-    }
-    ?>
-                <?php
-                } else {
-                    echo "User not found";
-                }
-                ?>
+    </div>
+</header>
+<form method="post" action="#">
+    <div id="mainbox">
+        <h2 class="profile-heading">Your Profile</h2>
+        <?php
+        if(isset($rows[0])) {
+            $customer = $rows[0];
+        ?>
+        <table border="1">
+            <tr>
+                <th>Your Name</th>
+                <td><?php echo $customer["first_name"] ." ". $customer["last_name"]; ?></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td><?php echo $customer["Gender"]; ?></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><?php echo $customer["email"]; ?></td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td><?php echo $customer["phone_number"]; ?></td>
+            </tr>
+        </table>
+        <?php
+            if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != NULL) {
+                echo '<a class="edit-link" href="Cus(edit).php?userid='. $_SESSION['user_id'].'">Edit</a>';
+            }
+        ?>
+        <?php
+        } else {
+            echo "User not found";
+        }
+        ?>
+    </div>
+</form>
 
-            </div>
-        
-            </form>
-
-    <?php include('footer.php');?>
+<?php include('footer.php');?>
 </body>
-
 </html>
+
 
 

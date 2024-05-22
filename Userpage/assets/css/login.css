@@ -54,10 +54,15 @@ button {
 .header .menu-area {
     display: flex;
     align-items: center;
+    justify-content: flex-end; /* Align menu to the right */
 }
 
 .header .mainmenu ul {
     display: flex;
+}
+
+.header .mainmenu {
+    text-align: right;
 }
 
 .header .mainmenu ul li {
@@ -90,16 +95,13 @@ form {
     text-align: center;
     max-width: 400px;
     margin: 0 auto;
-    padding-bottom: 100px;
 }
 
 h2 {
     color: #fff;
     margin-bottom: 20px;
-    text-align: left;
-    padding-left: 200px;
+    text-align: center; /* Center align the heading */
     margin-top: 0; /* Add this line */
-    
 }
 
 form h6 {
@@ -167,7 +169,7 @@ footer {
 #mainbox {
     margin: auto;
     width: 80%; /* Adjust the width as needed */
-    text-align: center; /* Center align the content */;
+    text-align: center; /* Center align the content */
     color: black;
 }
 
@@ -188,11 +190,10 @@ th, td {
     width: 80%; /* Adjust the width as needed */
 }
 
-
-
 .profile-heading {
     color: black;
     margin-top: 0;
+    text-align: center; /* Center the heading */
 }
 
 .edit-link {
