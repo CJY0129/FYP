@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="mainmenu">
                     <ul id="primary-menu">
                         <li><a class="active" href="index.php">Home</a></li>
+                        <?php echo '<li><a href="movies.php?userid=' . $_SESSION['user_id'] . '">Movies</a></li>' ?>
                     </ul>
                 </div>
             </div>
@@ -74,33 +75,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-    <h2 class="profile-heading">Sign Up</h2>
-    <h6>Username</h6>
-    <input type="text" name="username" required>
-    <h6>Password</h6>
-    <input type="password" name="password" required>
-    <h6>First Name</h6>
-    <input type="text" name="firstname" required>
-    <h6>Last Name</h6>
-    <input type="text" name="lastname" required>
-    <h6>Gender</h6>
-    <select name="gender" required>
-        <option value="M">Male</option>
-        <option value="F">Female</option>
-    </select>
-    <h6>Email</h6>
-    <input type="email" name="email" required>
-    <h6>Phone Number</h6>
-    <input type="text" name="phone" required>
-    <?php if ($error_message): ?>
-    <div class="error-message"><?php echo $error_message; ?></div>
-    <?php endif; ?>
-    
-    <div class="login-signup">
+        <h2 class="profile-heading">Sign Up</h2>
+        <h6>Username</h6>
+        <input type="text" name="username" required>
+        <h6>Password</h6>
+        <input type="password" name="password" required>
+        <h6>First Name</h6>
+        <input type="text" name="firstname" required>
+        <h6>Last Name</h6>
+        <input type="text" name="lastname" required>
+        <h6>Gender</h6>
+        <select name="gender" required>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+        <h6>Email</h6>
+        <input type="email" name="email" required>
+       <h6>Phone Number</h6>
+        <input type="tel" name="phone" pattern="\d*" required>
+        <?php if ($error_message): ?>
+        <div class="error-message"><?php echo $error_message; ?></div>
+        <?php endif; ?>
+
+
+        <div class="login-signup">
             <span class="signup-link"><a href="Login.php">Back</a></span>
             <button type="submit" name="signup" class="theme-btn">Sign Up</button>
         </div>
-</form>
+    </form>
 
 <!-- Include your footer if needed -->
 <?php include('footer.php'); ?>

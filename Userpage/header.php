@@ -76,7 +76,7 @@
                                 echo '<li><a class="active" href="main.php?user_id=">Home</a></li>';
                             }
                             ?>
-                            <li><a href="movies.html">Movies</a></li>
+                            <?php echo '<li><a href="movies.php?userid=' . $_SESSION['user_id'] . '">Movies</a></li>' ?>
                             <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Buy Tickets</a></li>
                         </ul>
                     </div>

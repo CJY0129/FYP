@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="mainmenu">
                     <ul id="primary-menu">
                         <li><a class="active" href="index.php">Home</a></li>
-                        
+                        <?php echo '<li><a href="movies.php?userid=' . $_SESSION['user_id'] . '">Movies</a></li>' ?>
                     </ul>
                 </div>
             </div>

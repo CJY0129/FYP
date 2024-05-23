@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
     include('connect.php');
 
     // Query to retrieve movie details based on the ID
-    $sql = "SELECT * FROM movie WHERE movie_id = $id";
+    $sql = "SELECT * FROM csmovie WHERE movie_id = $id";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

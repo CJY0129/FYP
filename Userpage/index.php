@@ -19,7 +19,6 @@ $_SESSION['user_id'] = 0;
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>CINETIME</title>
-		
 	</head>
 	<body>
 		<!-- Page loader -->
@@ -146,7 +145,7 @@ if ($result->num_rows > 0) {
     echo '<p>' . $row['synopsis'] . '</p>';
     echo '<h3>Cast: ' . $row['cast'] . '</h3>';
     echo '<div class="slide-trailor">';
-    echo '<a class="theme-btn theme-btn2" href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '"> More information</a>';
+    echo '<a class="theme-btn theme-btn2" href="moviedesc.php?id=' . $row['movie_id'] . '"> More information</a>';
     echo '</div>';
     echo '</div>';
     echo '</div>';
@@ -261,7 +260,7 @@ if ($result->num_rows > 0) {
 										echo '<p>No poster available</p>';
 									}
 									//echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube">';
-                                    echo '<a href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+                                    echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -293,7 +292,7 @@ if ($result->num_rows > 0) {
         							} else {
             							echo '<p>No poster available</p>';
         							}
-									echo '<a href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="csmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -326,7 +325,7 @@ if ($result->num_rows > 0) {
 									} else {
 										echo '<p>No poster available</p>';
 									}
-									echo '<a href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="ucmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';

@@ -41,88 +41,13 @@ if ($result->num_rows > 0) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>CINETIME</title>
-		<!-- Favicon Icon -->
-		<link rel="icon" type="image/png" href="assets/img/CT.ico" />
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
-		<!-- Slick nav CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/slicknav.min.css" media="all" />
-		<!-- Iconfont CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/icofont.css" media="all" />
-		<!-- Owl carousel CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
-		<!-- Popup CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
-		<!-- Main style CSS -->
 		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
-		<!-- Responsive CSS -->
-		<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
 	</head>
 	<body>
 		<!-- Page loader -->
 	    <div id="preloader"></div>
 		<!-- header section start -->
-		<header class="header">
-			<div class="container">
-				<div class="header-area">
-					<div class="logo">
-						<a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
-					</div>
-					<div class="header-right">
-						<!--<form action="#">
-							<select>
-								<option value="Movies">Movies</option>
-								<option value="Movies">Movies</option>
-								<option value="Movies">Movies</option>
-							</select>
-							<input type="text"/>
-							<button><i class="icofont icofont-search"></i></button>
-						</form>-->
-						<form >
-						</form>
-						<div class="header-right">
-    <ul>
-        <li>
-            <?php
-            if ($_SESSION['Gender'] == 'M') {
-                echo 'Welcome Mr. ' . $_SESSION['first_name'] . '!';
-            } else {
-                echo 'Welcome Ms. ' . $_SESSION['first_name'] . '!';
-            }
-            ?>
-            <div class="dropdown-content">
-                <?php
-                echo '<a href="Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
-                ?>
-                <a href="logout.php" id="logout">Log out</a>
-            </div>
-        </li>
-    </ul>
-</div>
-					</div>
-					<div class="menu-area">
-						<div class="responsive-menu"></div>
-					    <div class="mainmenu">
-                            <ul id="primary-menu">
-                                <li><a class="active" href="index.php">Home</a></li>
-                                <li><a href="movies.html">Movies</a></li>
-								<!-- <li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
-									<ul>
-										<li><a href="blog-details.html">Blog Details</a></li>
-										<li><a href="movie-details.html">Movie Details</a></li>
-									</ul>
-								</li>-->
-                                <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Buy Tickets</a></li>
-                            </ul>
-					    </div>
-					</div>
-				</div>
-			</div>
-		</header>
+		<?php include('header.php'); ?>
 		
 
 
@@ -357,7 +282,7 @@ if ($result->num_rows > 0) {
             							echo '<p>No poster available</p>';
         							}
 									//echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube">';
-                                    echo '<a href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+                                    echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -389,7 +314,7 @@ if ($result->num_rows > 0) {
         							} else {
             							echo '<p>No poster available</p>';
         							}
-									echo '<a href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="csmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -421,7 +346,7 @@ if ($result->num_rows > 0) {
 									} else {
 										echo '<p>No poster available</p>';
 									}
-									echo '<a href="../LeeYueHeng/Moviedetails/moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="ucmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';

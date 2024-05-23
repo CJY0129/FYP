@@ -158,6 +158,29 @@ form .theme-btn:hover {
     color: #eb315a !important;
 }
 
+form select {
+    background-color: #fff;
+    color: #000;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black; /* Ensure there's a solid border */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    appearance: none; /* Remove default arrow for custom styling */
+    -webkit-appearance: none; /* For WebKit browsers */
+    -moz-appearance: none; /* For Firefox */
+}
+
+form select:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none;
+}
+
+form select option {
+    border: none; /* Ensure option elements don't have borders */
+}
+
+
 .error-message {
     color: red;
 }
