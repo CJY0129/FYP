@@ -34,15 +34,16 @@
     </section>
 
     <section class="payment-methods">
-      <div class="container">
-        <h3>Select payment method</h3>
-        <ul>
-          <li><a href="online banking.php">Touch 'n Go</a></li>
-          <li><a href="https://buy.stripe.com/7sI02G7eN3CHaIMfYY">Credit card/Debit card</a></li>
-          <li><a href="receipt.php">Pay at counter</a></li>
-        </ul>
-      </div>
-    </section>
+  <div class="container">
+    <h3>Select payment method</h3>
+    <ul>
+      <li><button onclick="window.location.href='online banking.php'">Touch 'n Go</button></li>
+      <li><button onclick="window.location.href='card.php' ">Credit card/Debit card</button></li>
+      <li><button onclick="window.location.href='receipt.php'">Pay at counter</button></li>
+    </ul>
+  </div>
+</section>
+
   </main>
 
   <footer>
