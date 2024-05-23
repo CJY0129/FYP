@@ -29,7 +29,7 @@
 <section class="payment">
 <div class="container">
   
-<h2>Your Receipt</h2>
+<h2>Below is Your Receipt. Enjoy Your Time.</h2>
         
 
   <?php 
