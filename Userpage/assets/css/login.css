@@ -110,17 +110,20 @@ form h6 {
     margin-bottom: 5px;
 }
 
-form input[type="text"],
-form input[type="password"],
-form input[type="email"] {
-    background-color: #fff;
-    color: #000;
+#signupForm input[type="text"],
+#signupForm input[type="password"],
+#signupForm input[type="email"],
+#signupForm input[type="tel"] {
+    background-color: #fff !important;  /* Ensure the background color is white */
+    color: #000;                        /* Set text color to black */
     width: 100%;
     padding: 10px;
-    border: solid black;
+    border: 1px solid black;            /* Adjust the border if needed */
     border-radius: 5px;
     margin-bottom: 20px;
 }
+
+
 
 form .login-signup {  
     display: flex;

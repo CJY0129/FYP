@@ -41,7 +41,26 @@ if ($result->num_rows > 0) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>CINETIME</title>
-		<link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
+		<!-- Favicon Icon -->
+		<link rel="icon" type="image/png" href="assets/img/CT.ico" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
+    <!-- Slick nav CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/slicknav.min.css" media="all" />
+    <!-- Iconfont CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/icofont.css" media="all" />
+    <!-- Owl carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+    <!-- Popup CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
+    <!-- Main style CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
+    <!--[if lt IE 9]>   
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 	</head>
 	<body>
 		<!-- Page loader -->
@@ -51,67 +70,9 @@ if ($result->num_rows > 0) {
 		
 
 
-<?php
 
-// SQL query to retrieve movies based on show_time
-$sql = "SELECT m.movie_id, m.title, m.poster_path, s.show_time, s.end_time, s.price 
-FROM movie AS m 
-INNER JOIN showtime AS s ON m.movie_id = s.Movie_id 
-WHERE s.show_time > DATE_SUB(NOW(), INTERVAL 10 MINUTE)
-GROUP BY m.movie_id
-ORDER BY s.show_time ASC";
 
-$result = $conn->query($sql);
-
-?>
-
-<div class="buy-ticket">
-    <div class="container">
-        <div class="buy-ticket-area">
-            <a href="#"><i class="icofont icofont-close"></i></a>
-            <div class="row">
-                <?php
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<div class="col-lg-3">'; // Set col-lg-6 for half width on large screens
-                        echo '<div class="buy-ticket-box">';
-                        
-						if (!empty($row['poster_path'])) {
-							$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
-							$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
-							echo '<img src="' . $poster_src . '" alt="Movie Poster" width="165" height="325">';
-						} else {
-							echo '<p>No poster available</p>';
-						}
-                        echo '<p><strong>' . $row["title"] . '</strong></p>';
-                        
-                        // Query to get all upcoming showtimes for this movie
-                        $movieId = $row["movie_id"];
-                        $showtimesQuery = "SELECT show_id,show_time, end_time, price
-                                           FROM showtime
-                                           WHERE Movie_id = $movieId AND show_time > NOW()
-                                           ORDER BY show_time ASC";
-                        $showtimesResult = mysqli_query($conn, $showtimesQuery);
-                        if (mysqli_num_rows($showtimesResult) > 0) {
-							echo '<p>SHOWTIME</p>';
-                            while ($showtimeRow = mysqli_fetch_assoc($showtimesResult)) {
-								echo '<p><a href="booking.php?show_id=' . $showtimeRow["show_id"] . '">' . $showtimeRow["show_time"] . '</a></p>';
-                            }
-							
-                        } else {
-                            echo "<p>No upcoming showtimes found for this movie.</p>";
-                        }
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                } else {
-					echo "<p style='color: red; font-weight: bold;'>No movies found with upcoming showtimes within 10 minutes before the current time.</p>";
-                }
-                ?>
-            </div>
-        </div>
-    </div>
-</div>
+<?php include('buytickets.php'); ?>
 
 
 
@@ -291,6 +252,7 @@ if ($result->num_rows > 0) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
+									echo '<a href="movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';
@@ -323,6 +285,7 @@ if ($result->num_rows > 0) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
+									echo '<a href="movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';
@@ -355,6 +318,7 @@ if ($result->num_rows > 0) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
+									echo '<a href="movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';

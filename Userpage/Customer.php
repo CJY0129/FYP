@@ -5,14 +5,22 @@ include("connection.php");
 // Check if the 'userid' parameter is set in the URL
 if(isset($_GET['userid'])) {
     // Retrieve the user ID from the URL
-    $user_id = $_GET['userid'];
+    $profile_user_id = $_GET['userid'];
+    
+    // Check if the retrieved user ID matches the currently logged-in user's ID
+    if ($_SESSION['user_id'] != $profile_user_id) {
+        // Redirect to an error page or handle the unauthorized access appropriately
+        header("Location: error.php");
+        exit();
+    }
     
     // Fetch user data from the database based on the user ID
-    $sql = "SELECT * FROM user WHERE user_id = $user_id";
+    $sql = "SELECT * FROM user WHERE user_id = $profile_user_id";
     $result = $conn->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
 }
 ?>
+
 
 <!DOCTYPE html>  
 <html lang="en">
@@ -83,7 +91,7 @@ if(isset($_GET['userid'])) {
                             echo '<li><a class="active" href="main.php?user_id=">Home</a></li>';
                         }
                         ?>
-                        <li><a href="movies.html">Movies</a></li>
+                        <li><a href="movies.php">Movies</a></li>
                     </ul>
                 </div>
             </div>
@@ -117,7 +125,7 @@ if(isset($_GET['userid'])) {
         </table>
         <?php
             if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != NULL) {
-                echo '<a class="edit-link" href="Cus(edit).php?userid='. $_SESSION['user_id'].'">Edit</a>';
+                echo '<a class="edit-link" href="Cus(edit).php?userid='. $_SESSION['user_id'].'" >Edit</a>';
             }
         ?>
         <?php

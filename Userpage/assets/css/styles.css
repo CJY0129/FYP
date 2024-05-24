@@ -496,6 +496,11 @@ input{
     color: #fece50;
     float: left;
 }
+.section-title {
+    display: flex;
+    align-items: center;
+}
+
 
 .review h4 {
     padding-left: 25px;
@@ -1262,100 +1267,7 @@ hr {
 /*----------------------------------
 -------- login PAGE CSS START -------
 ------------------------------------*/
-.login-area {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-	display: none;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    z-index: 99;
-	padding: 0 15px;
-}
 
-.login-box {
-    max-width: 380px;
-    background: #fff;
-    position: relative;
-    color: #03090e;
-    margin: 200px auto 0;
-    padding: 40px 25px 25px;
-}
-
-.login-box a {
-    color: #03090e;
-}
-
-.login-box > a {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: #eb315a;
-    font-size: 22px;
-    color: #fff;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    line-height: 35px;
-}
-
-.login-box h2 {
-    text-align: center;
-    color: #03090e;
-    margin-bottom: 20px;
-}
-
-
-.login-box h6 {
-    color: #03090e;
-    margin-bottom: 12px;
-}
-
-.login-box input {
-    margin-bottom: 20px;
-	background: transparent;
-	border: 1px solid #ddd;
-}
-
-.login-signup {
-    float: right;
-}
-
-
-.login-signup a {
-    color: #008aff;
-}
-
-.login-box form .theme-btn {
-    width: 100%;
-    border-radius: 0;
-	color: #fff;
-	text-align: center;
-    margin-top: 5px;
-}
-
-.login-box form .theme-btn + span {
-    margin: 22px 0;
-    display: block;
-}
-
-.login-social {
-    display: flex;
-    justify-content: space-between;
-}
-
-.login-social a i {
-    width: 45px;
-    display: inline-block;
-    height: 45px;
-    font-size: 20px;
-    line-height: 45px;
-    color: #fff;
-    background: #3a559f;
-    text-align: center;
-}
 /*----------------------------------
 --------- login PAGE CSS END --------
 -----------------------------------*/
