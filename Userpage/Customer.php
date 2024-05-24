@@ -3,22 +3,15 @@ session_start(); // Start or resume a session
 include("connection.php");
 
 // Check if the 'userid' parameter is set in the URL
-if(isset($_GET['userid'])) {
-    // Retrieve the user ID from the URL
-    $profile_user_id = $_GET['userid'];
-    
-    // Check if the retrieved user ID matches the currently logged-in user's ID
-    if ($_SESSION['user_id'] != $profile_user_id) {
-        // Redirect to an error page or handle the unauthorized access appropriately
-        header("Location: error.php");
-        exit();
-    }
-    
-    // Fetch user data from the database based on the user ID
-    $sql = "SELECT * FROM user WHERE user_id = $profile_user_id";
-    $result = $conn->query($sql);
-    $rows = $result->fetch_all(MYSQLI_ASSOC);
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} elseif (isset($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
 }
+
+$sql = "SELECT * FROM user WHERE user_id = $user_id";
+$result = $conn->query($sql);
+$rows = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 
@@ -41,7 +34,6 @@ if(isset($_GET['userid'])) {
     <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
     <!-- Popup CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
-    <!-- Main style CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <!-- Responsive CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
@@ -98,7 +90,7 @@ if(isset($_GET['userid'])) {
         </div>
     </div>
 </header>
-<form method="post" action="#">
+<form id="signupForm" method="post" action="#">
     <div id="mainbox">
         <h2 class="profile-heading">Your Profile</h2>
         <?php
@@ -123,11 +115,13 @@ if(isset($_GET['userid'])) {
                 <td><?php echo $customer["phone_number"]; ?></td>
             </tr>
         </table>
+        <div class="login-signup">
         <?php
             if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != NULL) {
-                echo '<a class="edit-link" href="Cus(edit).php?userid='. $_SESSION['user_id'].'" >Edit</a>';
+                echo '<a class="theme-btn" href="Cus(edit).php?userid='. $_SESSION['user_id'].'" >Edit</a>';
             }
         ?>
+        </div>
         <?php
         } else {
             echo "User not found";
