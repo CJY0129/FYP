@@ -49,7 +49,7 @@
                     </form>
                   </div>';
             } else {
-                echo'<meta http-equiv="refresh" content="0;url=payment main page.php">';
+                echo'<meta http-equiv="refresh" content="0;url=payment.php">';
             }
         ?>
     </div>

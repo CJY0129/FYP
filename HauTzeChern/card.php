@@ -1,80 +1,58 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cinema Website - Payment</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="cs2.css">
 </head>
 <body>
-  <header>
-    
     <div class="container">
-      <h1>CineTime</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="movies.html">Movies</a></li>
-          <li><a href="booking.html">Booking</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
+        <form class="payment-form">
+            <div class="section">
+                <h2>Payment</h2>
+                <label>
+                    Full Name:
+                    <input type="text" name="fullName" placeholder="Jacob Aiden">
+                </label>
+                <label>
+                    Email:
+                    <input type="email" name="email" placeholder="example@example.com">
+                </label>
+                
+            </div>
+            <div class="section">
+                
+                <div class="cards-accepted">
+                    <p>Cards Accepted:</p>
+                    <img src="paypal.png" alt="PayPal">
+                    <img src="mastercard.png" alt="MasterCard">
+                    <img src="visa.png" alt="Visa">
+                    
+                </div>
+                <label>
+                    Name On Card:
+                    <input type="text" name="nameOnCard" placeholder="Mr. Jacob Aiden">
+                </label>
+                <label>
+                    Credit Card Number:
+                    <input type="text" name="creditCardNumber" placeholder="1111 2222 3333 4444" min="16">
+                </label>
+                <label>
+                    Exp. Month:
+                    <input type="text" name="expMonth" placeholder="August">
+                </label>
+                <label>
+                    Exp. Year:
+                    <input type="text" name="expYear" placeholder="2025">
+                </label>
+                <label>
+                    CVV:
+                    <input type="text" name="cvv" placeholder="123">
+                </label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
     </div>
-  </header>
-  
-  <section class="payment">
-    <div class="container">
-      <h2>Make A Payment</h2>
-      <form action="payment_process.php" method="POST">
-
-      <div class="connection">
-      <label for="connection">Booking Details<br><br></label>
-      <?php include("booking for.php");?>
-      </div>
-
-      <div class="mode">
-        <label for="mode">Card Type</label>
-          <select name="mode">
-            <option value = "CIMB" >CIMB</option>
-            <option value = "Maybank" >Maybank</option>
-            <option value = "Public Bank" >Public Bank</option>
-            <option value = "RHB" >RHB</option>
-</select>
-
-</div>
-
-        <div class="form-group">
-          <label for="card-number">Card Number</label>
-          <input type="number" id="card-number" name="card-number" placeholder="Enter your card number"  min="16" max="19" >
-        </div>
-        <div class="form-group">
-          <label for="expiration-date">Expiration Date</label>
-          <input type="date" id="expiration-date" name="expiration-date" placeholder="DD/MM/YYYY" >
-        </div>
-        <div class="form-group">
-          <label for="cvv">CVV</label>
-          <input type="text" id="cvv" name="cvv" placeholder="CVV" >
-        </div>
-        <div class="form-group">
-          <label for="email">Your Email</label>
-          <input type="text" id="email" name="email" placeholder="xxxxxxxxxx@gmail.com" >
-        </div>
-        <button>
-
-        <a href="paysuccess.php">Pay Now</a>
-</button>
-      </form>
-    </div>
-  </section>
-  <footer>
-    <div class="container">
-      <p>&copy; 2024 CineTime</p>
-    </div>
-  </footer>
 </body>
 </html>
-
-
