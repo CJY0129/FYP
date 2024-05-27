@@ -474,15 +474,24 @@ input{
     background-image: url('../img/hero-area.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: cover; /* Use cover to ensure the image covers the entire area */
     overflow: hidden;
+    width: 100%; /* Ensure full width */
+    height: 100vh; /* Full viewport height for a consistent look */
+   
 }
+
 .hero-area-slide {
-    background: #13151f;
+    background: #13151f; /* Default background color */
     margin: 320px 15px 50px;
     padding-top: 52px;
     box-shadow: 0 0 20px #000000;
+    width: 100%; /* Ensure full width */
+    max-width: 950px; /* Adjust as necessary */
+    margin: auto; /* Center the element */
 }
+
+
 
 .hero-area-content > img {
     position: relative;
