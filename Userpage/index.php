@@ -198,7 +198,7 @@ if ($result->num_rows > 0) {
 					    <div class="portfolio-menu">
 						<ul>
                         <!-- Add id="nowShowingFilter" to target it with JavaScript -->
-
+						
                         <li data-filter=".Latest" class="active">Now Showing</li>
                         <li data-filter=".up">Upcoming</li>
                         <li data-filter=".soon">Coming Soon</li>

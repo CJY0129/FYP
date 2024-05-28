@@ -179,7 +179,6 @@
 			$portfolioItems.isotope({ filter: filterValue });
 		});
 	
-		// Show only "Now Showing" movies on initial load
 		$portfolioItems.isotope({ filter: '.Latest' });
 	});
 	

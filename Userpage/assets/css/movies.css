@@ -668,10 +668,16 @@ hr {
 	opacity: 0;
 }
 
+.single-portfolio-img a {
+    display: block;
+    text-align: center;
+    margin-top: 10px; /* Adjust as needed */
+}
 
 .video-area img,
 .single-portfolio-img img {
 	transition: 0.9s;
+    margin-top: 50px; /* Adjust as needed */
 }
 .video-area:hover img,
 .single-portfolio:hover img {
@@ -913,6 +919,7 @@ hr {
 .copyright {
     padding-top: 25px;
 }
+
 /*----------------------------------
 --------- footer AREA CSS END --------
 -----------------------------------*/
@@ -920,6 +927,12 @@ hr {
 /*----------------------------------
 ---- Movie details PAGE CSS START ----
 ------------------------------------*/
+.movie-poster {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .breadcrumb-area {
     position: relative;
     background-image: url('../img/breadcrumb.png');

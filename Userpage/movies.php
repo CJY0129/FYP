@@ -149,6 +149,7 @@ if(isset($_GET['userid'])) {
 <!-- Movie Posters outside of hero-area -->
 <section class="portfolio-area pt-60 video ptb-90">
         <div class="container">
+        <div class="row flexbox-center">
             <!-- Movie Posters -->
             <div class="row portfolio-item">
                 <?php
@@ -248,7 +249,9 @@ if(isset($_GET['userid'])) {
                 ?>
             </div>
         </div>
+        
     </section>
+   
     <?php include('footer.php'); ?>
 </body>
 <script src="assets/js/jquery.min.js"></script>
@@ -260,30 +263,13 @@ if(isset($_GET['userid'])) {
 <script src="assets/js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        // Initially hide the posters for "Upcoming" and "Coming Soon"
-        $('.portfolio-item .up, .portfolio-item .soon').hide();
-
-        // Initially show only the 'Latest' movies
-        $('.portfolio-item .Latest').show();
-
-        // Filter functionality
-        $('.portfolio-menu li').on('click', function() {
-            var filterValue = $(this).data('filter');
-            $('.portfolio-item > div').hide();
-            $('.portfolio-item > div' + filterValue).show();
-
-            // Remove active class from all filter items and add it to the clicked one
-            $('.portfolio-menu li').removeClass('active');
-            $(this).addClass('active');
-        });
-
+    
         // Logout confirmation
         document.getElementById('logout').addEventListener('click', function(event) {
             if (!confirm('Are you sure you want to log out?')) {
                 event.preventDefault();
             }
         });
-    });
+   
 </script>
 </html>
