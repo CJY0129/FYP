@@ -8,6 +8,10 @@ include('connect.php');
 session_start();
 $_SESSION['user_id'] = 0;
 
+if (isset($_GET['error']) && $_GET['error'] == '1') 
+{
+	echo '<script>alert("Error: The following seats are already booked.")</script>';
+}
 
 ?>
 
@@ -194,7 +198,8 @@ if ($result->num_rows > 0) {
 					    <div class="portfolio-menu">
 						<ul>
                         <!-- Add id="nowShowingFilter" to target it with JavaScript -->
-                        <li id="nowShowingFilter" data-filter=".Latest" class="active">Now Showing</li>
+
+                        <li data-filter=".Latest" class="active">Now Showing</li>
                         <li data-filter=".up">Upcoming</li>
                         <li data-filter=".soon">Coming Soon</li>
                     </ul>
@@ -309,11 +314,9 @@ if ($result->num_rows > 0) {
 
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</section><!-- portfolio section end -->
-		
 					
 		<!-- footer section start -->
 		<?php
@@ -336,26 +339,7 @@ if ($result->num_rows > 0) {
 <script src="assets/js/isotope.pkgd.min.js"></script>
 <!-- main JS -->
 <script src="assets/js/main.js"></script>
-<script>
-    $(document).ready(function() {
-        // Initially hide the posters for "Upcoming" and "Coming Soon"
-        $('.portfolio-item .up, .portfolio-item .soon').hide();
 
-        // Initially show only the 'Latest' movies
-        $('.portfolio-item .Latest').show();
-
-        // Filter functionality
-        $('.portfolio-menu li').on('click', function() {
-            var filterValue = $(this).data('filter');
-            $('.portfolio-item > div').hide();
-            $('.portfolio-item > div' + filterValue).show();
-
-            // Remove active class from all filter items and add it to the clicked one
-            $('.portfolio-menu li').removeClass('active');
-            $(this).addClass('active');
-        });
-	});
-</script>
 </html>
 
 <?php

@@ -164,15 +164,25 @@
 	/*----------------------------
     START - Isotope
     ------------------------------ */
-    jQuery(".portfolio-item").isotope();
-    $(".portfolio-menu li").on("click", function(){
-      $(".portfolio-menu li").removeClass("active");
-      $(this).addClass("active");
-      var selector = $(this).attr('data-filter');
-      $(".portfolio-item").isotope({
-        filter: selector
-      })
-    });
+    $(document).ready(function(){
+		// Initialize Isotope
+		var $portfolioItems = $('.portfolio-item').isotope({
+			itemSelector: '.col-md-4',
+			layoutMode: 'fitRows'
+		});
+	
+		// Filter items on button click
+		$('.portfolio-menu li').on('click', function(){
+			$('.portfolio-menu li').removeClass('active');
+			$(this).addClass('active');
+			var filterValue = $(this).attr('data-filter');
+			$portfolioItems.isotope({ filter: filterValue });
+		});
+	
+		// Show only "Now Showing" movies on initial load
+		$portfolioItems.isotope({ filter: '.Latest' });
+	});
+	
 	
 	/*----------------------------
     START - Preloader
