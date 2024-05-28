@@ -132,6 +132,15 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 <?php include('footer.php');?>
 </body>
+
+<script>
+    document.getElementById('logout').addEventListener('click', function(event) {
+        if (!confirm('Are you sure you want to log out?')) {
+            event.preventDefault();
+        }
+    });
+	
+</script>
 </html>
 
 

@@ -360,24 +360,7 @@ if ($result->num_rows > 0) {
             event.preventDefault();
         }
     });
-	$(document).ready(function() {
-        // Initially hide the posters for "Upcoming" and "Coming Soon"
-        $('.portfolio-item .up, .portfolio-item .soon').hide();
-
-        // Initially show only the 'Latest' movies
-        $('.portfolio-item .Latest').show();
-
-        // Filter functionality
-        $('.portfolio-menu li').on('click', function() {
-            var filterValue = $(this).data('filter');
-            $('.portfolio-item > div').hide();
-            $('.portfolio-item > div' + filterValue).show();
-
-            // Remove active class from all filter items and add it to the clicked one
-            $('.portfolio-menu li').removeClass('active');
-            $(this).addClass('active');
-        });
-	});
+	
 </script>
 </html>
 
