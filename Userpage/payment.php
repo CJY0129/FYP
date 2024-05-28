@@ -29,17 +29,26 @@ if (!empty($conflict_seats)) {
     header("Location: index.php?error=1.");
     exit();
 }
-
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT email, phone_number FROM user WHERE user_id = $user_id";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $email = $row['email'];
-    $phone = $row['phone_number'];
-} else {
-    echo "Error: User details not found.";
-    exit();
+
+if($user_id!=0)
+{
+    $sql = "SELECT email, phone_number FROM user WHERE user_id = $user_id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $email = $row['email'];
+        $phone = $row['phone_number'];
+    } else {
+        echo "Error: User details not found.";
+        exit();
+    }
+}else
+{
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+
 }
 
 // Proceed with booking if no conflicts
