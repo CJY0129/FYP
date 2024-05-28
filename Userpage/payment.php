@@ -31,8 +31,7 @@ if (!empty($conflict_seats)) {
 }
 $user_id = $_SESSION['user_id'];
 
-if($user_id!=0)
-{
+if($user_id != 0) {
     $sql = "SELECT email, phone_number FROM user WHERE user_id = $user_id";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -43,12 +42,10 @@ if($user_id!=0)
         echo "Error: User details not found.";
         exit();
     }
-}else
-{
+} else {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
-
 }
 
 // Proceed with booking if no conflicts
@@ -79,8 +76,10 @@ $conn->close();
 <head>
     <title>Booking Confirmation</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap');
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #24262d;
             color: #fff;
         }
@@ -91,6 +90,7 @@ $conn->close();
             border: 1px solid #ddd;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            background-color: #24262d; /* Ensure the background color is set */
         }
         .qr-code {
             margin-top: 20px;
@@ -126,12 +126,13 @@ $conn->close();
             <img src="data:image/png;base64,<?= $qr_code_base64 ?>" alt="QR Code">
         </div>
         <button id="download">Download as PNG</button>
-        
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         document.getElementById('download').addEventListener('click', function() {
-            html2canvas(document.querySelector('.container')).then(function(canvas) {
+            html2canvas(document.querySelector('.container'), {
+                backgroundColor: '#24262d' // Ensure the background color is set
+            }).then(function(canvas) {
                 var link = document.createElement('a');
                 link.download = 'booking.png';
                 link.href = canvas.toDataURL('image/png');
