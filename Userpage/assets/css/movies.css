@@ -606,6 +606,10 @@ hr {
 	padding-top: 30px;
 }
 
+.portfolio-area.pt-60.video.ptb-90.single-portfolio-img {
+    margin-left: 100px;
+}
+
 .portfolio-menu li {
     display: inline-block;
     position: relative;

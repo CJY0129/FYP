@@ -600,6 +600,48 @@ hr {
 	padding-top: 30px;
 }
 
+.portfolio-area {
+    min-height: 500px; /* Add a minimum height to the container */
+    
+}
+
+.portfolio-item .col-md-4 {
+    display: none; /* Initially hide all items */
+}
+.portfolio-menu li {
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.portfolio-menu li.active {
+    background-color: #666;
+    color: white;
+}
+
+.portfolio-menu li[data-filter="Latest"] {
+    /* Style the Latest filter button */
+    margin-bottom: 100px;
+  }
+
+.single-portfolio {
+    margin-bottom: 30px;
+}
+.single-portfolio-img img {
+    width: 265px;
+    height: 425px;
+}
+.btn-view-all {
+    display: block;
+    margin-top: 10px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
 .portfolio-menu li {
     display: inline-block;
     position: relative;
@@ -866,7 +908,7 @@ hr {
 	background: url('../img/footer-bg.png') no-repeat bottom center / cover;
     position: relative;
 	padding: 90px 0 30px;
-    margin-top: 100px;
+    clear: both;
 }
 .footer::before {
     position: absolute;
@@ -920,35 +962,33 @@ hr {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-	padding: 280px 0 200px;
+    padding: 280px 0 200px;
 }
 .breadcrumb-area-content {
-	text-align: center;
+    text-align: center;
 }
 .breadcrumb-area-content h1 {
-	font-size: 60px;
+    font-size: 60px;
 }
-.transformers-box {
+.movie-details-box {
     padding: 35px;
     box-shadow: 0 0 20px #000000;
     position: relative;
 }
-
-.transformers-box .transformers-content img {
+.movie-details-content img {
     display: block;
     position: relative;
+    margin: auto;
 }
-
-.transformers-content > p {
+.movie-details-content > p {
     margin: 12px 0 30px;
     position: relative;
     padding-left: 70px;
 }
-.transformers-content > h2 + a.theme-btn {
+.movie-details-content > h2 + a.theme-btn {
     margin: 12px 10px 20px 0;
 }
-
-.transformers-content > p::before {
+.movie-details-content > p::before {
     position: absolute;
     content: "";
     left: 0;
@@ -959,63 +999,52 @@ hr {
     margin: auto;
     background: #eb315a;
 }
-
-.transformers-left {
+.movie-details-left {
     color: #eb315a;
     min-width: 100px;
 }
-
-.transformers-content ul li {
+.movie-details-content ul li {
     display: flex;
     margin-top: 12px;
     font-weight: 300;
 }
-
-.transformers-right .theme-btn {
+.movie-details-right .theme-btn {
     margin: 0 8px;
-	padding: 2px 15px;
+    padding: 2px 15px;
 }
-
-.transformers-bottom {
+.movie-details-bottom {
     display: flex;
     margin-top: 10px;
     justify-content: space-between;
 }
-
-.transformers-bottom span {
+.movie-details-bottom span {
     display: block;
     color: #eb315a;
 }
-
-.transformers-bottom p {
+.movie-details-bottom p {
     margin-bottom: 8px;
 }
-.transformers-box > .theme-btn {
+.movie-details-box > .theme-btn {
     position: absolute;
     right: 0;
     bottom: 0;
     border-radius: 5px 0 0;
 }
-
-.details-content >div {
+.details-content > div {
     margin-top: 30px;
 }
-
 .details-content {
     padding-top: 10px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 50px;
 }
-
-.details-content >div h2 {
+.details-content > div h2 {
     margin-bottom: 20px;
 }
-
 .details-overview h2 {
     position: relative;
     padding-bottom: 10px;
 }
-
 .details-overview h2::before {
     position: absolute;
     bottom: -2px;
@@ -1025,78 +1054,30 @@ hr {
     width: 50px;
     height: 2px;
 }
-.select-container {
-    position: relative;
-    margin-bottom: 30px;
-}
-.textarea-container {
-    position: relative;
-}
-.textarea-container button {
-	color: #fff;
-	background: transparent;
-	font-size: 20px;
-	border: none;
-}
-.textarea-container button,
-.select-container i {
-    position: absolute;
-    right: 15px;
-    bottom: 12px;
-    margin: auto;
-}
-.details-comment {
+.cast-container {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
-
-.details-comment a {
-    flex: 1;
-	text-align: center;
+.single-cast {
+    width: 100px;
+    margin: 10px;
+    text-align: center;
 }
-
-.details-comment p {
-    flex: 5;
-    margin-left: 25px;
+.single-cast img {
+    width: 100%;
+    border-radius: 50%;
 }
-
-.details-thumb > div {
-    padding-top: 20px;
-    display: flex;
-    width: 50%;
+.single-cast h4 {
+    margin-top: 10px;
+    color: #fff;
 }
-
-.thumb-icon {
-    width: 45px;
-    font-size: 45px;
-}
-
-.thumb-text {
-	flex: 5;
-}
-
-.details-thumb {
-    display: flex;
-}
-
-.details-thumb > div h4,
-.details-thumb > div i {
-	transition: 0.4s;
-}
-.details-thumb > div:hover h4,
-.details-thumb > div:hover i {
-	color: #eb315a
-}
-.details-thumb-next {
-    text-align: right;
-}
-
-.thumb-text h4 {
-    margin-bottom: 2px;
+.single-cast p {
+    color: #b6b7b9;
 }
 /*----------------------------------
------ Movie details PAGE CSS END ----
------------------------------------*/
+---- Movie details PAGE CSS END ----
+------------------------------------*/
 
 /*----------------------------------
 -------- seat plan PAGE CSS START -------

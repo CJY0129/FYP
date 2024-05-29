@@ -196,13 +196,11 @@ if ($result->num_rows > 0) {
 					</div>
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
-						<ul>
-                        <!-- Add id="nowShowingFilter" to target it with JavaScript -->
-						
-                        <li data-filter=".Latest" class="active">Now Showing</li>
-                        <li data-filter=".up">Upcoming</li>
-                        <li data-filter=".soon">Coming Soon</li>
-                    </ul>
+							<ul>
+								<li data-filter=".Latest" class="active">Now Showing</li>
+								<li data-filter=".up">Upcoming</li>
+								<li data-filter=".soon">Coming Soon</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -221,12 +219,12 @@ if ($result->num_rows > 0) {
 									echo '<div class="single-portfolio-img">';
 									// Display movie poster
 									if (!empty($row['poster_path'])) {
-										$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
-										$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
-										echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
-									} else {
-										echo '<p>No poster available</p>';
-									}
+            							$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+            							$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+            							echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
+        							} else {
+            							echo '<p>No poster available</p>';
+        							}
 									//echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube">';
                                     echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
@@ -314,9 +312,12 @@ if ($result->num_rows > 0) {
 
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</section><!-- portfolio section end -->
+
+
 					
 		<!-- footer section start -->
 		<?php
