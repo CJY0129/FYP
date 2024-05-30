@@ -9,7 +9,6 @@ session_start();
 
 $show_id = $_SESSION['show_id'];
 $selected_seats = explode(',', $_SESSION['selected_seats']);
-$total = count($selected_seats);
 
 // Check for already booked seats
 $sql = "SELECT seat_num FROM booking WHERE show_id = $show_id";
@@ -32,25 +31,8 @@ if (!empty($conflict_seats)) {
 }
 $user_id = $_SESSION['user_id'];
 
-if($user_id != 0) {
-    $sql = "SELECT email, phone_number FROM user WHERE user_id = $user_id";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $email = $row['email'];
-        $phone = $row['phone_number'];
-    } else {
-        echo "Error: User details not found.";
-        exit();
-    }
-} else {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-}
-
 $sql = "INSERT INTO booking (user_id, show_id, seat_num, booking_time, total_price, total_person, status) 
-        VALUES ('$user_id', '$show_id', '".$_SESSION['selected_seats']."', '".date('Y-m-d H:i:s')."', '".$_SESSION['price']."', '".$total."', 1)";
+        VALUES ('$user_id', '$show_id', '".$_SESSION['selected_seats']."', '".date('Y-m-d H:i:s')."', '".$_SESSION['totalprice']."', '".$_SESSION['total_seats']."', 1)";
 
 if ($conn->query($sql) === TRUE) {
     $booking_id = $conn->insert_id;
@@ -63,7 +45,7 @@ if ($conn->query($sql) === TRUE) {
 $name = isset($_POST['name']) ? $_POST['name'] : $_SESSION['first_name'];
 
 // Generate QR code
-$text = "Booking ID: $booking_id\nName: $name\nEmail: $email\nPhone: $phone\nHall:".$_SESSION['hall_id']."\nShowTime:".$_SESSION['show_id']."\n";
+$text = "Booking ID: $booking_id\nName: ".$_SESSION['first_name']."\nEmail: ".$_SESSION['email'] ."\nPhone: ".$_SESSION['phone']."\nHall:".$_SESSION['hall_id']."\nSeat Number: ".$_SESSION['selected_seats']."\nShowTime:".$_SESSION['show_id']."\n";
 $qr_code = QrCode::create($text);
 $writer = new PngWriter();
 $result = $writer->write($qr_code);
@@ -116,11 +98,12 @@ $conn->close();
         <h1>Booking Confirmation</h1>
         <div class="details">
             <p><strong>Booking ID:</strong> <?= $booking_id ?></p>
-            <p><strong>Name:</strong> <?= $name ?></p>
-            <p><strong>Email:</strong> <?= $email ?></p>
-            <p><strong>Phone:</strong> <?= $phone ?></p>
+            <p><strong>Name:</strong> <?= $_SESSION['first_name'] ?></p>
+            <p><strong>Email:</strong> <?= $_SESSION['email'] ?></p>
+            <p><strong>Phone:</strong> <?= $_SESSION['phone'] ?></p>
             <p><strong>Hall:</strong> <?= $_SESSION['hall_id'] ?></p>
             <p><strong>Show Time:</strong> <?= $_SESSION['show_id'] ?></p>
+            <p><strong>Seats:</strong> <?= $_SESSION['selected_seats']?></p>
         </div>
         <div class="qr-code">
             <img src="data:image/png;base64,<?= $qr_code_base64 ?>" alt="QR Code">

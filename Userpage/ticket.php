@@ -3,7 +3,7 @@
 // Simulating selected seats from a session for this example
 
 $selected_seats = explode(',', $_SESSION['selected_seats']);
-$total_seats = count($selected_seats);
+$_SESSION['total_seats'] = count($selected_seats);
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +79,8 @@ $total_seats = count($selected_seats);
         <div class="section">
             
             <div class="section-content">
-                You have selected <span id="seat-count"><?php echo $total_seats; ?></span> seat(s).
-                <input type="hidden" id="selected-seats" value="<?php echo $total_seats; ?>">
+                You have selected <span id="seat-count"><?php echo $_SESSION['total_seats']; ?></span> seat(s).
+                <input type="hidden" id="selected-seats" value="<?php echo $_SESSION['total_seats']; ?>">
             </div>
         </div>
         <div class="section">
@@ -264,7 +264,7 @@ $total_seats = count($selected_seats);
             const totalPrice = parseInt(document.getElementById('total-price').textContent);
             
             // Redirect to the next page with the total price as a query parameter
-            window.location.href = 'payment main page.php?totalPrice=' + totalPrice;
+            window.location.href = 'booking.php?totalPrice=' + totalPrice;
         }
     </script>
 </body> 

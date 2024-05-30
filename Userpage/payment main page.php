@@ -1,5 +1,26 @@
 <?php 
 session_start();
+include('connect.php');
+
+
+$user_id = $_SESSION['user_id'];
+
+if($user_id != 0) {
+    $sql = "SELECT email, phone_number FROM user WHERE user_id = $user_id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['phone'] = $row['phone_number'];
+    } else {
+        echo "Error: User details not found.";
+        exit();
+    }
+} else {
+  $_SESSION['first_name'] = $_POST['name'];
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['phone'] = $_POST['phone'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +49,7 @@ session_start();
     <section class="booking-details">
       <div class="container">
         <h2>Booking Details</h2>
-        <?php 
-$_SESSION['totalprice'] = $_GET["totalPrice"]; 
 
-?>
 
         
         <p><strong>Name:</strong> <?= $_SESSION['first_name']?></p>

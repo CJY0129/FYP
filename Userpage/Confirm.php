@@ -38,6 +38,7 @@
 
     <div class="container">
         <?php
+        $_SESSION['totalprice'] = $_GET["totalPrice"]; 
         if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == 0) {
             echo '<h2>Personal Details</h2>';
             echo '<div class="form-container">
