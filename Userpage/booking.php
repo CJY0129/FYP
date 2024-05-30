@@ -187,7 +187,7 @@ if (!empty($poster)) {
 
     <?php
     if (isset($_GET['selected_seats']) && $_GET['selected_seats'] ) {
-        include('Comfirm.php');
+        include('ticket.php');
     }else{
         include('seat_select.php');
     }

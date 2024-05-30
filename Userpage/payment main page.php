@@ -1,12 +1,13 @@
-<?php ?>
-
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cinema Website - Payment</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 </head>
 <body>
   <header>
@@ -27,9 +28,14 @@
     <section class="booking-details">
       <div class="container">
         <h2>Booking Details</h2>
-        <?php include("booking for.php"); 
-          include("connect_user.php");
-          ?>
+        
+        
+        <p><strong>Name:</strong> <?= $_SESSION['first_name']?></p>
+        <p><strong>Movie Title:</strong> <?=$_SESSION['title']; ?></p>
+        <p><strong>Price:</strong> <?= $_SESSION['price']?></p>
+        <p><strong>Hall:</strong> <?= $_SESSION['hall_id'] ?></p>
+        <p><strong>Seats:</strong> <?= $_SESSION['show_id'] ?></p>
+          
       </div>
     </section>
 
@@ -53,3 +59,4 @@
   </footer>
 </body>
 </html>
+
