@@ -24,7 +24,7 @@ $sql = "SELECT s.movie_id, s.show_time, m.title, m.poster_path, h.cinema_id
 
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$title = $row['title'];
+$_SESSION['title'] = $row['title'];
 $showtime = $row['show_time'];
 $poster = $row['poster_path'];
 $cinema_id = $row['cinema_id'];
@@ -169,7 +169,7 @@ if (!empty($poster)) {
 
         <ul>
             
-                <h3>  <?php echo $title; ?></h3><br><br>
+                <h3>  <?php echo $_SESSION['title']; ?></h3><br><br>
                 <p class="left-box"><i class="fa fa-home" style="font-size:24px"></i> Hall <?php echo $_SESSION['hall_id']; ?></p>
                 <p class="right-box"><i class="fa fa-clock-o" style="font-size:24px"></i> <?php echo $showtime; ?></p>
                 <p class="left-box"><i class="fa fa-map-marker" style="font-size:24px"></i> <?php echo $name; ?></p>

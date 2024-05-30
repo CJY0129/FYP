@@ -76,7 +76,7 @@
                         $movieRow = mysqli_fetch_assoc($movieResult);
 
                         // Fetch hall details
-                        $hallQuery = "SELECT hall_type_id, cinema_id FROM hall WHERE hall_id = " . $row['Hall_id'];
+                        $hallQuery = "SELECT  cinema_id FROM hall WHERE hall_id = " . $row['Hall_id'];
                         $hallResult = mysqli_query($conn, $hallQuery);
                         $hallRow = mysqli_fetch_assoc($hallResult);
 
@@ -89,7 +89,7 @@
                         echo '<tr>';
                         echo '<td>' . $row['show_id'] . '</td>';
                         echo '<td>' . $movieRow['title'] . '</td>';
-                        echo '<td>' . 'Hall: ' . $row['Hall_id'] . ' |  Hall Type: ' . $hallRow['hall_type_id'] . '   |  Cinema: ' . $cinemaRow['name'] . '</td>';
+                        echo '<td>' . 'Hall: ' . $row['Hall_id'] . ' |  Cinema: ' . $cinemaRow['name'] . '</td>';
                         echo '<td>' . $row['show_time'] . '</td>';
                         echo '<td>' . $row['end_time'] . '</td>';
                         echo '<td>' . $row['price'] . '</td>';
@@ -127,11 +127,11 @@
                         echo '<label class="form-control-label">Hall</label>';
                         echo '<select name="hall_id" class="form-control">';
                         // Fetch hall options from database
-                        $hallQuery = "SELECT hall_id, hall_type_id, cinema_id FROM hall";
+                        $hallQuery = "SELECT hall_id, cinema_id FROM hall";
                         $hallResult = mysqli_query($conn, $hallQuery);
                         while ($hallRow = mysqli_fetch_assoc($hallResult)) {
                             $selected = ($hallRow['hall_id'] == $row['Hall_id']) ? 'selected' : '';
-                            echo '<option value="' . $hallRow['hall_id'] . '" ' . $selected . '>Hall: ' . $hallRow['hall_id'] . ' |  Hall Type: ' . $hallRow['hall_type_id'] . '   |  Cinema: ' . $hallRow['cinema_id'] . '</option>';
+                            echo '<option value="' . $hallRow['hall_id'] . '" ' . $selected . '>Hall: ' . $hallRow['hall_id'] . '   |  Cinema: ' . $hallRow['cinema_id'] . '</option>';
                         }
                         echo '</select>';
                         echo '</div>';
@@ -195,7 +195,7 @@
                       <select name="hall_id" class="form-control">
                         <?php
                           // Fetch hall options from database
-                          $query = "SELECT hall_id, hall_type_id, cinema_id FROM hall";
+                          $query = "SELECT hall_id, cinema_id FROM hall";
                           $result = mysqli_query($conn, $query);
                           while ($row = mysqli_fetch_assoc($result)) {
                             // Get the cinema name based on the cinema_id
@@ -204,7 +204,7 @@
                             $cinemaRow = mysqli_fetch_assoc($cinemaResult);
                           
                             // Display hall name and cinema name
-                            echo '<option value="'. $row['hall_id']. '">Hall: '. $row['hall_id'] . ' |  Hall Type: ' . $row['hall_type_id'] . '   |  Cinema: ' . $cinemaRow['name'] . '</option>';
+                            echo '<option value="'. $row['hall_id']. '">Hall: '. $row['hall_id'] . ' |  Cinema: ' . $cinemaRow['name'] . '</option>';
                           }
                           mysqli_close($conn);
                         ?>

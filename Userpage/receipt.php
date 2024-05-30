@@ -21,6 +21,7 @@ while ($row = $result->fetch_assoc()) {
         $booked_seats[] = trim($seat_num); 
     }
 }
+$_SESSION['total_person'] = $seat_nums;
 
 // Check if any selected seats are already booked
 $conflict_seats = array_intersect($selected_seats, $booked_seats);
@@ -48,7 +49,6 @@ if($user_id != 0) {
     $phone = $_POST['phone'];
 }
 
-// Proceed with booking if no conflicts
 $sql = "INSERT INTO booking (user_id, show_id, seat_num, booking_time, total_price, total_person, status) 
         VALUES ('$user_id', '$show_id', '".$_SESSION['selected_seats']."', '".date('Y-m-d H:i:s')."', '".$_SESSION['price']."', '".$total."', 1)";
 
@@ -125,7 +125,7 @@ $conn->close();
         <div class="qr-code">
             <img src="data:image/png;base64,<?= $qr_code_base64 ?>" alt="QR Code">
         </div>
-        <button id="download">Download as PNG</button>
+        <button id="download">Download Ticket</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
@@ -134,7 +134,7 @@ $conn->close();
                 backgroundColor: '#24262d' // Ensure the background color is set
             }).then(function(canvas) {
                 var link = document.createElement('a');
-                link.download = 'booking.png';
+                link.download = 'Ticket.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
             });
