@@ -84,11 +84,15 @@ $total_seats = count($selected_seats);
             </div>
         </div>
         <div class="section">
-            <div class="section-header">Ticket Price</div>
+            <div class="section-header">Ticket / Food & Drink Price</div>
             <div class="section-content">Adult = RM 20</div>
             <div class="section-content">Children = RM 12</div>
             <div class="section-content">Student = RM 16</div>
             <div class="section-content">Oku = RM 16</div>
+            <div class="section-content">Cola = RM 6</div>
+            <div class="section-content">Mineral Water = RM 3</div>
+            <div class="section-content">Burger = RM 12</div>
+            <div class="section-content">Popcorn = RM 10</div>
         </div>
         <div class="section">
             <div class="section-header">Select Tickets</div>
@@ -133,7 +137,7 @@ $total_seats = count($selected_seats);
                 <div class="item-type">
                     <div>Cola</div>
                     <div>
-                        <button class="btn" onclick="updateCount('soda', -1)" disabled>-</button>
+                        <button class="btn" onclick="updateCount('soda', -1)">-</button>
                         <span id="soda-count">0</span>
                         <button class="btn" onclick="updateCount('soda', 1)">+</button>
                     </div>
@@ -141,7 +145,7 @@ $total_seats = count($selected_seats);
                 <div class="item-type">
                     <div>Water</div>
                     <div>
-                        <button class="btn" onclick="updateCount('water', -1)" disabled>-</button>
+                        <button class="btn" onclick="updateCount('water', -1)">-</button>
                         <span id="water-count">0</span>
                         <button class="btn" onclick="updateCount('water', 1)">+</button>
                     </div>
@@ -154,7 +158,7 @@ $total_seats = count($selected_seats);
                 <div class="item-type">
                     <div>Popcorn</div>
                     <div>
-                        <button class="btn" onclick="updateCount('popcorn', -1)" disabled>-</button>
+                        <button class="btn" onclick="updateCount('popcorn', -1)">-</button>
                         <span id="popcorn-count">0</span>
                         <button class="btn" onclick="updateCount('popcorn', 1)">+</button>
                     </div>
@@ -162,7 +166,7 @@ $total_seats = count($selected_seats);
                 <div class="item-type">
                     <div>Burger</div>
                     <div>
-                        <button class="btn" onclick="updateCount('burger', -1)" disabled>-</button>
+                        <button class="btn" onclick="updateCount('burger', -1)">-</button>
                         <span id="burger-count">0</span>
                         <button class="btn" onclick="updateCount('burger', 1)">+</button>
                     </div>
@@ -180,13 +184,12 @@ $total_seats = count($selected_seats);
     <script>
         const prices = {
             adult: <?php echo $_SESSION['price'] ?> +10,
-
             children: <?php echo $_SESSION['price'] ?> +2,
             student: <?php echo $_SESSION['price'] ?> +5,
             oku: <?php echo $_SESSION['price'] ?> +5,
             soda: <?php echo $_SESSION['price'] ?> -4,
             water: <?php echo $_SESSION['price'] ?> -7,
-            popcorn: <?php echo $_SESSION['price'] ?> ,
+            popcorn: <?php echo $_SESSION['price'] ?>,
             burger: <?php echo $_SESSION['price'] ?> +2
         };
 
@@ -204,8 +207,8 @@ $total_seats = count($selected_seats);
             // Calculate total tickets selected
             const totalTickets = getTotalTicketsSelected();
 
-            // Check if the total tickets exceed the total seats
-            if (totalTickets + increment > totalSeats) {
+            // Check if the total tickets exceed the total seats, but only for ticket types, not food and drinks
+            if (!['soda', 'water', 'popcorn', 'burger'].includes(itemType) && totalTickets + increment > totalSeats) {
                 alert("You cannot select more tickets than the number of seats selected.");
                 return; // Exit the function if the total tickets exceed total seats
             }
@@ -261,13 +264,8 @@ $total_seats = count($selected_seats);
             const totalPrice = parseInt(document.getElementById('total-price').textContent);
             
             // Redirect to the next page with the total price as a query parameter
-            window.location.href = 'test.php?totalPrice=' + totalPrice;
+            window.location.href = 'payment main page.php?totalPrice=' + totalPrice;
         }
     </script>
-    
-    
-
-    
-
 </body> 
 </html>
