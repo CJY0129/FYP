@@ -24,7 +24,7 @@ $sql = "SELECT s.movie_id, s.show_time, m.title, m.poster_path, h.cinema_id
 
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$title = $row['title'];
+$_SESSION['title'] = $row['title'];
 $showtime = $row['show_time'];
 $poster = $row['poster_path'];
 $cinema_id = $row['cinema_id'];
@@ -187,7 +187,7 @@ if (!empty($poster)) {
 
     <?php
     if (isset($_GET['selected_seats']) && $_GET['selected_seats'] ) {
-        include('Comfirm.php');
+        include('ticket.php');
     }else{
         include('seat_select.php');
     }
