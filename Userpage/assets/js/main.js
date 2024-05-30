@@ -164,7 +164,23 @@
 	/*----------------------------
     START - Isotope
     ------------------------------ */
-
+	$(document).ready(function(){
+		// Initialize Isotope
+		var $portfolioItems = $('.portfolio-item').isotope({
+			itemSelector: '.col-md-4',
+			layoutMode: 'fitRows'
+		});
+	
+		// Filter items on button click
+		$('.portfolio-menu li').on('click', function(){
+			$('.portfolio-menu li').removeClass('active');
+			$(this).addClass('active');
+			var filterValue = $(this).attr('data-filter');
+			$portfolioItems.isotope({ filter: filterValue });
+		});
+	
+		$portfolioItems.isotope({ filter: '.Latest' });
+	});
 	
 	
 	/*----------------------------

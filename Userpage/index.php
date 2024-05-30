@@ -189,9 +189,9 @@ if ($result->num_rows > 0) {
 		<section class="portfolio-area pt-60 video ptb-90 ">
 			<div class="container">
 				<div class="row flexbox-center">
-					<div class="col-lg-6 text-center text-lg-left">
+					<div class="col-lg-6 text-center text-lg-left"  >
 					    <div class="section-title">
-							<h1></i></h1>
+							<h1><i class="icofont icofont-movie"></i> Movies</h1>
 						</div>
 					</div>
 					<div class="col-lg-6 text-center text-lg-right">
@@ -210,14 +210,9 @@ if ($result->num_rows > 0) {
 						<div class="row portfolio-item">
 							<?php
 							//Latest movie
-							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie ORDER BY RAND() LIMIT 3";
-$result = $conn->query($sql);
-
-if (!$result) {
-    echo "Error: ". $conn->error;
-} else {
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie LIMIT 3";
+							$result = $conn->query($sql);
+							if ($result->num_rows > 0) {
 								while ($row = $result->fetch_assoc()) {
 									echo '<div class="col-md-4 col-sm-6 Latest">';
 									echo '<div class="single-portfolio">';
@@ -240,18 +235,14 @@ if (!$result) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
-									echo '<a href="movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';
 								}
 							}
-						}
-					}
-				
 
 							//Coming soon movie
-							$sql = "SELECT * FROM csmovie";
+							$sql = "SELECT * FROM csmovie ";
 							$result = $conn->query($sql);
 
 							if ($result->num_rows > 0) {
@@ -276,7 +267,6 @@ if (!$result) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
-									echo '<a href="movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';
@@ -284,7 +274,7 @@ if (!$result) {
 							}
 								
 							//Upcoming movie
-							$sql = "SELECT * FROM ucmovie";
+							$sql = "SELECT * FROM ucmovie ";
 							$result = $conn->query($sql);
 							
 							if ($result->num_rows > 0) {
@@ -309,7 +299,6 @@ if (!$result) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
-									echo '<a href="movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';
@@ -320,6 +309,9 @@ if (!$result) {
 
 						</div>
 					</div>
+					
+				</div>
+			</div>
 					
 				</div>
 			</div>
