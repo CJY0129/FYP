@@ -1,14 +1,17 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Form</title>
-    <link rel="stylesheet" href="cs2.css">
+    <link rel="stylesheet" href="payment/styles.css">
 </head>
 <body>
     <div class="container">
-        <form action="receipt.php" method="POST" class="payment-form">
+    <form action="receipt.php" method="POST" class="payment-form">
             <div class="section">
                 <h2>Payment</h2>
                 <label>
@@ -25,9 +28,9 @@
                 
                 <div class="cards-accepted">
                     <p>Cards Accepted:</p>
-                    <img src="paypal.png" alt="PayPal">
-                    <img src="mastercard.png" alt="MasterCard">
-                    <img src="visa.png" alt="Visa">
+                    <img src="payment/paypal.png" alt="PayPal">
+                    <img src="payment/mastercard.png" alt="MasterCard">
+                    <img src="payment/visa.png" alt="Visa">
                     
                 </div>
                 <label>
@@ -51,7 +54,11 @@
                     <input type="text" name="cvv" placeholder="123">
                 </label>
             </div>
-            <button type="submit">Submit</button>
+            
+            <button type=submit>Make A Payment</button>
+      
+    
+  
         </form>
     </div>
 </body>
