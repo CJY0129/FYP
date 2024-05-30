@@ -21,7 +21,7 @@ while ($row = $result->fetch_assoc()) {
         $booked_seats[] = trim($seat_num); 
     }
 }
-$_SESSION['total_person'] = $seat_nums;
+
 
 // Check if any selected seats are already booked
 $conflict_seats = array_intersect($selected_seats, $booked_seats);

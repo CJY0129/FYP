@@ -478,6 +478,7 @@ input{
     overflow: hidden;
     width: 100%; /* Ensure full width */
     height: 100vh; /* Full viewport height for a consistent look */
+    margin-bottom: 200px;
    
 }
 
