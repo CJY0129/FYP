@@ -177,8 +177,8 @@ if (!empty($poster)) {
                     if (isset($_GET['selected_seats']) && $_GET['selected_seats'] ) {
                         $_SESSION['selected_seats'] = $_GET['selected_seats'];
                         echo'<p class="right-box"><i class="glyphicon glyphicon-print" style="font-size:18px"></i> '.$_SESSION['selected_seats'].'</p>';
-                    }else{
-                        
+                    }else if(isset($_GET['totalPrice']) && $_GET['totalPrice'] ){
+                        echo'<p class="right-box"><i class="glyphicon glyphicon-print" style="font-size:18px"></i> '.$_SESSION['selected_seats'].'</p>';
                     }
                 ?>
             
