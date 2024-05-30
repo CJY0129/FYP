@@ -28,7 +28,13 @@ session_start();
     <section class="booking-details">
       <div class="container">
         <h2>Booking Details</h2>
-        
+        <?php 
+$_SESSION['totalprice'] = $_GET["totalPrice"]; 
+
+
+
+?>
+<p><?= $_SESSION['totalprice']?></p>
         
         <p><strong>Name:</strong> <?= $_SESSION['first_name']?></p>
         <p><strong>Movie Title:</strong> <?=$_SESSION['title']; ?></p>
