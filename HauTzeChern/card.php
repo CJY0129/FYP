@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <form class="payment-form">
+        <form action="receipt.php" method="POST" class="payment-form">
             <div class="section">
                 <h2>Payment</h2>
                 <label>
