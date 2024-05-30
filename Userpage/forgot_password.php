@@ -3,39 +3,36 @@ session_start();
 include('connection.php');
 $error_message = '';
 
-// Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['login'])) {
-        // Fetch username and password from the form
+    if (isset($_POST['forgot_password'])) {
         $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        // Query the database to check if the username exists
         $sql = "SELECT * FROM user WHERE username = '$username'";
         $result = $conn->query($sql);
 
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
-            // Verify password
-            if ($password == $row['password']) {
-                // Password is correct, set session variables
-                $_SESSION['user_id'] = $row['user_id'];
-                // Redirect to index.php
-                header("Location: main.php");
-                exit();
-            } else {
-                // Password is incorrect
-                $error_message = "Incorrect username or password. Please try again.";
-            }
+            // Generate a random password reset token
+            $token = bin2hex(random_bytes(16));
+            $sql = "UPDATE user SET password_reset_token = '$token' WHERE username = '$username'";
+            $conn->query($sql);
+
+            // Send an email to the user with a link to reset their password
+            $to = $row['email'];
+            $subject = 'Password Reset';
+            $message = 'Click on this link to reset your password: <a href="reset_password.php?token='. $token. '">Reset Password</a>';
+            $headers = 'From: your_email@example.com'. "\r\n".
+                'Reply-To: your_email@example.com'. "\r\n".
+                'X-Mailer: PHP/'. phpversion();
+            mail($to, $subject, $message, $headers);
+
+            $error_message = 'An email has been sent to your registered email address with a link to reset your password.';
         } else {
-            // Username not found
-            $error_message = "Incorrect username or password. Please try again.";
+            $error_message = 'Username not found.';
         }
-    } 
+    }
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,26 +73,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </header>
 
-
-
-<form id="signupForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-<h2 class="profile-heading">Login</h2> 
-<h6>Username</h6>
+<form id="signupForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <h2 class="profile-heading">Forgot Password</h2>
+    <h6>Enter your username to reset your password</h6>
     <input type="text" name="username" required>
-    <h6>Password</h6>
-    <input type="password" name="password" required>
-    
-    <?php if ($error_message): ?>
-    <div class="error-message"><?php echo $error_message; ?></div>
-<?php endif; ?>
-        <div class="login-signup">
-            <span class="signup-link"><a href="signup.php">Sign Up</a></span>
-            <p><a href="forgot_password.php">Forgot Password?</a></p>
-            <button type="submit" name="login" class="theme-btn">Log In</button>
-        </div>
-
+    <?php if ($error_message):?>
+        <div class="error-message"><?php echo $error_message;?></div>
+    <?php endif;?>
+    <button type="submit" name="forgot_password" class="theme-btn">Send Reset Link</button>
 </form>
 
-<?php include('footer.php'); ?>
+<?php include('footer.php');?>
 </body>
 </html>

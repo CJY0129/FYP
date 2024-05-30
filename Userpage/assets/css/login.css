@@ -142,6 +142,11 @@ form .login-signup a {
     color: #eb315a;
 }
 
+form .login-signup p {
+    color: #eb315a;
+    text-align: center;
+}
+
 form .theme-btn {
     margin-top: 0;
     background: #eb315a !important;
