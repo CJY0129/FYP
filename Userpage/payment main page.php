@@ -31,16 +31,14 @@ session_start();
         <?php 
 $_SESSION['totalprice'] = $_GET["totalPrice"]; 
 
-
-
 ?>
-<p><?= $_SESSION['totalprice']?></p>
+
         
         <p><strong>Name:</strong> <?= $_SESSION['first_name']?></p>
         <p><strong>Movie Title:</strong> <?=$_SESSION['title']; ?></p>
-        <p><strong>Price:</strong> <?= $_SESSION['price']?></p>
+        <p><strong>Price:</strong> <?= $_SESSION['totalprice']?></p>
         <p><strong>Hall:</strong> <?= $_SESSION['hall_id'] ?></p>
-        <p><strong>Seats:</strong> <?= $_SESSION['show_id'] ?></p>
+        <p><strong>Seats:</strong> <?= $_SESSION['selected_seats'] ?></p>
           
       </div>
     </section>
@@ -49,7 +47,6 @@ $_SESSION['totalprice'] = $_GET["totalPrice"];
   <div class="container">
     <h3>Select payment method</h3>
     <ul>
-      <li><button onclick="window.location.href='online banking.php'">Touch 'n Go</button></li>
       <li><button onclick="window.location.href='card.php' ">Credit card/Debit card</button></li>
       <li><button onclick="window.location.href='receipt.php'">Pay at counter</button></li>
     </ul>
