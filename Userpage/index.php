@@ -211,8 +211,13 @@ if ($result->num_rows > 0) {
 							<?php
 							//Latest movie
 							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie ORDER BY RAND() LIMIT 3";
-							$result = $conn->query($sql);
-							if ($result->num_rows > 0) {
+$result = $conn->query($sql);
+
+if (!$result) {
+    echo "Error: ". $conn->error;
+} else {
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
 								while ($row = $result->fetch_assoc()) {
 									echo '<div class="col-md-4 col-sm-6 Latest">';
 									echo '<div class="single-portfolio">';
@@ -241,6 +246,9 @@ if ($result->num_rows > 0) {
 									echo '</div>';
 								}
 							}
+						}
+					}
+				
 
 							//Coming soon movie
 							$sql = "SELECT * FROM csmovie";
