@@ -1,33 +1,21 @@
 <?php
-session_start();
-include('connection.php');
-$error_message = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['reset_password'])) {
-        $token = $_GET['token'];
-        $new_password = $_POST['new_password'];
-        $confirm_password = $_POST['confirm_password'];
-
-        if ($new_password == $confirm_password) {
-            $sql = "SELECT * FROM user WHERE password_reset_token = '$token'";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows == 1) {
-                $row = $result->fetch_assoc();
-                $sql = "UPDATE user SET password = '$new_password', password_reset_token = '' WHERE username = '$row[username]'";
-                $conn->query($sql);
-
-                $error_message = 'Your password has been successfully reset.';
-            } else {
-                $error_message = 'Invalid token.';
-            }
-        } else {
-            $error_message = 'Passwords do not match.';
-        }
-    }
+$token = $_GET["token"];
+$token_hash = hash("sha256", $token);
+$mysqli = require __DIR__ . "/Returnmysqli.php";
+$sql = "SELECT * FROM user
+        WHERE Reset_Token_Hash = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("s", $token_hash);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+if ($user === null) {
+    die("token not found");
 }
-
+if (strtotime($user["Reset_Token_Expires"]) <= time()) {
+    die("token has expired");
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,53 +23,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Sign up</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/login.css"/>
-    <link rel="icon" type="image/png" href="assets/img/CT.ico" />
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="assets/css/slicknav.min.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="assets/css/icofont.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <title>Reset Password</title>
 </head>
 <body>
-<header class="header">
-    <div class="container">
-        <div class="header-area">
-            <div class="logo">
-                <a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
-            </div>
-            <div class="menu-area">
-                <div class="responsive-menu"></div>
-                <div class="mainmenu">
-                    <ul id="primary-menu">
-                        <li><a class="active" href="index.php">Home</a></li>
-                        <?php echo '<li><a href="movies.php?userid=' . $_SESSION['user_id'] . '">Movies</a></li>' ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+    <?php include('Head.php');?>
+    <h1>Reset Password</h1>
+    
+    <form method="post" action="ConfirmReset.php">
 
-<form id="signupForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <h2 class="profile-heading">Reset Password</h2>
-    <h6>Enter your new password</h6>
-    <input type="password" name="new_password" required>
-    <h6>Confirm your new password</h6>
-    <input type="password" name="confirm_password" required>
-    <?php if ($error_message):?>
-        <div class="error-message"><?php echo $error_message;?></div>
-    <?php endif;?>
-    <button type="submit" name="reset_password" class="theme-btn">Reset Password</button>
-</form>
+        <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
 
-<?php include('footer.php');?>
+        <label for="password">New password</label>
+        <input type="password" id="password" name="password">
+
+        <label for="password_confirmation">Repeat password</label>
+        <input type="password" id="password_confirmation"
+               name="password_confirmation">
+
+        <button>Send</button>
+    </form>
 </body>
 </html>

@@ -1,14 +1,21 @@
 <?php 
 include("connection.php"); 
 session_start(); 
+
+// Ensure user_id is set either from session or GET parameter
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 } elseif (isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
+} else {
+    die("User ID not set.");
 }
 
-$sql = "SELECT * FROM user WHERE user_id = $user_id";
-$result = $conn->query($sql);
+// Use prepared statements to prevent SQL injection
+$stmt = $conn->prepare("SELECT * FROM user WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,14 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $phone_number = $_POST['phone_number'];
 
-    // Update query
-    $update_query = "UPDATE user SET First_Name='$first_name', last_Name='$last_name', Gender='$gender', Email='$email', Phone_number='$phone_number' WHERE user_id=$user_id";
+    // Update query using prepared statements
+    $update_stmt = $conn->prepare("UPDATE user SET First_Name = ?, Last_Name = ?, Gender = ?, Email = ?, Phone_number = ? WHERE user_id = ?");
+    $update_stmt->bind_param("sssssi", $first_name, $last_name, $gender, $email, $phone_number, $user_id);
 
-    if ($conn->query($update_query) === TRUE) {
+    if ($update_stmt->execute()) {
         // Update successful
         echo "<script>alert('Information updated!');</script>";
         echo "<script>window.location.href='customer.php?user_id=$user_id';</script>"; // Redirect back to the customer.php page
-
         exit; // Terminate script execution after redirection
     } else {
         // Error handling
@@ -51,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
-    
 </head>
 <body>
 <header class="header">
@@ -72,59 +78,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </header>
+<form id="signupForm" method="post" action="Cus(edit).php?user_id=<?php echo $user_id;?>"> <!-- Modified action to include user_id -->
+<h2 class="profile-heading">Your Profile</h2>
+<?php
+if(isset($rows[0])) {
+    $customer = $rows[0];
+?>
 
-<form id="signupForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-    <h2 class="profile-heading">Your Profile</h2>
-        <?php
-        if(isset($rows[0])) {
-            $customer = $rows[0];
-        ?>
-        <form method="post" action="update_profile.php?user_id=<?php echo $user_id; ?>"> <!-- Modified action to include user_id -->
-            <table border="1">
-                <tr>
-                    <th>First Name </th>
-                    <td>
-                        <input type="text" name="first_name" value="<?php echo $customer['first_name']; ?>">
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <th>Last Name</th>
-                    <td>
-                    <input type="text" name="last_name" value="<?php echo $customer['last_name']; ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th>Your Gender</th>
-                    <td>
-                        <input type="text" name="gender" value="<?php echo $customer['Gender']; ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td>
-                        <input type="email" name="email" value="<?php echo $customer['email']; ?>">
-                    </td>
-                </tr>
-                <tr>
-                    <th>Phone Number</th>
-                    <td>
-                        <input type="tel" name="phone_number" value="<?php echo $customer['phone_number']; ?>">
-                    </td>
-                </tr>
-            </table>
-            <div class="login-signup">
-        <span class="signup-link"><a href="Customer.php">Back</a></span>
-        <button type="submit" name="signup" class="theme-btn">Update Profile</button>
+    <table border="1">
+        <tr>
+            <th>First Name </th>
+            <td>
+                <input type="text" name="first_name" value="<?php echo htmlspecialchars($customer['first_name']); ?>">
+            </td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>
+                <input type="text" name="last_name" value="<?php echo htmlspecialchars($customer['last_name']); ?>">
+            </td>
+        </tr>
+        <tr>
+            <th>Your Gender</th>
+            <td>
+                <select name="gender" required>
+                    <option value="M" <?php echo ($customer['Gender'] == 'M') ? 'selected' : ''; ?>>Male</option>
+                    <option value="F" <?php echo ($customer['Gender'] == 'F') ? 'selected' : ''; ?>>Female</option>
+                    <option value="N" <?php echo ($customer['Gender'] == 'N') ? 'selected' : ''; ?>>Other</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>
+                <input type="email" name="email" value="<?php echo htmlspecialchars($customer['email']); ?>">
+            </td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>
+                <input type="tel" name="phone_number" value="<?php echo htmlspecialchars($customer['phone_number']); ?>">
+            </td>
+        </tr>
+    </table>
+    <div class="login-signup">
+        <span class="signup-link"><a href="customer.php">Back</a></span>
+        <button type="submit" class="theme-btn">Update Profile</button>
     </div>
-        </form>
-        <?php 
-        } else {
-            echo "No customer found";
-        }
-        ?>
-    </div>
-    <?php include('footer.php'); ?>
+</form>
+<?php 
+} else {
+    echo "No customer found";
+}
+?>
+<?php include('footer.php'); ?>
 </body>
-
 </html>

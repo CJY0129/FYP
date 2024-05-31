@@ -14,21 +14,21 @@
                         } else {
                             echo '<li class="nav-item dropdown">';
                             echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-                            if ($_SESSION['user_id'] == 1) {
-                                echo 'Welcome Guest!';
-                            } else {
                                 if ($_SESSION['Gender'] == 'M') {
                                     echo 'Welcome Mr. ' . $_SESSION['first_name'] . '!';
-                                } else {
+                                } else if ($_SESSION['Gender'] == 'F') {
                                     echo 'Welcome Ms. ' . $_SESSION['first_name'] . '!';
+                                }
+                                else{
+                                    echo 'Welcome ' . $_SESSION['first_name'] . '!';
                                 }
                             }
                             echo '</a>';
-                        }
+                        
                         ?>
                         <div class="dropdown-content">
                             <?php
-                            if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != 1) {
+                            if (isset($_SESSION['user_id']) && $_SESSION['user_id'] != 0) {
                                 echo '<a href="Customer.php?userid=' . $_SESSION['user_id'] . '">View Profile</a>';
                             }
                             ?>

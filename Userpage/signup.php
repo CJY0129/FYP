@@ -88,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <select name="gender" required>
         <option value="M">Male</option>
         <option value="F">Female</option>
+        <option value="N">Other</option>
     </select>
     <h6>Email</h6>
     <input type="email" name="email" required>

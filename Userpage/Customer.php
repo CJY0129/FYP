@@ -12,6 +12,9 @@ if (isset($_SESSION['user_id'])) {
 $sql = "SELECT * FROM user WHERE user_id = $user_id";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+$_SESSION['first_name'] = $rows[0]['first_name'];
+    $_SESSION['Gender'] = $rows[0]['Gender'];
 ?>
 
 
@@ -41,6 +44,14 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        #signupForm {
+                width: 50%;
+            }
+            input[type="text"], input[type="email"], input[type="tel"], select {
+                width: 300px; 
+            }
+    </style>
 </head>
 
 <body>
@@ -55,15 +66,14 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     <?php
                         echo '<li class="nav-item dropdown">';
                         echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-                        if ($_SESSION['user_id'] == 1) {
-                            echo 'Welcome Guest!';
-                        } else {
                             if ($_SESSION['Gender'] == 'M') {
                                 echo 'Welcome Mr. ' . $_SESSION['first_name'] . '!';
-                            } else {
+                            } else if ($_SESSION['Gender'] == 'F'){
                                 echo 'Welcome Ms. ' . $_SESSION['first_name'] . '!';
+                            } else{
+                                echo 'Welcome ' . $_SESSION['first_name'] . '!';
                             }
-                        }
+                        
                         echo '</a>';
                     ?>
                     <div class="dropdown-content">
@@ -104,7 +114,18 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </tr>
             <tr>
                 <th>Gender</th>
-                <td><?php echo $customer["Gender"]; ?></td>
+                <td>
+                    <?php 
+                if ($customer["Gender"]=='N')
+                {
+                    echo "Not specified";
+                }
+                else
+                { 
+                    echo $customer["Gender"]; }?>
+                
+
+                </td>
             </tr>
             <tr>
                 <th>Email</th>
