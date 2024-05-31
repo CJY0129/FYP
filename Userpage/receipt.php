@@ -85,19 +85,20 @@ $conn->close();
         button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #961313;
             color: white;
             border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #dd2222;
         }
     </style>
 </head>
 <body>
     <div class="receipt">
-        <h1>Booking Confirmation</h1>
+        <h1>Your Payment is Successful</h1>
+        <h1>Booking Detail & QR code</h1>
         <div class="details">
             <p><strong>Booking ID:</strong> <?= $booking_id ?></p>
             <p><strong>Name:</strong> <?= $_SESSION['first_name'] ?></p>
