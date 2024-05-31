@@ -90,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php endif; ?>
         <div class="login-signup">
             <span class="signup-link"><a href="signup.php">Sign Up</a></span>
-            <p><a href="forgot_password.php">Forgot Password?</a></p>
-            <button type="submit" name="login" class="theme-btn">Log In</button>
+            <p><a href="forgot_password.php" style="text-align:center;">Forgot Password?</a></p>
+            <button type="submit" name="login" class="theme-btn" tyle="text-align:right;">Log In</button>
         </div>
 
 </form>

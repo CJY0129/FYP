@@ -125,17 +125,16 @@ form h6 {
 
 
 
-form .login-signup {  
+form .login-signup {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Change to column layout */
+    align-items: center; /* Center align the children */
     margin-top: 20px;
 }
 
 form .signup-link {
-    flex: 1;
-    text-align: left;
-    padding-right: 180px;
+    margin-bottom: 10px; /* Add margin to the bottom */
+    text-align: center; /* Center align the link */
 }
 
 form .login-signup a {
@@ -143,9 +142,11 @@ form .login-signup a {
 }
 
 form .login-signup p {
+    margin-top: 10px; /* Add margin to the top */
     color: #eb315a;
     text-align: center;
 }
+
 
 form .theme-btn {
     margin-top: 0;

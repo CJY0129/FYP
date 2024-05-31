@@ -1,5 +1,13 @@
 <?php
+session_start();
+$error_message = "";
 
+if(isset($_GET['userid'])) {
+    $user_id = $_GET['userid'];
+    $sql = "SELECT * FROM user WHERE user_id = $user_id";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
     $email = $_POST["email"];
     $token = bin2hex(random_bytes(16));
@@ -7,9 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
     $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
     $mysqli = require __DIR__ . "/Returnmysqli.php";
     $sql = "UPDATE user
-            SET Reset_Token_Hash = ?,
-                Reset_Token_Expires = ?
-            WHERE User_Email = ?";
+            SET password_reset_token = ?, token_expiry = ?
+            WHERE email = ?";
 
     $stmt = $mysqli->prepare($sql);
     if ($stmt) {
@@ -23,23 +30,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
             $mail->addAddress($email);
             $mail->Subject = "Password Reset";
             $mail->Body = <<<END
-            Click <a href="http://localhost/FYP/Reset_Password.php?token=$token">here</a> 
+            Click <a href="http://localhost:8080/Project/FYP/Userpage/reset_password.php?token=$token">here</a> 
             to reset your password.
             END;
 
             try {
                 $mail->send();
-                echo "Message sent, please check your inbox.";
+                $error_message = "Message sent, please check your inbox.";
             } catch (Exception $e) {
-                echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
+                $error_message ="Message could not be sent. Mailer error: {$mail->ErrorInfo}";
             }
         } else {
-            echo "No user found with that email.";
+            $error_message ="No user found with that email.";
         }
 
         $stmt->close();
     } else {
-        echo "Error preparing statement: {$mysqli->error}";
+        $error_message = "Error preparing statement: {$mysqli->error}";
     }
 
     $mysqli->close();
@@ -52,13 +59,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forget Password</title>
+    <title>Login/Sign up</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/login.css"/>
+    <link rel="icon" type="image/png" href="assets/img/CT.ico" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/slicknav.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/icofont.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-    <?php include('header.php'); ?>
-    <form action="forgot_password.php" method="POST">
-    <input type="email" name="email" placeholder="Enter your email">
-    <button type="submit">Reset Password</button>
+<header class="header">
+    <div class="container">
+        <div class="header-area">
+            <div class="logo">
+                <a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
+            </div>
+            <div class="menu-area">
+                <div class="responsive-menu"></div>
+                <div class="mainmenu">
+                    <ul id="primary-menu">
+                        <li><a class="active" href="index.php">Home</a></li>
+                        <?php echo '<li><a href="movies.php?userid=' . $_SESSION['user_id'] . '">Movies</a></li>' ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <form id="signupForm" action="forgot_password.php" method="POST">
+        <h2 class="profile-heading" style="padding-bottom:30px;">Reset Password</h2> 
+        <h6>Enter your email to reset your password</h6>
+    <input type="email" name="email" placeholder="Enter your email" required>
+    <?php if ($error_message): ?>
+    <div class="error-message"><?php echo $error_message; ?></div>
+<?php endif; ?>
+    <button type="submit" name="login" class="theme-btn">Send Email</button>
 </form>
 <?php include('footer.php'); ?>
 </body>

@@ -16,8 +16,8 @@ $mail->SMTPAuth = true;
 $mail->Host = "smtp.gmail.com";
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
-$mail->Username = "chongmingchai123@gmail.com";//自己的email
-$mail->Password = "ixsa tydm gppm fcwf";//自己email的私码
+$mail->Username = "leeyueheng04@gmail.com";//自己的email
+$mail->Password = "kicf bvpx avuq totd";//自己email的私码
 
 $mail->isHtml(true);
 
