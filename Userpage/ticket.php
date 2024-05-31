@@ -83,22 +83,12 @@ $_SESSION['total_seats'] = count($selected_seats);
                 <input type="hidden" id="selected-seats" value="<?php echo $_SESSION['total_seats']; ?>">
             </div>
         </div>
-        <div class="section">
-            <div class="section-header">Ticket / Food & Drink Price</div>
-            <div class="section-content">Adult = RM 20</div>
-            <div class="section-content">Children = RM 12</div>
-            <div class="section-content">Student = RM 16</div>
-            <div class="section-content">Oku = RM 16</div>
-            <div class="section-content">Cola = RM 6</div>
-            <div class="section-content">Mineral Water = RM 3</div>
-            <div class="section-content">Burger = RM 12</div>
-            <div class="section-content">Popcorn = RM 10</div>
-        </div>
+        
         <div class="section">
             <div class="section-header">Select Tickets</div>
             <div class="section-content">
                 <div class="item-type">
-                    <div>Adult</div>
+                    <div>Adult (RM 20)</div>
                     <div>
                         <button class="btn" onclick="updateCount('adult', -1)">-</button>
                         <span id="adult-count">1</span>
@@ -106,7 +96,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                     </div>
                 </div>
                 <div class="item-type">
-                    <div>Children</div>
+                    <div>Children (RM 12)</div>
                     <div>
                         <button class="btn" onclick="updateCount('children', -1)" disabled>-</button>
                         <span id="children-count">0</span>
@@ -114,7 +104,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                     </div>
                 </div>
                 <div class="item-type">
-                    <div>Student</div>
+                    <div>Student (RM 16)</div>
                     <div>
                         <button class="btn" onclick="updateCount('student', -1)" disabled>-</button>
                         <span id="student-count">0</span>
@@ -122,7 +112,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                     </div>
                 </div>
                 <div class="item-type">
-                    <div>Oku</div>
+                    <div>Oku (RM 16)</div>
                     <div>
                         <button class="btn" onclick="updateCount('oku', -1)" disabled>-</button>
                         <span id="oku-count">0</span>
@@ -135,7 +125,7 @@ $_SESSION['total_seats'] = count($selected_seats);
             <div class="section-header">Drinks</div>
             <div class="section-content">
                 <div class="item-type">
-                    <div>Cola</div>
+                    <div>Cola (RM 6)</div>
                     <div>
                         <button class="btn" onclick="updateCount('soda', -1)">-</button>
                         <span id="soda-count">0</span>
@@ -143,7 +133,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                     </div>
                 </div>
                 <div class="item-type">
-                    <div>Water</div>
+                    <div>Mineral Water (RM 3)</div>
                     <div>
                         <button class="btn" onclick="updateCount('water', -1)">-</button>
                         <span id="water-count">0</span>
@@ -156,7 +146,7 @@ $_SESSION['total_seats'] = count($selected_seats);
             <div class="section-header">Food</div>
             <div class="section-content">
                 <div class="item-type">
-                    <div>Popcorn</div>
+                    <div>Popcorn (RM 10)</div>
                     <div>
                         <button class="btn" onclick="updateCount('popcorn', -1)">-</button>
                         <span id="popcorn-count">0</span>
@@ -164,7 +154,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                     </div>
                 </div>
                 <div class="item-type">
-                    <div>Burger</div>
+                    <div>Burger (RM 12)</div>
                     <div>
                         <button class="btn" onclick="updateCount('burger', -1)">-</button>
                         <span id="burger-count">0</span>

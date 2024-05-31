@@ -32,9 +32,9 @@ if($user_id != 0) {
       <div class="container">
         <h2>Booking Details</h2>
         <p><strong>Name:</strong> <?= $_SESSION['first_name']?></p>
-        <p><strong>Total Price:</strong> <?= $_SESSION['totalprice']?></p><br>
+        <p><strong>Total Price:</strong> RM <?= $_SESSION['totalprice']?></p><br>
 
-          
+        
       </div>
     </section>
 
