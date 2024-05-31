@@ -44,7 +44,11 @@ if ($conn->query($sql) === TRUE) {
 // Determine name based on session or input
 $name = isset($_POST['name']) ? $_POST['name'] : $_SESSION['first_name'];
 
+if($_SESSION['phone'] == null){
+    $_SESSION['phone'] ="-";
+}
 // Generate QR code
+
 $text = "Booking ID: $booking_id\nName: ".$_SESSION['first_name']."\nEmail: ".$_SESSION['email'] ."\nPhone: ".$_SESSION['phone']."\nHall:".$_SESSION['hall_id']."\nSeat Number: ".$_SESSION['selected_seats']."\nShowTime:".$_SESSION['show_id']."\n";
 $qr_code = QrCode::create($text);
 $writer = new PngWriter();

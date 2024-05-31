@@ -178,7 +178,7 @@ $_SESSION['total_seats'] = count($selected_seats);
             <div class="section-header">Total Price</div>
             <div class="section-content total-price">RM <span id="total-price">20</span></div>
         </div>     
-        <button class="confirm-btn" onclick="confirmSelection()">Confirm</button>
+        <button style="margin-bottom:50px;" class="confirm-btn" onclick="confirmSelection()">Confirm</button>
     </div>
     
     <script>

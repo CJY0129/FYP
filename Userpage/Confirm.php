@@ -42,15 +42,15 @@
         if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == 0) {
             echo '<h2>Personal Details</h2>';
             echo '<div class="form-container">
-                    <form action="payment main page.php" method="POST">
-                        <input type="text" name="name" placeholder="Full Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="text" name="phone" placeholder="Phone Number" >
+                    <form action="booking.php?payment=1" method="POST">
+                        <input type="text" name="name" placeholder="Full Name*" required>
+                        <input type="email" name="email" placeholder="Email*" required>
+                        <input type="text" name="phone" placeholder="Phone Number"  >
                         <button type="submit">Proceed to Payment</button>
                     </form>
                   </div>';
             } else {
-                echo'<meta http-equiv="refresh" content="0;url=payment main page.php">';
+                echo'<meta http-equiv="refresh" content="0;url=booking.php?payment=1">';
             }
         ?>
     </div>
