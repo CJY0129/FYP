@@ -73,7 +73,7 @@ $number_of_seats = $row['number_of_seat'];
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/s.css">
+        <link rel="stylesheet" href="assets/css/seat.css">
 
 
 		<title>CINETIME</title>
@@ -150,13 +150,10 @@ $number_of_seats = $row['number_of_seat'];
     </div>
 </header>
 		
-	</head>
-	<body>
+</head>
+<body>
 
-		
 
-    <div class="container" >
-                        </div>
 <div class="moviecontainer" style="margin-top: 180px;">
 <?php
 if (!empty($poster)) {
@@ -166,22 +163,32 @@ if (!empty($poster)) {
 }
 
 ?>
+        <ul>            
+            <h3>  <?php echo $_SESSION['title']; ?></h3><br><br>
+            <p class="left-box"><i class="fa fa-home" style="font-size:24px"></i> Hall <?php echo $_SESSION['hall_id']; ?></p>
+            <p class="right-box"><i class="fa fa-clock-o" style="font-size:24px"></i> <?php echo $showtime; ?></p>
+            <p class="left-box"><i class="fa fa-map-marker" style="font-size:24px"></i> <?php echo $name; ?></p>
+            <?php
+                if (isset($_GET['selected_seats']) && $_GET['selected_seats'] ) {
+                    $_SESSION['selected_seats'] = $_GET['selected_seats'];
+                    echo'<p class="right-box"><i class="glyphicon glyphicon-print" style="font-size:18px"></i> '.$_SESSION['selected_seats'].'</p>';
+                }else if(isset($_GET['totalPrice']) && $_GET['totalPrice'] ){
+                    echo'<p class="right-box"><i class="glyphicon glyphicon-print" style="font-size:18px"></i> '.$_SESSION['selected_seats'].'</p>';
+                }elseif(isset($_GET['payment']) && $_GET['payment']){
+                    echo'<p class="right-box"><i class="glyphicon glyphicon-print" style="font-size:18px"></i> '.$_SESSION['selected_seats'].'</p>';
+                }elseif(isset($_GET['receipt']) && $_GET['receipt']){
+                    echo'<p class="right-box"><i class="glyphicon glyphicon-print" style="font-size:18px"></i> '.$_SESSION['selected_seats'].'</p>';
+                }else{
+                    echo'<p class="right-box"><i class="glyphicon glyphicon-print" style="font-size:18px"></i> Select your seats</p>';
 
-        <ul>
-            
-                <h3>  <?php echo $_SESSION['title']; ?></h3><br><br>
-                <p class="left-box"><i class="fa fa-home" style="font-size:24px"></i> Hall <?php echo $_SESSION['hall_id']; ?></p>
-                <p class="right-box"><i class="fa fa-clock-o" style="font-size:24px"></i> <?php echo $showtime; ?></p>
-                <p class="left-box"><i class="fa fa-map-marker" style="font-size:24px"></i> <?php echo $name; ?></p>
-                <?php
-                    if (isset($_GET['selected_seats']) && $_GET['selected_seats'] ) {
-                        $_SESSION['selected_seats'] = $_GET['selected_seats'];
-                        echo'<p class="right-box"><i class="glyphicon glyphicon-print" style="font-size:18px"></i> '.$_SESSION['selected_seats'].'</p>';
-                    }else if(isset($_GET['totalPrice']) && $_GET['totalPrice'] ){
-                        echo'<p class="right-box"><i class="glyphicon glyphicon-print" style="font-size:18px"></i> '.$_SESSION['selected_seats'].'</p>';
-                    }
-                ?>
-            
+                }
+
+                if(isset($_GET['payment']) && $_GET['payment']){
+                    include('payment main page.php');
+                }else{
+
+                }
+            ?>
         </ul>
     </div>
 
@@ -190,10 +197,15 @@ if (!empty($poster)) {
         include('ticket.php');
     }elseif (isset($_GET['totalPrice']) && $_GET['totalPrice'] ) {
         include('Confirm.php');
+    }elseif(isset($_GET['payment']) && $_GET['payment']){
+
+    }elseif(isset($_GET['receipt']) && $_GET['receipt']){
+        include('receipt.php');
     }else{
         include('seat_select.php');
     }
-
+    
+    include('footer.php');
     ?>
 
     

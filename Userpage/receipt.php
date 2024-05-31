@@ -5,10 +5,8 @@ require "vendor/autoload.php";
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 
-session_start();
 
 $show_id = $_SESSION['show_id'];
-$selected_seats = explode(',', $_SESSION['selected_seats']);
 
 // Check for already booked seats
 $sql = "SELECT seat_num FROM booking WHERE show_id = $show_id";
@@ -23,10 +21,10 @@ while ($row = $result->fetch_assoc()) {
 
 
 // Check if any selected seats are already booked
+$selected_seats = explode(',', $_SESSION['selected_seats']);
 $conflict_seats = array_intersect($selected_seats, $booked_seats);
 if (!empty($conflict_seats)) {
-    echo "Error: The following seats are already booked: " . implode(', ', $conflict_seats);
-    header("Location: index.php?error=1.");
+    echo '<meta http-equiv="refresh" content="0;url=index.php?error=1">';
     exit();
 }
 $user_id = $_SESSION['user_id'];
@@ -44,7 +42,11 @@ if ($conn->query($sql) === TRUE) {
 // Determine name based on session or input
 $name = isset($_POST['name']) ? $_POST['name'] : $_SESSION['first_name'];
 
+if($_SESSION['phone'] == null){
+    $_SESSION['phone'] ="-";
+}
 // Generate QR code
+
 $text = "Booking ID: $booking_id\nName: ".$_SESSION['first_name']."\nEmail: ".$_SESSION['email'] ."\nPhone: ".$_SESSION['phone']."\nHall:".$_SESSION['hall_id']."\nSeat Number: ".$_SESSION['selected_seats']."\nShowTime:".$_SESSION['show_id']."\n";
 $qr_code = QrCode::create($text);
 $writer = new PngWriter();
@@ -65,7 +67,7 @@ $conn->close();
             background-color: #24262d;
             color: #fff;
         }
-        .container {
+        .receipt {
             width: 50%;
             margin: auto;
             padding: 20px;
@@ -83,19 +85,20 @@ $conn->close();
         button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #961313;
             color: white;
             border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #dd2222;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Booking Confirmation</h1>
+    <div class="receipt">
+        <h1>Your Payment is Successful</h1>
+        <h1>Booking Detail & QR code</h1>
         <div class="details">
             <p><strong>Booking ID:</strong> <?= $booking_id ?></p>
             <p><strong>Name:</strong> <?= $_SESSION['first_name'] ?></p>
@@ -113,7 +116,7 @@ $conn->close();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         document.getElementById('download').addEventListener('click', function() {
-            html2canvas(document.querySelector('.container'), {
+            html2canvas(document.querySelector('.receipt'), {
                 backgroundColor: '#24262d' // Ensure the background color is set
             }).then(function(canvas) {
                 var link = document.createElement('a');
