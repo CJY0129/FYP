@@ -134,7 +134,7 @@ form .login-signup {
 
 form .signup-link {
     margin-bottom: 10px; /* Add margin to the bottom */
-    text-align: center; /* Center align the link */
+    text-align: left; /* Center align the link */
 }
 
 form .login-signup a {

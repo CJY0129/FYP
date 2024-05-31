@@ -33,7 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["password"] !== $_POST["password_confirmation"]) {
         $error_message = "Passwords must match";
     } else {
-        $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        // Plain text password from the form
+        $password = $_POST["password"];
 
         $sql = "UPDATE user
                 SET password = ?,
@@ -44,7 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (!$stmt) {
             die("Prepare statement failed: " . $mysqli->error);
         }
-        $stmt->bind_param("ss", $password_hash, $user["user_id"]);
+        // Bind password directly
+        $stmt->bind_param("ss", $password, $user["user_id"]);
         $stmt->execute();
 
         if ($stmt->affected_rows === 0) {
