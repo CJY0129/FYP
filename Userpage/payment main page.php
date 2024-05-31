@@ -1,7 +1,12 @@
 <?php 
 include('connect.php');
 
-
+$selected_seats = explode(',', $_SESSION['selected_seats']);
+$conflict_seats = array_intersect($selected_seats, $booked_seats);
+if (!empty($conflict_seats)) {
+    echo '<meta http-equiv="refresh" content="0;url=index.php?error=1">';
+    exit();
+}
 $user_id = $_SESSION['user_id'];
 
 if($user_id != 0) {
@@ -37,8 +42,8 @@ if($user_id != 0) {
   <div class="container">
     <h3>Select payment method</h3>
     <ul>
-      <li><button onclick="window.location.href='card.php' ">Credit card/Debit card</button></li>
-      <li><button onclick="window.location.href='receipt.php'">Pay at counter</button></li>
+      <li><button style="color:black" onclick="window.location.href='card.php' ">Credit card/Debit card</button></li>
+      <li><button style="color:black"onclick="window.location.href='booking.php?receipt=1'">Pay at counter</button></li>
     </ul>
   </div>
 </section>
