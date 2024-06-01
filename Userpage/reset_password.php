@@ -120,15 +120,37 @@ $token = $_GET["token"];
     <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
 
     <label for="password">New password</label>
-    <input type="password" id="password" name="password" required>
+    <div style="position: relative;">
+        <input type="password" name="password" id="password" required>
+        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+    </div>
 
     <label for="password_confirmation">Confirm new password</label>
+    <div style="position: relative;">
     <input type="password" id="password_confirmation" name="password_confirmation" required>
+        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+    </div>
+    
     <?php if ($error_message): ?>
     <div class="error-message"><?php echo $error_message; ?></div>
     <?php endif; ?>
     <button type="submit" name="login" class="theme-btn">Reset Password</button>
 </form>
 <?php include('footer.php'); ?>
+
+<script>
+function togglePasswordVisibility() {
+    var passwordField = document.getElementById("password");
+    var toggleText = document.querySelector(".toggle-password");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleText.textContent = "Hide";
+    } else {
+        passwordField.type = "password";
+        toggleText.textContent = "Show";
+    }
+}
+</script>
+
 </body>
 </html>

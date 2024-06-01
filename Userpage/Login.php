@@ -33,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } 
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -51,10 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <style>
+        .toggle-password {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <header class="header">
@@ -76,26 +76,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </header>
 
-
-
 <form id="signupForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-<h2 class="profile-heading">Login</h2> 
-<h6>Username</h6>
+    <h2 class="profile-heading">Login</h2> 
+    <h6>Username</h6>
     <input type="text" name="username" required>
     <h6>Password</h6>
-    <input type="password" name="password" required>
+    <div style="position: relative;">
+        <input type="password" name="password" id="password" required>
+        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+    </div>
     
     <?php if ($error_message): ?>
     <div class="error-message"><?php echo $error_message; ?></div>
-<?php endif; ?>
-        <div class="login-signup">
-            <span class="signup-link"><a href="signup.php">Sign Up</a></span>
-            <p><a href="forgot_password.php" style="text-align:center;">Forgot Password?</a></p>
-            <button type="submit" name="login" class="theme-btn" tyle="text-align:right;">Log In</button>
-        </div>
-
+    <?php endif; ?>
+    
+    <div class="login-signup">
+        <span class="signup-link"><a href="signup.php">Sign Up</a></span>
+        
+        <button type="submit" name="login" class="theme-btn" style="text-align:right;">Log In</button>
+    </div>
+    <p><a href="forgot_password.php" style="text-align:center;">Forgot Password?</a></p>
 </form>
 
 <?php include('footer.php'); ?>
+
+<script>
+function togglePasswordVisibility() {
+    var passwordField = document.getElementById("password");
+    var toggleText = document.querySelector(".toggle-password");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleText.textContent = "Hide";
+    } else {
+        passwordField.type = "password";
+        toggleText.textContent = "Show";
+    }
+}
+</script>
+
 </body>
 </html>

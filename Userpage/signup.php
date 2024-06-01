@@ -8,7 +8,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['signup'])) {
         // Fetch form data
         $username = $_POST['username'];
-        $password = $_POST['password'];
+         if ($_POST["password"] !== $_POST["password_confirmation"]) {
+        $error_message = "Passwords must match";
+    } else {
+        // Plain text password from the form
+        $password = $_POST["password"];
+    }
         $first_name = $_POST['firstname'];
         $last_name = $_POST['lastname'];
         $Gender = $_POST['gender'];
@@ -79,7 +84,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h6>Username</h6>
     <input type="text" name="username" required>
     <h6>Password</h6>
-    <input type="password" name="password" required>
+    <div style="position: relative;">
+        <input type="password" name="password" id="password" required>
+        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+    </div>
+    <h6>Confirm Password</h6>
+    <div style="position: relative;">
+    <input type="password" id="password_confirmation" name="password_confirmation" required>
+        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+    </div>
     <h6>First Name</h6>
     <input type="text" name="firstname" required>
     <h6>Last Name</h6>
@@ -106,5 +119,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- Include your footer if needed -->
 <?php include('footer.php'); ?>
+
+<script>
+function togglePasswordVisibility() {
+    var passwordField = document.getElementById("password");
+    var toggleText = document.querySelector(".toggle-password");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleText.textContent = "Hide";
+    } else {
+        passwordField.type = "password";
+        toggleText.textContent = "Show";
+    }
+}
+</script>
+
 </body>
 </html>
