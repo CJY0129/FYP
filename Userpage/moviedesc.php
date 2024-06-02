@@ -79,6 +79,7 @@ $conn->close();
 
 <body>
     <?php include('header.php'); ?>
+    <?php include('buytickets.php'); ?>
     <section class="hero-area" id="home">
     <h1 style="padding-top: 200px;"><?php echo $title; ?></h1>
     <div>
@@ -92,7 +93,7 @@ $conn->close();
         }
         ?>
     </section>
-        <h3><?php echo "Genre: " . $genre; ?></h3>
+        <p><?php echo "Genre: " . $genre; ?></p>
         <p><?php echo "Director: " . $director; ?></p>
         <p><?php echo "Cast: " . $cast; ?></p>
         <p><?php echo "Description: " . $desc; ?></p>

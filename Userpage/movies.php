@@ -23,7 +23,7 @@ if(isset($_GET['userid'])) {
     <link rel="stylesheet" type="text/css" href="assets/css/icofont.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/movies.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
     <!--[if lt IE 9]>   
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -32,6 +32,7 @@ if(isset($_GET['userid'])) {
 </head>
 <body>
     <?php include('header.php'); ?>
+    <?php include('buytickets.php'); ?>
     <section class="hero-area" id="home">
     <div class="container">
         <div class="row flexbox-center">
@@ -41,7 +42,7 @@ if(isset($_GET['userid'])) {
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right" style="margin-top: 200px; padding-bottom:50px;">
-                <div class="section-title" style="padding-bottom:20px; padding-left:200px;">
+                <div class="section-title" style=" padding-left:200px;">
                     <ul class="portfolio-menu">
                     <li data-filter=".Latest" class="active">Now Showing</li>
 					<li data-filter=".up">Upcoming</li>
@@ -51,108 +52,12 @@ if(isset($_GET['userid'])) {
             </div>
         </div>
         <hr />
-        <div class="row">
-            <?php
-            $sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie LIMIT 4";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="col-md-3 col-sm-6 Latest">';
-                    echo '<div class="single-portfolio">';
-                    echo '<div class="single-portfolio-img">';
-                    if (!empty($row['poster_path'])) {
-                        $poster_data = base64_encode($row['poster_path']);
-                        $poster_src = 'data:image/jpg;base64,' . $poster_data;
-                        echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 100%; height: auto; margin-top: 50px;">';
-                    } else {
-                        echo '<p>No poster available</p>';
-                    }
-                    echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
-                    echo '<i><b>Movie Description</b></i>';
-                    echo '</a>';
-                    echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
-                    echo '<i><b>Play Trailer</b></i>';
-                    echo '</a>'; 
-                    echo '</div>';
-                    echo '<div class="portfolio-content">';
-                    echo '<h2>' . $row['title'] . '</h2>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-            }
-
-            $sql = "SELECT * FROM csmovie LIMIT 4";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="col-md-3 col-sm-6 soon">';
-                    echo '<div class="single-portfolio">';
-                    echo '<div class="single-portfolio-img">';
-                    if (!empty($row['poster_path'])) {
-                        $poster_data = base64_encode($row['poster_path']);
-                        $poster_src = 'data:image/jpg;base64,' . $poster_data;
-                        echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 100%; height: auto;">';
-                    } else {
-                        echo '<p>No poster available</p>';
-                    }
-                    echo '<a href="csmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
-                    echo '<i><b>Movie Description</b></i>';
-                    echo '</a>';
-                    echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
-                    echo '<i><b>Play Trailer</b></i>';
-                    echo '</a>'; 
-                    echo '</div>';
-                    echo '<div class="portfolio-content">';
-                    echo '<h2>' . $row['title'] . '</h2>';
-                    echo  '</div>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-            }
-            
-            $sql = "SELECT * FROM ucmovie LIMIT 4";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="col-md-3 col-sm-6 up">';
-                    echo '<div class="single-portfolio">';
-                    echo '<div class="single-portfolio-img">';
-                    if (!empty($row['poster_path'])) {
-                        $poster_data = base64_encode($row['poster_path']);
-                        $poster_src = 'data:image/jpg;base64,' . $poster_data;
-                        echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 100%; height: auto;">';
-                    } else {
-                        echo '<p>No poster available</p>';
-                    }
-                    echo '<a href="ucmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
-                    echo '<i><b>Movie Description</b></i>';
-                    echo '</a>';
-                    echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
-                    echo '<i><b>Play Trailer</b></i>';
-                    echo '</a>'; 
-                    echo '</div>';
-                    echo '<div class="portfolio-content">';
-                    echo '<h2>' . $row['title'] . '</h2>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-                }
-            }
-            ?>
-          
-        </div>
-    </div>
-</section>
-
-<!-- Movie Posters outside of hero-area -->
-<section class="portfolio-area pt-60 video ptb-90 ">
 				<div class="row">
 					<div class="col-lg-9">
 						<div class="row portfolio-item">
 							<?php
 							//Latest movie
-							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie LIMIT 4, 18446744073709551615";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie LIMIT 3";
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
 								while ($row = $result->fetch_assoc()) {
@@ -184,7 +89,7 @@ if(isset($_GET['userid'])) {
 							}
 
 							//Coming soon movie
-							$sql = "SELECT * FROM csmovie LIMIT 4, 18446744073709551615";
+							$sql = "SELECT * FROM csmovie LIMIT 4";
 							$result = $conn->query($sql);
 
 							if ($result->num_rows > 0) {
@@ -216,7 +121,119 @@ if(isset($_GET['userid'])) {
 							}
 								
 							//Upcoming movie
-							$sql = "SELECT * FROM ucmovie LIMIT 4, 18446744073709551615";
+							$sql = "SELECT * FROM ucmovie LIMIT 3";
+							$result = $conn->query($sql);
+							
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									echo '<div class="col-md-4 col-sm-6 up">';
+									echo '<div class="single-portfolio">';
+									echo '<div class="single-portfolio-img" style="width: 265px; height: 425px;">';
+									// Display movie poster
+									if (!empty($row['poster_path'])) {
+										$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+										$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+										echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
+									} else {
+										echo '<p>No poster available</p>';
+									}
+									echo '<a href="ucmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+                                    echo '<i><b>Movie Description</b></i>';
+									echo '</a>';
+                                    echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
+									echo '<i><b>Play Trailer</b></i>';
+                                    echo '</a>'; 
+									echo '</div>';
+									echo '<div class="portfolio-content">';
+									echo '<h2>' . $row['title'] . '</h2>';
+									echo '</div>';
+									echo '</div>';
+									echo '</div>';
+								}
+							}
+
+							?>
+
+						</div>
+					</div>
+					
+				</div>
+			</div>
+</section>
+
+<!-- Movie Posters outside of hero-area -->
+<section class="portfolio-area pt-60 video ptb-90 ">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-9">
+						<div class="row portfolio-item">
+							<?php
+							//Latest movie
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie LIMIT 3, 18446744073709551615";
+							$result = $conn->query($sql);
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									echo '<div class="col-md-4 col-sm-6 Latest">';
+									echo '<div class="single-portfolio">';
+									echo '<div class="single-portfolio-img">';
+									// Display movie poster
+									if (!empty($row['poster_path'])) {
+            							$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+            							$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+            							echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
+        							} else {
+            							echo '<p>No poster available</p>';
+        							}
+									//echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube">';
+                                    echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+                                    echo '<i><b>Movie Description</b></i>';
+									echo '</a>';
+                                    echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
+									echo '<i><b>Play Trailer</b></i>';
+                                    echo '</a>'; 
+									echo '</div>';
+									echo '<div class="portfolio-content">';
+									echo '<h2>' . $row['title'] . '</h2>';
+									echo '</div>';
+									echo '</div>';
+									echo '</div>';
+								}
+							}
+
+							//Coming soon movie
+							$sql = "SELECT * FROM csmovie LIMIT 3, 18446744073709551615";
+							$result = $conn->query($sql);
+
+							if ($result->num_rows > 0) {
+    							while ($row = $result->fetch_assoc()) {
+        							echo '<div class="col-md-4 col-sm-6 soon">';
+        							echo '<div class="single-portfolio">';
+        							echo '<div class="single-portfolio-img" style="width: 265px; height: 425px;">';
+        							// Display movie poster
+        							if (!empty($row['poster_path'])) {
+            							$poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
+            							$poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+            							echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: 265px; height: 425px;">';
+        							} else {
+            							echo '<p>No poster available</p>';
+        							}
+									echo '<a href="csmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+                                    echo '<i><b>Movie Description</b></i>';
+									echo '</a>';
+                                    echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
+									echo '<i><b>Play Trailer</b></i>';
+                                    echo '</a>'; 
+									echo '</div>';
+									echo '<div class="portfolio-content">';
+									echo '<h2>' . $row['title'] . '</h2>';
+									echo '</div>';
+									echo '</div>';
+									echo '</div>';
+    							}
+							}
+								
+							//Upcoming movie
+							$sql = "SELECT * FROM ucmovie LIMIT 3, 18446744073709551615";
 							$result = $conn->query($sql);
 							
 							if ($result->num_rows > 0) {

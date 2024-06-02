@@ -478,7 +478,7 @@ input{
     overflow: hidden;
     width: 100%; /* Ensure full width */
     height: 100vh; /* Full viewport height for a consistent look */
-    margin-bottom: 200px;
+    margin-bottom: auto;;
    
 }
 
@@ -489,7 +489,7 @@ input{
     box-shadow: 0 0 20px #000000;
     width: 100%; /* Ensure full width */
     max-width: 950px; /* Adjust as necessary */
-    margin: auto; /* Center the element */
+    margin-bottom: auto; /* Center the element */
 }
 
 
@@ -605,10 +605,6 @@ hr {
 }
 .portfolio-menu {
 	padding-top: 30px;
-}
-
-.portfolio-area.pt-60.video.ptb-90.single-portfolio-img {
-    margin-left: 100px;
 }
 
 .portfolio-menu li {
