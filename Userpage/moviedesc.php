@@ -79,7 +79,6 @@ $conn->close();
 
 <body>
     <?php include('header.php'); ?>
-    <?php include('buytickets.php'); ?>
     <section class="hero-area" id="home">
     <h1 style="padding-top: 200px;"><?php echo $title; ?></h1>
     <div>
