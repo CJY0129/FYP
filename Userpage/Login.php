@@ -11,16 +11,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = $_POST['password'];
 
         // Query the database to check if the username exists
-        $sql = "SELECT * FROM user WHERE username = '$username'";
-        $result = $conn->query($sql);
+        $sql = "SELECT * FROM user WHERE username = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if ($result->num_rows == 1) {
             $row = $result->fetch_assoc();
-            // Verify password
-            if ($password == $row['password']) {
+            // Verify hashed password
+            if (password_verify($password, $row['password'])) {
                 // Password is correct, set session variables
                 $_SESSION['user_id'] = $row['user_id'];
-                // Redirect to index.php
+                // Redirect to main.php
                 header("Location: main.php");
                 exit();
             } else {
@@ -34,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } 
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

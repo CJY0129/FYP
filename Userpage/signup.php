@@ -2,37 +2,43 @@
 session_start();
 include('connection.php');
 $error_message = '';
+$signup_success = false;
 
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['signup'])) {
         // Fetch form data
         $username = $_POST['username'];
-         if ($_POST["password"] !== $_POST["password_confirmation"]) {
-        $error_message = "Passwords must match";
-    } else {
-        // Plain text password from the form
-        $password = $_POST["password"];
-    }
+        $password = $_POST['password'];
+        $password_confirmation = $_POST['password_confirmation'];
         $first_name = $_POST['firstname'];
         $last_name = $_POST['lastname'];
-        $Gender = $_POST['gender'];
+        $gender = $_POST['gender'];
         $email = $_POST['email'];
         $phone_number = $_POST['phone'];
 
-        // You may want to add validation and sanitization here
-
-        // Insert the data into the database
-        $sql = "INSERT INTO user (username, password, first_name, last_name, Gender, email, phone_number) 
-                VALUES ('$username', '$password', '$first_name', '$last_name', '$Gender', '$email', '$phone_number')";
-
-        if ($conn->query($sql) === TRUE) {
-            // Registration successful, redirect to login page
-            header("Location: login.php");
-            exit();
+        // Check if passwords match
+        if ($password !== $password_confirmation) {
+            $error_message = "Passwords must match";
         } else {
-            // Error occurred while registering
-            $error_message = "Error: " . $sql . "<br>" . $conn->error;
+            // Hash the password
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+            // You may want to add validation and sanitization here
+
+            // Insert the data into the database
+            $sql = "INSERT INTO user (username, password, first_name, last_name, Gender, email, phone_number) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sssssss", $username, $hashed_password, $first_name, $last_name, $gender, $email, $phone_number);
+
+            if ($stmt->execute()) {
+                // Registration successful
+                $signup_success = true;
+            } else {
+                // Error occurred while registering
+                $error_message = "Error: " . $stmt->error;
+            }
         }
     } 
 }
@@ -78,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </header>
 
-
 <form id="signupForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <h2 class="profile-heading">Sign Up</h2>
     <h6>Username</h6>
@@ -116,22 +121,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </form>
 
-
 <!-- Include your footer if needed -->
 <?php include('footer.php'); ?>
 
 <script>
 function togglePasswordVisibility() {
     var passwordField = document.getElementById("password");
-    var toggleText = document.querySelector(".toggle-password");
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        toggleText.textContent = "Hide";
-    } else {
-        passwordField.type = "password";
-        toggleText.textContent = "Show";
-    }
+    var passwordConfirmField = document.getElementById("password_confirmation");
+    var toggleText = document.querySelectorAll(".toggle-password");
+
+    toggleText.forEach(toggle => {
+        if (passwordField.type === "password" || passwordConfirmField.type === "password") {
+            passwordField.type = "text";
+            passwordConfirmField.type = "text";
+            toggle.textContent = "Hide";
+        } else {
+            passwordField.type = "password";
+            passwordConfirmField.type = "password";
+            toggle.textContent = "Show";
+        }
+    });
 }
+
+<?php if ($signup_success): ?>
+alert("Registration successful. Redirecting to login page...");
+window.location.href = 'login.php';
+<?php endif; ?>
 </script>
 
 </body>

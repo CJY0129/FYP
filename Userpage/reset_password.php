@@ -35,6 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         // Plain text password from the form
         $password = $_POST["password"];
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
         $sql = "UPDATE user
                 SET password = ?,
@@ -45,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (!$stmt) {
             die("Prepare statement failed: " . $mysqli->error);
         }
-        // Bind password directly
-        $stmt->bind_param("ss", $password, $user["user_id"]);
+        // Bind hashed password and user ID
+        $stmt->bind_param("si", $hashed_password, $user["user_id"]);
         $stmt->execute();
 
         if ($stmt->affected_rows === 0) {
@@ -80,7 +82,7 @@ $token = $_GET["token"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Sign up</title>
+    <title>Reset Password</title>
     <link rel="stylesheet" type="text/css" href="assets/css/login.css"/>
     <link rel="icon" type="image/png" href="assets/img/CT.ico" />
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
@@ -90,10 +92,6 @@ $token = $_GET["token"];
     <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 <header class="header">
@@ -127,7 +125,7 @@ $token = $_GET["token"];
 
     <label for="password_confirmation">Confirm new password</label>
     <div style="position: relative;">
-    <input type="password" id="password_confirmation" name="password_confirmation" required>
+        <input type="password" id="password_confirmation" name="password_confirmation" required>
         <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
     
@@ -141,14 +139,20 @@ $token = $_GET["token"];
 <script>
 function togglePasswordVisibility() {
     var passwordField = document.getElementById("password");
-    var toggleText = document.querySelector(".toggle-password");
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        toggleText.textContent = "Hide";
-    } else {
-        passwordField.type = "password";
-        toggleText.textContent = "Show";
-    }
+    var passwordConfirmField = document.getElementById("password_confirmation");
+    var toggleText = document.querySelectorAll(".toggle-password");
+    
+    toggleText.forEach(toggle => {
+        if (passwordField.type === "password" || passwordConfirmField.type === "password") {
+            passwordField.type = "text";
+            passwordConfirmField.type = "text";
+            toggle.textContent = "Hide";
+        } else {
+            passwordField.type = "password";
+            passwordConfirmField.type = "password";
+            toggle.textContent = "Show";
+        }
+    });
 }
 </script>
 
