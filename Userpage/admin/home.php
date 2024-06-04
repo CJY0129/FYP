@@ -41,17 +41,6 @@ if (!isset($_SESSION['admin_id'])) {
   <body>
     <header class="header">   
       <nav class="navbar navbar-expand-lg">
-        <div class="search-panel">
-          <div class="search-inner d-flex align-items-center justify-content-center">
-            <div class="close-btn">Close <i class="fa fa-close"></i></div>
-            <form id="searchForm" action="#">
-              <div class="form-group">
-                <input type="search" name="search" placeholder="What are you searching for...">
-                <button type="submit" class="submit">Search</button>
-              </div>
-            </form>
-          </div>
-        </div>
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header">
             <!-- Navbar Header--><a href="home.php" class="navbar-brand">
@@ -60,20 +49,6 @@ if (!isset($_SESSION['admin_id'])) {
             <!-- Sidebar Toggle Btn-->
             <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
           </div>
-          <div class="right-menu list-inline no-margin-bottom">    
-            <div class="list-inline-item"><a href="#" class="search-open nav-link"><i class="icon-magnifying-glass-browser"></i></a></div>
-            <div class="list-inline-item dropdown"><a id="navbarDropdownMenuLink1" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link messages-toggle"><i class="icon-email"></i><span class="badge dashbg-1"></span></a>
-            </div>
-            <!-- Tasks-->
-            <div class="list-inline-item dropdown"><a id="navbarDropdownMenuLink2" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link tasks-toggle"><i class="icon-new-file"></i><span class="badge dashbg-3"></span><!-- notification--></a>
-              <div aria-labelledby="navbarDropdownMenuLink2" class="dropdown-menu tasks-list"><a href="#" class="dropdown-item">
-                  <div class="text d-flex justify-content-between"><strong>Task 1</strong><span>40% complete</span></div>
-                  <div class="progress">
-                    <div role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar dashbg-1"></div>
-                  </div></a><a href="#" class="dropdown-item"></a>
-                  <a href="#" class="dropdown-item text-center"> <strong>See All Tasks <i class="fa fa-angle-right"></i></strong></a>
-              </div>
-            </div>
             <!-- Log out -->
             <div class="list-inline-item logout">                   <a id="logout" href="index.php" class="nav-link">Logout <i class="icon-logout"></i></a></div>
           </div>
@@ -102,23 +77,13 @@ if (!isset($_SESSION['admin_id'])) {
             <!--<li><a href="home.php?show=tables"><i class="fa fa-bar-chart"></i>Tables</a></li>-->
             <li><a href="home.php?show=booking"><i class="icon-padnote"></i>Booking</a></li>
             <li><a href="home.php?show=movie"><i class="icon icon-computer"></i>Movies</a></li>
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
-                  <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                  </ul>
-                </li>
                 <?php
                   if ($_SESSION['is_super_admin'] == 1) {
-                      echo '<li><a href="register.php"> <i class="icon-logout"></i>Register page </a></li>';
+                      echo '<li> <a href="home.php?show=cinema"> <i class="icon-writing-whiteboard"></i>Cinema & Hall </a></li>';
+                      echo '<li><a href="register.php"> <i class="icon-logout"></i>Register page </a></li>';  
                     }
                   ?>
-        </ul><span class="heading">Extras</span>
-        <ul class="list-unstyled">
-          <li> <a href="#"> <i class="icon-settings"></i>Demo </a></li>
-          <li> <a href="#"> <i class="icon-writing-whiteboard"></i>Demo </a></li>
-          <li> <a href="#"> <i class="icon-chart"></i>Demo </a></li>
+                  
         </ul>
       </nav>
       <!-- Sidebar Navigation end-->
@@ -133,6 +98,8 @@ if (!isset($_SESSION['admin_id'])) {
             include("booking.php");
           } elseif (isset($_GET['show']) && $_GET['show'] == 'movie') {
             include("movie.php");
+          } elseif (isset($_GET['show']) && $_GET['show'] == 'cinema') {
+            include("cinema.php");
           } else {
             include("showtime.php");
           }
