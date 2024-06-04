@@ -25,10 +25,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gender = $_POST['gender'];
     $email = $_POST['email'];
     $phone_number = $_POST['phone_number'];
+    $username = $_POST['username'];
+    if ($_POST["password"] !== $_POST["password_confirmation"]) {
+        $error_message = "Passwords must match";
+    } else {
+        // Plain text password from the form
+        $password = $_POST["password"];
+    }
 
-    // Update query using prepared statements
-    $update_stmt = $conn->prepare("UPDATE user SET First_Name = ?, Last_Name = ?, Gender = ?, Email = ?, Phone_number = ? WHERE user_id = ?");
-    $update_stmt->bind_param("sssssi", $first_name, $last_name, $gender, $email, $phone_number, $user_id);
+    // Hash the password if it's set
+    if (!empty($password)) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $update_stmt = $conn->prepare("UPDATE user SET First_Name = ?, Last_Name = ?, Gender = ?, Email = ?, Phone_number = ?, Username = ?, Password = ? WHERE user_id = ?");
+        $update_stmt->bind_param("sssssssi", $first_name, $last_name, $gender, $email, $phone_number, $username, $hashed_password, $user_id);
+    } else {
+        $update_stmt = $conn->prepare("UPDATE user SET First_Name = ?, Last_Name = ?, Gender = ?, Email = ?, Phone_number = ?, Username = ? WHERE user_id = ?");
+        $update_stmt->bind_param("ssssssi", $first_name, $last_name, $gender, $email, $phone_number, $username, $user_id);
+    }
 
     if ($update_stmt->execute()) {
         // Update successful
@@ -40,9 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error updating record: " . $conn->error;
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,6 +69,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
+    <script>
+        function showPasswordField() {
+            document.getElementById('password-field').style.display = 'table-row';
+        }
+    </script>
 </head>
 <body>
 <header class="header">
@@ -99,6 +115,12 @@ if(isset($rows[0])) {
             </td>
         </tr>
         <tr>
+            <th>Username</th>
+            <td>
+                <input type="text" name="username" value="<?php echo htmlspecialchars($customer['username']); ?>">
+            </td>
+        </tr>
+        <tr>
             <th>Your Gender</th>
             <td>
                 <select name="gender" required>
@@ -120,6 +142,28 @@ if(isset($rows[0])) {
                 <input type="tel" name="phone_number" value="<?php echo htmlspecialchars($customer['phone_number']); ?>">
             </td>
         </tr>
+        
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <button type="button" onclick="showPasswordField()">Change Password</button>
+            </td>
+        </tr>
+        <tr id="password-field" style="display: none;">
+    <th>Password</th>
+    <td>
+        <input type="password" name="password" id="password" placeholder="Leave blank to keep current password">
+        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+    </td>
+</tr>
+<tr id="password-confirmation-field" style="display: none;">
+    <th>Confirm Password</th>
+    <td>
+        <input type="password" id="password_confirmation" name="password_confirmation">
+        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+    </td>
+</tr>
+
+        
     </table>
     <div class="login-signup">
         <span class="signup-link"><a href="customer.php">Back</a></span>
@@ -131,6 +175,32 @@ if(isset($rows[0])) {
     echo "No customer found";
 }
 ?>
+<script>
+    function showPasswordField() {
+        document.getElementById('password-field').style.display = 'table-row';
+        document.getElementById('password-confirmation-field').style.display = 'table-row';
+    }
+
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("password");
+        var passwordConfirmField = document.getElementById("password_confirmation");
+        var toggleText = document.querySelectorAll(".toggle-password");
+
+        toggleText.forEach(toggle => {
+            if (passwordField.type === "password" || passwordConfirmField.type === "password") {
+                passwordField.type = "text";
+                passwordConfirmField.type = "text";
+                toggle.textContent = "Hide";
+            } else {
+                passwordField.type = "password";
+                passwordConfirmField.type = "password";
+                toggle.textContent = "Show";
+            }
+        });
+    }
+</script>
+
+
 <?php include('footer.php'); ?>
 </body>
 </html>

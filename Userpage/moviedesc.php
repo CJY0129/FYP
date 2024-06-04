@@ -91,13 +91,15 @@ $conn->close();
             echo '<p>No poster available</p>';
         }
         ?>
-    </section>
         <p><?php echo "Genre: " . $genre; ?></p>
         <p><?php echo "Director: " . $director; ?></p>
         <p><?php echo "Cast: " . $cast; ?></p>
-        <p><?php echo "Description: " . $desc; ?></p>
         <p><?php echo "Duration: " . $duration; ?></p>
         <p><?php echo "Release Date: " . $release; ?></p>
+    </section>
+        
+        <p><?php echo "Description: " . $desc; ?></p>
+        
     </div>
     <button onclick="history.back()">Go Back</button>
 </body>

@@ -501,6 +501,9 @@ input{
     align-items: center;
 }
 
+.hero-area p{
+    padding-left:200px;
+}
 
 .review h4 {
     padding-left: 25px;
