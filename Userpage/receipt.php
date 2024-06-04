@@ -47,7 +47,7 @@ if($_SESSION['phone'] == null){
 }
 // Generate QR code
 
-$text = "Booking ID: $booking_id\nName: ".$_SESSION['first_name']."\nEmail: ".$_SESSION['email'] ."\nPhone: ".$_SESSION['phone']."\nHall:".$_SESSION['hall_id']."\nSeat Number: ".$_SESSION['selected_seats']."\nShowTime:".$_SESSION['show_id']."\n";
+$text = "Booking ID: $booking_id\nName: ".$_SESSION['first_name']."\nEmail: ".$_SESSION['email'] ."\nPhone: ".$_SESSION['phone']."\nHall:".$_SESSION['hall_num']."\nSeat Number: ".$_SESSION['selected_seats']."\nShowTime ID:".$_SESSION['show_id']."\nShowTime:".$_SESSION['showtime']."";
 $qr_code = QrCode::create($text);
 $writer = new PngWriter();
 $result = $writer->write($qr_code);
@@ -104,8 +104,8 @@ $conn->close();
             <p><strong>Name:</strong> <?= $_SESSION['first_name'] ?></p>
             <p><strong>Email:</strong> <?= $_SESSION['email'] ?></p>
             <p><strong>Phone:</strong> <?= $_SESSION['phone'] ?></p>
-            <p><strong>Hall:</strong> <?= $_SESSION['hall_id'] ?></p>
-            <p><strong>Show Time:</strong> <?= $_SESSION['show_id'] ?></p>
+            <p><strong>Hall:</strong> <?= $_SESSION['hall_num'] ?></p>
+            <p><strong>Show Time:</strong> <?= $_SESSION['showtime'] ?></p>
             <p><strong>Seats:</strong> <?= $_SESSION['selected_seats']?></p>
         </div>
         <div class="qr-code">

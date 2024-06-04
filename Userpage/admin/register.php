@@ -116,9 +116,11 @@
                                     </div>
 
                                     <div class="form-group text-center">
+                                        <a href="home.php" class="btn btn-primary" style="margin-right:200px;margin-bottom:20px;">Go Back</a>
                                         <input id="register" type="submit" value="Register" class="btn btn-primary">
                                     </div>
                                 </form>
+                                
                             </div>
                         </div>
                     </div>
