@@ -91,12 +91,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h6>Password</h6>
     <div style="position: relative;">
         <input type="password" name="password" id="password" required>
-        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+        <span class="password-toggle" data-target="password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
     <h6>Confirm Password</h6>
     <div style="position: relative;">
-    <input type="password" id="password_confirmation" name="password_confirmation" required>
-        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+        <input type="password" id="password_confirmation" name="password_confirmation" required>
+        <span class="password-toggle" data-target="password_confirmation" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
     <h6>First Name</h6>
     <input type="text" name="firstname" required>
@@ -121,6 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </form>
 
+
 <!-- Include your footer if needed -->
 <?php include('footer.php'); ?>
 
@@ -128,19 +129,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function togglePasswordVisibility() {
     var passwordField = document.getElementById("password");
     var passwordConfirmField = document.getElementById("password_confirmation");
-    var toggleText = document.querySelectorAll(".toggle-password");
+    
+    var togglePasswordField = document.querySelector(".password-toggle[data-target='password']");
+    var togglePasswordConfirmField = document.querySelector(".password-toggle[data-target='password_confirmation']");
 
-    toggleText.forEach(toggle => {
-        if (passwordField.type === "password" || passwordConfirmField.type === "password") {
-            passwordField.type = "text";
-            passwordConfirmField.type = "text";
-            toggle.textContent = "Hide";
-        } else {
-            passwordField.type = "password";
-            passwordConfirmField.type = "password";
-            toggle.textContent = "Show";
-        }
-    });
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        togglePasswordField.textContent = "Hide";
+    } else {
+        passwordField.type = "password";
+        togglePasswordField.textContent = "Show";
+    }
+
+    if (passwordConfirmField.type === "password") {
+        passwordConfirmField.type = "text";
+        togglePasswordConfirmField.textContent = "Hide";
+    } else {
+        passwordConfirmField.type = "password";
+        togglePasswordConfirmField.textContent = "Show";
+    }
 }
 
 <?php if ($signup_success): ?>

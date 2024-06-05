@@ -149,6 +149,10 @@ form a {
     text-align: center;
 }
 
+.toggle-password {
+    cursor: pointer;
+}
+
 form .theme-btn {
     margin-top: 0;
     background: #eb315a !important;

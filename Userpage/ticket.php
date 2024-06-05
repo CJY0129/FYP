@@ -18,6 +18,7 @@ $_SESSION['total_seats'] = count($selected_seats);
 
             background-color: #222;
             border-radius: 10px;
+            color: #fff
             
         }
         .section {
@@ -247,15 +248,31 @@ $_SESSION['total_seats'] = count($selected_seats);
             
         }
         function confirmSelection() {
-            // Update the total price before navigating
-            updateTotalPrice();
-            
-            // Get the total price
-            const totalPrice = parseInt(document.getElementById('total-price').textContent);
-            
-            // Redirect to the next page with the total price as a query parameter
-            window.location.href = 'booking.php?totalPrice=' + totalPrice;
-        }
+    // Update the total price before navigating
+    updateTotalPrice();
+    
+    // Get the total price
+    const totalPrice = parseInt(document.getElementById('total-price').textContent);
+
+    // Gather item quantities
+    const items = {
+        adult: parseInt(document.getElementById('adult-count').textContent),
+        children: parseInt(document.getElementById('children-count').textContent),
+        student: parseInt(document.getElementById('student-count').textContent),
+        oku: parseInt(document.getElementById('oku-count').textContent),
+        soda: parseInt(document.getElementById('soda-count').textContent),
+        water: parseInt(document.getElementById('water-count').textContent),
+        popcorn: parseInt(document.getElementById('popcorn-count').textContent),
+        burger: parseInt(document.getElementById('burger-count').textContent)
+    };
+
+    // Convert items to query parameters
+    const queryParams = new URLSearchParams(items).toString();
+    
+    // Redirect to the receipt page with the query parameters
+    window.location.href = `booking.php?${queryParams}&totalPrice=${totalPrice}`;
+}
+
     </script>
 </body> 
 </html>

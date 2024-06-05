@@ -140,19 +140,25 @@ $token = $_GET["token"];
 function togglePasswordVisibility() {
     var passwordField = document.getElementById("password");
     var passwordConfirmField = document.getElementById("password_confirmation");
-    var toggleText = document.querySelectorAll(".toggle-password");
     
-    toggleText.forEach(toggle => {
-        if (passwordField.type === "password" || passwordConfirmField.type === "password") {
-            passwordField.type = "text";
-            passwordConfirmField.type = "text";
-            toggle.textContent = "Hide";
-        } else {
-            passwordField.type = "password";
-            passwordConfirmField.type = "password";
-            toggle.textContent = "Show";
-        }
-    });
+    var togglePasswordField = document.querySelector(".password-toggle[data-target='password']");
+    var togglePasswordConfirmField = document.querySelector(".password-toggle[data-target='password_confirmation']");
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        togglePasswordField.textContent = "Hide";
+    } else {
+        passwordField.type = "password";
+        togglePasswordField.textContent = "Show";
+    }
+
+    if (passwordConfirmField.type === "password") {
+        passwordConfirmField.type = "text";
+        togglePasswordConfirmField.textContent = "Hide";
+    } else {
+        passwordConfirmField.type = "password";
+        togglePasswordConfirmField.textContent = "Show";
+    }
 }
 </script>
 

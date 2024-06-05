@@ -55,9 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
     <style>
-        .toggle-password {
-            cursor: pointer;
-        }
+       
     </style>
 </head>
 <body>
