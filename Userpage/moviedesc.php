@@ -12,7 +12,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 1) {
 // Check if the 'id' parameter is set in the URL
 if (isset($_GET['id'])) {
     // Retrieve the movie ID from the URL
-    $id = $_GET['id'];
+    $id = intval($_GET['id']); // Use intval to ensure the ID is an integer
 
     // Check if user is logged in and get user_id
     if (isset($_SESSION['user_id'])) {
@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
         $user_id = $_GET['user_id'];
     } else {
         $user_id = 0; // Default user_id for guest
-    } 
+    }
 
     // Include the database connection
     include('connect.php');
@@ -50,8 +50,9 @@ if (isset($_GET['id'])) {
     exit; // Stop script execution if no movie ID is provided
 }
 
-// Close the database connection
-$conn->close();
+if (isset($_GET['error']) && $_GET['error'] == '1') {
+    echo '<script>alert("Error: The following seats are already booked.")</script>';
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +61,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title; ?></title>
+    <title><?php echo htmlspecialchars($title); ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
     <!-- Slick nav CSS -->
@@ -75,40 +76,97 @@ $conn->close();
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <!-- Responsive CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
+    <!-- Custom CSS -->
+    
+    <style>
+        .movie-card {
+            margin: 500px 15px 50px; /* Adjusted margin */
+            background: #13151f;
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #000000;
+            overflow: hidden;
+        }
+
+        .movie-card .card-body {
+            padding: 20px;
+        }
+
+        .movie-card .card-title {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+
+        .movie-card .card-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .movie-card .card-text strong {
+            color: #fff;
+        }
+
+        .extra-margin-top {
+            margin-top: 500px; /* Add extra margin-top for the movie card */
+        }
+    </style>
+
 </head>
 
 <body>
     <?php include('header.php'); ?>
-    <section class="hero-area" id="home">
-    <h1 style="padding-top: 200px;"><?php echo $title; ?></h1>
-    <div>
-        <?php
-        if (!empty($row['poster_path'])) {
-            $poster_data = base64_encode($row['poster_path']); // Convert blob data to base64
-            $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
-            echo '<img src="' . $poster_src . '" alt="Movie Poster" width="165" height="325">';
-        } else {
-            echo '<p>No poster available</p>';
-        }
-        ?>
-        <p><?php echo "Genre: " . $genre; ?></p>
-        <p><?php echo "Director: " . $director; ?></p>
-        <p><?php echo "Cast: " . $cast; ?></p>
-        <p><?php echo "Duration: " . $duration; ?></p>
-        <p><?php echo "Release Date: " . $release; ?></p>
+    <?php include('buytickets.php'); ?>
+
+    <<section class="hero-area" id="home">
+        <div class="container">
+            <div class="movie-card mt-5 extra-margin-top">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <div class="card-body text-center">
+                            <!-- Display movie poster -->
+                            <?php
+                            if (!empty($poster_path)) {
+                                $poster_data = base64_encode($poster_path); // Convert blob data to base64
+                                $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+                                echo '<img src="' . $poster_src . '" alt="Movie Poster" class="img-fluid" width="150" height="225">'; // Adjusted size
+                            } else {
+                                echo '<img src="assets/img/CineTime1.jpg" alt="Movie Poster" class="img-fluid" width="150" height="225">'; // Adjusted size
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2 class="card-title"><?php echo htmlspecialchars($title); ?></h2>
+                            <p class="card-text"><strong>Genre:</strong> <?php echo htmlspecialchars($genre); ?></p>
+                            <p class="card-text"><strong>Director:</strong> <?php echo htmlspecialchars($director); ?></p>
+                            <p class="card-text"><strong>Cast:</strong> <?php echo htmlspecialchars($cast); ?></p>
+                            <p class="card-text"><strong>Duration:</strong> <?php echo htmlspecialchars($duration); ?> mins</p>
+                            <p class="card-text"><strong>Release Date:</strong> <?php echo htmlspecialchars($release); ?></p>
+                            <p class="card-text"><strong>Synopsis:</strong> <?php echo htmlspecialchars($desc); ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-        
-        <p><?php echo "Description: " . $desc; ?></p>
-        
-    </div>
-    <button onclick="history.back()">Go Back</button>
+
+    <button class="btn btn-primary mt-3" onclick="history.back()">Go Back</button>
+
+    <script>
+        document.getElementById('logout').addEventListener('click', function(event) {
+            if (!confirm('Are you sure you want to log out?')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <?php include('footer.php'); ?>
 </body>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.slicknav.min.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/isotope.pkgd.min.js"></script>
-<script src="assets/js/main.js"></script>
-<?php include('footer.php'); ?>
 </html>

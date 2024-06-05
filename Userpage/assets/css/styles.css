@@ -273,7 +273,7 @@ input::-webkit-input-placeholder {
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 99;
+	z-index: 1000;
     
 }
 .header-area {
@@ -501,9 +501,8 @@ input{
     align-items: center;
 }
 
-.hero-area p{
-    padding-left:200px;
-}
+
+
 
 .review h4 {
     padding-left: 25px;

@@ -29,6 +29,10 @@ if ($result->num_rows > 0) {
     // Redirect to login page or display an error message
 }
 
+if (isset($_GET['error']) && $_GET['error'] == '1') 
+{
+	echo '<script>alert("Error: The following seats are already booked.")</script>';
+}
 
 ?>
 
