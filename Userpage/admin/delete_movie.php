@@ -14,8 +14,7 @@ if(isset($_GET['movie_id'])) {
             header("location:home.php?show=movie&error=3");
             exit();
         }
-    
+     mysqli_close($conn);
 
-    
 } 
 ?>
