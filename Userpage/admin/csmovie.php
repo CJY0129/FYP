@@ -8,8 +8,8 @@
         </div>
         <?php
 
-        $_SESSION['m']=1;
-if (isset($_GET['show']) && $_GET['show'] == 'movie') 
+        $_SESSION['m']=2;
+if (isset($_GET['show']) && $_GET['show'] == 'csmovie') 
 {
   if (isset($_GET['success']) && $_GET['success'] == '1') 
   {
@@ -52,7 +52,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-            <li class="breadcrumb-item active">Movies details            </li>
+            <li class="breadcrumb-item active">Coming Soon Movies details            </li>
           </ul>
         </div>
         <section class="no-padding-top">
@@ -60,7 +60,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                 <div class="row">
                 <div class="col-lg-12">
                 <div class="block margin-bottom-sm">
-                  <div class="title"><strong>Movies details </strong></div>
+                  <div class="title"><strong>Coming Soon Movies details </strong></div>
                   <div class="table-responsive"> 
                   <?php
                   // Assuming you have a database connection established
@@ -76,7 +76,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                   }
 
                   // Fetch data from the movie table
-                  $query = "SELECT * FROM movie";
+                  $query = "SELECT * FROM csmovie";
                   $result = mysqli_query($conn, $query);
 
                   // Check if there are any rows returned

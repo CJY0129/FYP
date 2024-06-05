@@ -76,7 +76,13 @@ if (!isset($_SESSION['admin_id'])) {
             <!--<li><a href="home.php?show=forms"><i class="icon-grid"></i>Forms</a></li>-->
             <!--<li><a href="home.php?show=tables"><i class="fa fa-bar-chart"></i>Tables</a></li>-->
             <li><a href="home.php?show=booking"><i class="icon-padnote"></i>Booking</a></li>
-            <li><a href="home.php?show=movie"><i class="icon icon-computer"></i>Movies</a></li>
+            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon icon-computer"></i>Movies</a>
+                  <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                    <li><a href="home.php?show=movie">Movies Now</a></li>
+                    <li><a href="home.php?show=ucmovie">Upcoming Movies</a></li>
+                    <li><a href="home.php?show=csmovie">Coming Soon Movies</a></li>
+                  </ul>
+                </li>
                 <?php
                   if ($_SESSION['is_super_admin'] == 1) {
                       echo '<li> <a href="home.php?show=cinema"> <i class="icon-writing-whiteboard"></i>Cinema & Hall </a></li>';
@@ -98,6 +104,10 @@ if (!isset($_SESSION['admin_id'])) {
             include("booking.php");
           } elseif (isset($_GET['show']) && $_GET['show'] == 'movie') {
             include("movie.php");
+          } elseif (isset($_GET['show']) && $_GET['show'] == 'ucmovie') {
+            include("ucmovie.php");
+          } elseif (isset($_GET['show']) && $_GET['show'] == 'csmovie') {
+            include("csmovie.php");
           } elseif (isset($_GET['show']) && $_GET['show'] == 'cinema') {
             include("cinema.php");
           } else {
