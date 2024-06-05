@@ -90,6 +90,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                     echo '<th>Synopsis</th>';
                     echo '<th>Duration</th>';
                     echo '<th>Release Date</th>';
+                    echo '<th>Trailers Link</th>'; 
                     echo '<th>Poster</th>';
                     echo '<th rowspan="2">Action</th>';
                     echo '</tr>';
@@ -107,9 +108,10 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       echo '<td>' . $row['synopsis'] . '</td>';
                       echo '<td>' . $row['duration'] . '</td>';
                       echo '<td>' . $row['release_date'] . '</td>';
+                      echo '<td>' . $row['trailers_path'] . '</td>';
                       echo '<td>' . displayImage($row['poster_path']) . '</td>';
                       echo '<td><button type="button" class="close" data-toggle="modal" data-target="#editModal' . $row['movie_id'] . '"><i class="fa fa-edit" style="color:#ff4759;"></i></button>
-                      <a class="fa fa-trash-o" style="font-size:25px" href="delete_movie.php?show_id='. $row['movie_id'].'" onclick="return confirmDelete();"></a></td>';
+                      <a class="fa fa-trash-o" style="font-size:25px" href="delete_movie.php?movie_id='. $row['movie_id'].'" onclick="return confirmDelete();"></a></td>';
                       echo '</tr>';
 
                       // Modal for editing movie
@@ -154,8 +156,12 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       echo '<input type="text" class="form-control" id="release_date" name="release_date" value="' . $row['release_date'] . '">';
                       echo '</div>';
                       echo '<div class="form-group">';
+                      echo '<label for="trailers_path">Trailers Link</label>';
+                      echo '<input type="text" class="form-control" id="trailers_path" name="trailers_path" value="' . $row['trailers_path'] . '">';
+                      echo '</div>';
+                      echo '<div class="form-group">';
                       echo '<label class="form-control-label">Poster</label>';
-                      echo '<input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)">';
+                      echo '<input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)" >';
                       echo '<img id="poster-preview-add" src="#" alt="Poster Preview" style="display: none; max-width: 50%; margin-top: 10px;">';
                       echo '</div>';
                       echo '<button type="submit" class="btn btn-primary">Save Changes</button>';
@@ -176,7 +182,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
               ?>
               <script>
                   function confirmDelete() {
-                    return confirm("Are you sure you want to delete this showtime?");  
+                    return confirm("Are you sure you want to delete this movie?");  
                   }
               </script>
               
@@ -198,7 +204,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       <form method="post" action="submit_movie.php" enctype="multipart/form-data">
                         <div class="form-group">
                           <label class="form-control-label">Title</label>
-                          <input type="text" name="title" class="form-control">
+                          <input type="text" name="title" class="form-control" required>
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Genre</label>
@@ -218,15 +224,19 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Duration</label>
-                          <input type="text" name="duration" class="form-control">
+                          <input type="text" name="duration" class="form-control" required>
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Release Date</label>
-                          <input type="date" name="release_date" class="form-control">
+                          <input type="date" name="release_date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label">Trailers Link</label>
+                          <input type="text" name="trailers_path" class="form-control" required>
                         </div>
                         <div class="form-group">
                         <label class="form-control-label">Poster</label>
-                        <input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)">
+                        <input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)" required>
                         <img id="poster-preview-add" src="#" alt="Poster Preview" style="display: none; max-width: 50%; margin-top: 10px;">
                         </div>
                         <div class="form-group">

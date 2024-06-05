@@ -10,15 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $synopsis = mysqli_real_escape_string($conn, $_POST['synopsis']); // Escape the value of the synopsis variable
     $duration = $_POST['duration'];
     $releaseDate = $_POST['release_date'];
+    $trailers_path = $_POST['trailers_path'];
 
     // Check if a file was uploaded
     if (isset($_FILES['poster']) && $_FILES['poster']['error'] === UPLOAD_ERR_OK) {
         $posterData = file_get_contents($_FILES['poster']['tmp_name']);
         $posterData = mysqli_real_escape_string($conn, $posterData);
-        $posterQuery = "UPDATE movie SET title='$title', genre='$genre', director='$director', cast='$cast', synopsis='$synopsis', duration='$duration', release_date='$releaseDate', poster_path='$posterData' WHERE movie_id=$movieId";
+        $posterQuery = "UPDATE movie SET title='$title', genre='$genre', director='$director', cast='$cast', synopsis='$synopsis', duration='$duration', release_date='$releaseDate', poster_path='$posterData',trailers_path='$trailers_path' WHERE movie_id=$movieId";
     } else {
         // Update query without poster update
-        $posterQuery = "UPDATE movie SET title='$title', genre='$genre', director='$director', cast='$cast', synopsis='$synopsis', duration='$duration', release_date='$releaseDate' WHERE movie_id=$movieId";
+        $posterQuery = "UPDATE movie SET title='$title', genre='$genre', director='$director', cast='$cast', synopsis='$synopsis', duration='$duration', release_date='$releaseDate', trailers_path='$trailers_path' WHERE movie_id=$movieId";
     }
 
     // Execute the update query

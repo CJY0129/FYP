@@ -16,6 +16,6 @@ if(isset($_GET['movie_id'])) {
         }
     
 
-    mysqli_close($conn);
+    
 } 
 ?>

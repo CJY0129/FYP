@@ -141,15 +141,15 @@
                         echo '</div>';
                         echo '<div class="form-group">';
                         echo '<label class="form-control-label">Show Time</label>';
-                        echo '<input type="datetime-local" name="show_time" class="form-control" value="' . date('Y-m-d\TH:i', strtotime($row['show_time'])) . '">';
+                        echo '<input type="datetime-local" name="show_time" class="form-control" value="' . date('Y-m-d\TH:i', strtotime($row['show_time'])) . '" required>';
                         echo '</div>';
                         echo '<div class="form-group">';
                         echo '<label class="form-control-label">End Time</label>';
-                        echo '<input type="datetime-local" name="end_time" class="form-control" value="' . date('Y-m-d\TH:i', strtotime($row['end_time'])) . '">';
+                        echo '<input type="datetime-local" name="end_time" class="form-control" value="' . date('Y-m-d\TH:i', strtotime($row['end_time'])) . '" required>';
                         echo '</div>';
                         echo '<div class="form-group">';
                         echo '<label class="form-control-label">Price</label>';
-                        echo '<input type="number" name="price" class="form-control" value="' . $row['price'] . '">';
+                        echo '<input type="number" name="price" class="form-control" value="' . $row['price'] . '" required>';
                         echo '</div>';
                         echo '<button type="submit" class="btn btn-primary">Save Changes</button>';
                         echo '</form>';
@@ -216,15 +216,15 @@
                     </div>
                     <div class="form-group">
                       <label class="form-control-label">Show Time</label>
-                      <input type="datetime-local" name="show_time" class="form-control">
+                      <input type="datetime-local" name="show_time" class="form-control" required>
                     </div>
                     <div class="form-group">
                       <label class="form-control-label">End Time</label>
-                      <input type="datetime-local" name="end_time" class="form-control">
+                      <input type="datetime-local" name="end_time" class="form-control" required>
                     </div>
                     <div class="form-group">
                       <label class="form-control-label">Price</label>
-                      <input type="number" name="price" class="form-control">
+                      <input type="number" name="price" class="form-control" required>
                     </div>
                     <div class="form-group">
                       <input type="submit" value="Add Showtime" class="btn btn-primary">
