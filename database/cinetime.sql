@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2024 at 04:36 PM
+-- Generation Time: Jun 05, 2024 at 03:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -105,7 +105,14 @@ INSERT INTO `booking` (`booking_id`, `user_id`, `show_id`, `seat_num`, `booking_
 (46, 3, 1, '35', '2024-05-28 03:15:47', 11.00, 1, 1),
 (47, 0, 1, '32', '2024-05-30 03:29:30', 11.00, 1, 1),
 (48, 0, 1, '6', '2024-05-30 04:08:46', 11.00, 1, 1),
-(49, 0, 1, '5', '2024-05-31 05:41:12', 91.00, 1, 1);
+(49, 0, 1, '5', '2024-05-31 05:41:12', 91.00, 1, 1),
+(50, 0, 1, '4', '2024-06-04 20:00:19', 21.00, 1, 1),
+(51, 0, 16, '47', '2024-06-04 20:05:16', 25.00, 1, 1),
+(52, 0, 16, '8', '2024-06-04 20:10:10', 25.00, 1, 1),
+(53, 7, 16, '19,20,21', '2024-06-04 20:12:55', 25.00, 3, 1),
+(54, 7, 16, '7', '2024-06-04 20:15:43', 25.00, 1, 1),
+(55, 7, 16, '17', '2024-06-04 20:16:43', 25.00, 1, 1),
+(56, 7, 1, '9', '2024-06-04 20:23:46', 21.00, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +133,8 @@ CREATE TABLE `cinema` (
 --
 
 INSERT INTO `cinema` (`cinema_id`, `name`, `location`, `city`, `num_of_hall`) VALUES
-(1, 'MMU mall CineTime', 'Bukit Beruang', 'Melaka', 10);
+(1, 'MMU mall CineTime', 'Bukit Beruang', 'Melaka', 10),
+(3, 'CJY', 'test', 'melaka', 3);
 
 -- --------------------------------------------------------
 
@@ -162,6 +170,7 @@ INSERT INTO `csmovie` (`movie_id`, `title`, `genre`, `director`, `cast`, `synops
 
 CREATE TABLE `hall` (
   `hall_id` int(10) NOT NULL,
+  `hall_num` int(10) NOT NULL,
   `cinema_id` int(10) NOT NULL,
   `number_of_seat` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -170,11 +179,12 @@ CREATE TABLE `hall` (
 -- Dumping data for table `hall`
 --
 
-INSERT INTO `hall` (`hall_id`, `cinema_id`, `number_of_seat`) VALUES
-(1, 1, 40),
-(2, 1, 40),
-(3, 1, 20),
-(4, 1, 20);
+INSERT INTO `hall` (`hall_id`, `hall_num`, `cinema_id`, `number_of_seat`) VALUES
+(1, 4, 1, 40),
+(2, 1, 1, 40),
+(3, 2, 1, 20),
+(4, 3, 1, 20),
+(7, 12, 1, 123);
 
 -- --------------------------------------------------------
 
@@ -247,7 +257,7 @@ INSERT INTO `showtime` (`show_id`, `Movie_id`, `Hall_id`, `show_time`, `end_time
 (13, 4, 1, '2024-05-04 10:00:00', '2024-05-04 13:00:00', 15.00),
 (14, 4, 2, '2024-05-05 14:30:00', '2024-05-05 17:30:00', 15.00),
 (15, 4, 3, '2024-05-06 18:00:00', '2024-05-06 21:00:00', 15.00),
-(16, 4, 4, '2024-05-07 20:30:00', '2024-05-07 23:30:00', 15.00),
+(16, 4, 7, '2024-06-20 20:30:00', '2024-05-07 23:30:00', 15.00),
 (17, 5, 1, '2024-05-01 10:00:00', '2024-05-01 12:00:00', 10.00),
 (18, 5, 2, '2024-05-02 13:30:00', '2024-05-02 15:30:00', 10.00),
 (19, 5, 3, '2024-05-03 17:00:00', '2024-05-03 19:00:00', 10.00),
@@ -310,7 +320,8 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `first_name`, `last_name`
 (0, 'Guest', '', '', '', '', '', '', NULL, NULL),
 (1, 'hau', 'hauru123', 'Hau', 'Tze Chern', 'N', 'hau@email.com', '0121354845', NULL, NULL),
 (2, 'test', 'abc123', 'Lee', 'Yue Heng', 'F', 'leeyueheng04@gmail.com', '0196674998', NULL, NULL),
-(3, 'CJY', 'cjy123', 'Cheng', 'Jing Yi', 'M', '1211208060@gmail.com', '0172471629', NULL, NULL);
+(3, 'CJY', 'cjy123', 'Cheng', 'Jing Yi', 'M', '1211208060@gmail.com', '0172471629', NULL, NULL),
+(7, '123', '$2y$10$MzttU2dy/0iZAPkO8QwTBegjYsPFR.hiEyxaEf.JURmLqMbs3S23.', 'asd', 'asd', 'M', 'thefirebrojy174@gmail.com', '12345678', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -394,19 +405,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `cinema`
 --
 ALTER TABLE `cinema`
-  MODIFY `cinema_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cinema_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `csmovie`
 --
 ALTER TABLE `csmovie`
   MODIFY `movie_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `hall`
+--
+ALTER TABLE `hall`
+  MODIFY `hall_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `movie`
@@ -430,7 +447,7 @@ ALTER TABLE `ucmovie`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
