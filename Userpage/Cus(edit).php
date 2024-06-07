@@ -69,11 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
-    <script>
-        function showPasswordField() {
-            document.getElementById('password-field').style.display = 'table-row';
-        }
-    </script>
+ 
 </head>
 <body>
 <header class="header">
@@ -146,24 +142,23 @@ if(isset($rows[0])) {
         <tr>
             <td colspan="2" style="text-align: center;">
                 <button type="button" onclick="showPasswordField()">Change Password</button>
-            </td>
+           
+                </td>
         </tr>
         <tr id="password-field" style="display: none;">
-    <th>Password</th>
+        <th>Password</th>
     <td>
         <input type="password" name="password" id="password" placeholder="Leave blank to keep current password">
-        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
-    </td>
-</tr>
-<tr id="password-confirmation-field" style="display: none;">
-    <th>Confirm Password</th>
-    <td>
-        <input type="password" id="password_confirmation" name="password_confirmation">
-        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
-    </td>
-</tr>
-
-        
+        <span class="toggle-password" onclick="togglePasswordVisibilitypass()">Show</span>
+        </td>
+        </tr>
+        <tr id="password-confirmation-field" style="display: none;">
+            <th>Confirm Password</th>
+            <td>
+                <input type="password" id="password_confirmation" name="password_confirmation">
+                <span class="toggle-password" onclick="togglePasswordVisibilityconf()" >Show</span>
+            </td>
+        </tr>
     </table>
     <div class="login-signup">
         <span class="signup-link"><a href="customer.php">Back</a></span>
@@ -177,26 +172,37 @@ if(isset($rows[0])) {
 ?>
 <script>
     function showPasswordField() {
-        document.getElementById('password-field').style.display = 'table-row';
-        document.getElementById('password-confirmation-field').style.display = 'table-row';
+    document.getElementById('password-field').style.display = 'table-row';
+    document.getElementById('password-confirmation-field').style.display = 'table-row';
+    var togglePasswordButton = document.getElementById('toggle-password');
+    togglePasswordButton.style.display = 'inline-block'; 
+}
+
+
+    function togglePasswordVisibilitypass() {
+        var passwordField = document.getElementById("password");
+        var togglePasswordField = document.querySelector(".toggle-password[data-target='password']");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            togglePasswordField.textContent = "Hide";
+        } else {
+            passwordField.type = "password";
+            togglePasswordField.textContent = "Show";
+        }
     }
 
-    function togglePasswordVisibility() {
-        var passwordField = document.getElementById("password");
+    function togglePasswordVisibilityconf() {
         var passwordConfirmField = document.getElementById("password_confirmation");
-        var toggleText = document.querySelectorAll(".toggle-password");
+        var togglePasswordConfirmField = document.querySelector(".toggle-password[data-target='password_confirmation']");
 
-        toggleText.forEach(toggle => {
-            if (passwordField.type === "password" || passwordConfirmField.type === "password") {
-                passwordField.type = "text";
-                passwordConfirmField.type = "text";
-                toggle.textContent = "Hide";
-            } else {
-                passwordField.type = "password";
-                passwordConfirmField.type = "password";
-                toggle.textContent = "Show";
-            }
-        });
+        if (passwordConfirmField.type === "password") {
+            passwordConfirmField.type = "text";
+            togglePasswordConfirmField.textContent = "Hide";
+        } else {
+            passwordConfirmField.type = "password";
+            togglePasswordConfirmField.textContent = "Show";
+        }
     }
 </script>
 

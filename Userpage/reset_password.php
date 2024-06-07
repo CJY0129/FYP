@@ -26,8 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $expiry_column_name = "token_expiry"; // Use the correct column name
 
+    // Check if the token has expired
     if (strtotime($user[$expiry_column_name]) <= time()) {
-        die("Token has expired");
+        // Token has expired, display alert and redirect to login page
+        echo "<script>alert('Token has expired. Please request a new password reset link.'); window.location.href='login.php';</script>";
+        exit;
     }
 
     if ($_POST["password"] !== $_POST["password_confirmation"]) {
@@ -120,13 +123,13 @@ $token = $_GET["token"];
     <label for="password">New password</label>
     <div style="position: relative;">
         <input type="password" name="password" id="password" required>
-        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+        <span class="toggle-password" onclick="togglePasswordVisibilitypass()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
 
     <label for="password_confirmation">Confirm new password</label>
     <div style="position: relative;">
         <input type="password" id="password_confirmation" name="password_confirmation" required>
-        <span class="toggle-password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+        <span class="toggle-password" onclick="togglePasswordVisibilityconf()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
     
     <?php if ($error_message): ?>
@@ -137,12 +140,10 @@ $token = $_GET["token"];
 <?php include('footer.php'); ?>
 
 <script>
-function togglePasswordVisibility() {
+function togglePasswordVisibilitypass() {
     var passwordField = document.getElementById("password");
-    var passwordConfirmField = document.getElementById("password_confirmation");
     
     var togglePasswordField = document.querySelector(".password-toggle[data-target='password']");
-    var togglePasswordConfirmField = document.querySelector(".password-toggle[data-target='password_confirmation']");
 
     if (passwordField.type === "password") {
         passwordField.type = "text";
@@ -151,6 +152,12 @@ function togglePasswordVisibility() {
         passwordField.type = "password";
         togglePasswordField.textContent = "Show";
     }
+}
+
+function togglePasswordVisibilityconf() {
+    var passwordConfirmField = document.getElementById("password_confirmation");
+    
+    var togglePasswordConfirmField = document.querySelector(".password-toggle[data-target='password_confirmation']");
 
     if (passwordConfirmField.type === "password") {
         passwordConfirmField.type = "text";

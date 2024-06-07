@@ -91,12 +91,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h6>Password</h6>
     <div style="position: relative;">
         <input type="password" name="password" id="password" required>
-        <span class="password-toggle" data-target="password" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+        <span class="password-toggle" data-target="password" onclick="togglePasswordVisibilitypass()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
     <h6>Confirm Password</h6>
     <div style="position: relative;">
         <input type="password" id="password_confirmation" name="password_confirmation" required>
-        <span class="password-toggle" data-target="password_confirmation" onclick="togglePasswordVisibility()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+        <span class="password-toggle" data-target="password_confirmation" onclick="togglePasswordVisibilityconf()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
     <h6>First Name</h6>
     <input type="text" name="firstname" required>
@@ -126,12 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include('footer.php'); ?>
 
 <script>
-function togglePasswordVisibility() {
+function togglePasswordVisibilitypass() {
     var passwordField = document.getElementById("password");
-    var passwordConfirmField = document.getElementById("password_confirmation");
     
     var togglePasswordField = document.querySelector(".password-toggle[data-target='password']");
-    var togglePasswordConfirmField = document.querySelector(".password-toggle[data-target='password_confirmation']");
 
     if (passwordField.type === "password") {
         passwordField.type = "text";
@@ -140,6 +138,12 @@ function togglePasswordVisibility() {
         passwordField.type = "password";
         togglePasswordField.textContent = "Show";
     }
+}
+
+function togglePasswordVisibilityconf() {
+    var passwordConfirmField = document.getElementById("password_confirmation");
+    
+    var togglePasswordConfirmField = document.querySelector(".password-toggle[data-target='password_confirmation']");
 
     if (passwordConfirmField.type === "password") {
         passwordConfirmField.type = "text";

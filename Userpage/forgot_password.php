@@ -100,7 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
     <?php if ($error_message): ?>
     <div class="error-message"><?php echo $error_message; ?></div>
 <?php endif; ?>
+<div class="login-signup">
+<span class="signup-link"><a href="Login.php">Back</a></span>
     <button type="submit" name="login" class="theme-btn">Send Email</button>
+    </div>
 </form>
 <?php include('footer.php'); ?>
 </body>
