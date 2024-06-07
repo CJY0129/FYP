@@ -39,7 +39,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
-    
 }
 
 /*----------------------------
@@ -274,7 +273,7 @@ input::-webkit-input-placeholder {
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 99;
+	z-index: 1000;
     
 }
 .header-area {
@@ -474,25 +473,15 @@ input{
     background-image: url('../img/hero-area.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover; /* Use cover to ensure the image covers the entire area */
+    background-size: cover;
     overflow: hidden;
-    width: 100%; /* Ensure full width */
-    height: 100vh; /* Full viewport height for a consistent look */
-    margin-bottom: auto;;
-   
 }
-
 .hero-area-slide {
-    background: #13151f; /* Default background color */
+    background: #13151f;
     margin: 320px 15px 50px;
     padding-top: 52px;
     box-shadow: 0 0 20px #000000;
-    width: 100%; /* Ensure full width */
-    max-width: 950px; /* Adjust as necessary */
-    margin-bottom: auto; /* Center the element */
 }
-
-
 
 .hero-area-content > img {
     position: relative;
@@ -507,6 +496,13 @@ input{
     color: #fece50;
     float: left;
 }
+.section-title {
+    display: flex;
+    align-items: center;
+}
+
+
+
 
 .review h4 {
     padding-left: 25px;
@@ -600,11 +596,14 @@ input{
 ------------------------------------*/
 hr {
 	margin: 0;
-    margin-top: 50px;
 	border-top: 1px solid #ddd;
 }
 .portfolio-menu {
 	padding-top: 30px;
+}
+
+.portfolio-area.pt-60.video.ptb-90.single-portfolio-img {
+    margin-left: 100px;
 }
 
 .portfolio-menu li {
@@ -699,7 +698,60 @@ hr {
 /*----------------------------------
 --------- portfolio AREA CSS END --------
 -----------------------------------*/
+.movie-card {
+    margin: 50px 15px 50px; /* Adjusted margin to remove excessive top margin */
+    padding-top: 0px; /* Removed padding from top */
+    background: #13151f;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #000000;
+    overflow: hidden;
+}
 
+.movie-card .card-body {
+    padding: 20px;
+    padding-bottom: 100px;
+}
+
+.movie-card .trailer-link {
+     padding-top: 200px; /* Adjust the margin-top value as needed */
+}
+
+.movie-card .card-title {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+}
+
+.movie-card .card-text {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.movie-card .card-text strong {
+    color: #fff;
+}
+
+.extra-margin-top {
+    margin-top: 0; /* Removed extra margin-top for the movie card */
+}
+
+.container123 {
+    padding-top: 200px; /* Adjust padding for the container */
+}
+
+.img-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    border-radius: 10px 0 0 10px; /* Match the border-radius with the card */
+}
+
+.img-container {
+    width: 100%;
+    height: 100%; /* Set to 100% to allow img-fluid to control height */
+    max-height: 300px; /* Adjust the max height as per requirement */
+    overflow: hidden; /* Ensures the image does not overflow the container */
+}
 
 /*----------------------------------
 -------- video AREA CSS START -------
@@ -793,84 +845,6 @@ hr {
 --------- video AREA CSS END --------
 -----------------------------------*/
 
-/*----------------------------------
--------- news AREA CSS START -------
-------------------------------------*/
-.single-news {
-	position: relative;
-	color: #fff;
-}
-.news-content {
-    position: absolute;
-    left: 60px;
-    bottom: 35px;
-    right: 420px;
-}
-.news-bg-1 {
-	background: url('../img/news/news1.jpg') no-repeat center / cover;
-    height: 350px;
-}
-.news-bg-2 {
-	background: url('../img/news/news2.jpg') no-repeat center / cover;
-    height: 350px;
-}
-.news-bg-3 {
-	background: url('../img/news/news3.jpg') no-repeat center / cover;
-    height: 350px;
-}
-.news-date {
-	position: absolute;
-	left: 60px;
-	top: 0;
-	background: #f09819; /* Old browsers */
-	background: -moz-linear-gradient(-45deg, #f09819 0%, #ef8128 34%, #ec474c 64%, #eb315a 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(-45deg, #f09819 0%,#ef8128 34%,#ec474c 64%,#eb315a 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(135deg, #f09819 0%,#ef8128 34%,#ec474c 64%,#eb315a 100%);
-	padding: 20px;
-}
-.news-date h2 span {
-	font-size: 16px;
-}
-.news-content > h2 {
-    margin-bottom: 15px;
-}
-
-.news-slider .single-news{
-    max-width: 950px;
-    margin: 50px auto 0;
-}
-.single-news a {
-    position: absolute;
-    right: 40px;
-    bottom: 40px;
-}
-.news-slide-area {
-    position: relative;
-    overflow: hidden;
-}
-.news-next {
-    position: absolute;
-    width: 950px;
-    bottom: 0;
-    left: 0;
-    margin-left: -770px;
-    z-index: 99;
-    cursor: pointer;
-}
-
-.news-prev {
-    position: absolute;
-    width: 950px;
-    bottom: 0;
-    right: 0;
-    margin-right: -770px;
-    z-index: 99;
-    cursor: pointer;
-    height: 350px;
-}
-/*----------------------------------
---------- news AREA CSS END --------
------------------------------------*/
 
 /*----------------------------------
 --------- footer AREA CSS START --------
@@ -879,7 +853,7 @@ hr {
 	background: url('../img/footer-bg.png') no-repeat bottom center / cover;
     position: relative;
 	padding: 90px 0 30px;
-    margin-top: 100px;
+    clear: both;
 }
 .footer::before {
     position: absolute;
@@ -920,203 +894,10 @@ hr {
 .copyright {
     padding-top: 25px;
 }
-
 /*----------------------------------
 --------- footer AREA CSS END --------
 -----------------------------------*/
 
-/*----------------------------------
----- Movie details PAGE CSS START ----
-------------------------------------*/
-.movie-poster {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.breadcrumb-area {
-    position: relative;
-    background-image: url('../img/breadcrumb.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-	padding: 280px 0 200px;
-}
-.breadcrumb-area-content {
-	text-align: center;
-}
-.breadcrumb-area-content h1 {
-	font-size: 60px;
-}
-.transformers-box {
-    padding: 35px;
-    box-shadow: 0 0 20px #000000;
-    position: relative;
-}
-
-.transformers-box .transformers-content img {
-    display: block;
-    position: relative;
-}
-
-.transformers-content > p {
-    margin: 12px 0 30px;
-    position: relative;
-    padding-left: 70px;
-}
-.transformers-content > h2 + a.theme-btn {
-    margin: 12px 10px 20px 0;
-}
-
-.transformers-content > p::before {
-    position: absolute;
-    content: "";
-    left: 0;
-    bottom: 0;
-    top: 0;
-    width: 55px;
-    height: 2px;
-    margin: auto;
-    background: #eb315a;
-}
-
-.transformers-left {
-    color: #eb315a;
-    min-width: 100px;
-}
-
-.transformers-content ul li {
-    display: flex;
-    margin-top: 12px;
-    font-weight: 300;
-}
-
-.transformers-right .theme-btn {
-    margin: 0 8px;
-	padding: 2px 15px;
-}
-
-.transformers-bottom {
-    display: flex;
-    margin-top: 10px;
-    justify-content: space-between;
-}
-
-.transformers-bottom span {
-    display: block;
-    color: #eb315a;
-}
-
-.transformers-bottom p {
-    margin-bottom: 8px;
-}
-.transformers-box > .theme-btn {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    border-radius: 5px 0 0;
-}
-
-.details-content >div {
-    margin-top: 30px;
-}
-
-.details-content {
-    padding-top: 10px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 50px;
-}
-
-.details-content >div h2 {
-    margin-bottom: 20px;
-}
-
-.details-overview h2 {
-    position: relative;
-    padding-bottom: 10px;
-}
-
-.details-overview h2::before {
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    background: #eb315a;
-    content: "";
-    width: 50px;
-    height: 2px;
-}
-.select-container {
-    position: relative;
-    margin-bottom: 30px;
-}
-.textarea-container {
-    position: relative;
-}
-.textarea-container button {
-	color: #fff;
-	background: transparent;
-	font-size: 20px;
-	border: none;
-}
-.textarea-container button,
-.select-container i {
-    position: absolute;
-    right: 15px;
-    bottom: 12px;
-    margin: auto;
-}
-.details-comment {
-    display: flex;
-    align-items: center;
-}
-
-.details-comment a {
-    flex: 1;
-	text-align: center;
-}
-
-.details-comment p {
-    flex: 5;
-    margin-left: 25px;
-}
-
-.details-thumb > div {
-    padding-top: 20px;
-    display: flex;
-    width: 50%;
-}
-
-.thumb-icon {
-    width: 45px;
-    font-size: 45px;
-}
-
-.thumb-text {
-	flex: 5;
-}
-
-.details-thumb {
-    display: flex;
-}
-
-.details-thumb > div h4,
-.details-thumb > div i {
-	transition: 0.4s;
-}
-.details-thumb > div:hover h4,
-.details-thumb > div:hover i {
-	color: #eb315a
-}
-.details-thumb-next {
-    text-align: right;
-}
-
-.thumb-text h4 {
-    margin-bottom: 2px;
-}
-/*----------------------------------
------ Movie details PAGE CSS END ----
------------------------------------*/
 
 /*----------------------------------
 -------- seat plan PAGE CSS START -------
@@ -1284,85 +1065,5 @@ hr {
 --------- seat plan PAGE CSS END --------
 -----------------------------------*/
 
-
-/*----------------------------------
--------- blog PAGE CSS START -------
-------------------------------------*/
-.blog-area {
-	padding-top: 30px;
-}
-.blog-area .single-news {
-	margin-top: 70px;
-}
-/*----------------------------------
---------- blog PAGE CSS END --------
------------------------------------*/
-
-/*----------------------------------
--------- blog details PAGE CSS START -------
-------------------------------------*/
-.news-details a i {
-	margin-right: 5px;
-}
-.news-details > h2 {
-    margin: 30px 0 5px;
-}
-
-.news-details > h2 + a,.news-details > h2 + a + a {
-    margin-right: 10px;
-    display: inline-block;
-}
-
-.news-details > p {
-    margin-top: 25px;
-}
-
-.news-details .details-thumb {
-    border-top: 1px solid #ddd;
-	padding-bottom: 15px;
-}
-
-.news-details .details-comment {
-    padding: 25px 0 30px;
-}
-
-.news-details .details-reply {
-	margin-top: 25px;
-}
-.news-details .details-reply h2 {
-    margin-bottom: 25px;
-}
-
-.blog-sidebar ul li {
-    border-bottom: 1px solid #ddd;
-    margin-top: 10px;
-    padding-bottom: 3px;
-}
-
-.blog-sidebar h4 {
-    margin-top: 35px;
-}
-
-.news-details {
-    padding-top: 35px;
-}
-.detail-author {
-    margin: 40px 0;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #fff;
-    padding: 30px 0;
-}
-
-.details-author h4 {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.details-author a {
-    margin-left: 20px;
-}
-/*----------------------------------
----------  blog details PAGE CSS END --------
------------------------------------*/
 
 

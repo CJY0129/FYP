@@ -41,6 +41,7 @@ if (isset($_GET['id'])) {
         $duration = $row["duration"];
         $release = $row["release_date"];
         $poster_path = $row["poster_path"];
+        $trailers_path = $row["trailers_path"];
     } else {
         echo "Movie not found.";
         exit; // Stop script execution if movie is not found
@@ -73,66 +74,39 @@ if (isset($_GET['error']) && $_GET['error'] == '1') {
     <!-- Popup CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
     <!-- Main style CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/css/movies.css" media="all" />
     <!-- Responsive CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
     <!-- Custom CSS -->
-    
     <style>
-        .movie-card {
-            margin: 500px 15px 50px; /* Adjusted margin */
-            background: #13151f;
-            color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px #000000;
-            overflow: hidden;
-        }
-
-        .movie-card .card-body {
-            padding: 20px;
-        }
-
-        .movie-card .card-title {
-            font-size: 1.75rem;
-            margin-bottom: 20px;
-        }
-
-        .movie-card .card-text {
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
-        .movie-card .card-text strong {
-            color: #fff;
-        }
-
-        .extra-margin-top {
-            margin-top: 500px; /* Add extra margin-top for the movie card */
+        .popup-youtube2{
+            padding-top: 100px; 
         }
     </style>
-
 </head>
 
 <body>
     <?php include('header.php'); ?>
     <?php include('buytickets.php'); ?>
 
-    <<section class="hero-area" id="home">
-        <div class="container">
+    <section class="hero-area" id="home">
+        <div class="container123">
             <div class="movie-card mt-5 extra-margin-top">
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <div class="card-body text-center">
                             <!-- Display movie poster -->
-                            <?php
-                            if (!empty($poster_path)) {
-                                $poster_data = base64_encode($poster_path); // Convert blob data to base64
-                                $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
-                                echo '<img src="' . $poster_src . '" alt="Movie Poster" class="img-fluid" width="150" height="225">'; // Adjusted size
-                            } else {
-                                echo '<img src="assets/img/CineTime1.jpg" alt="Movie Poster" class="img-fluid" width="150" height="225">'; // Adjusted size
-                            }
-                            ?>
+                            <div class="img-container">
+                                <?php
+                                if (!empty($poster_path)) {
+                                    $poster_data = base64_encode($poster_path); // Convert blob data to base64
+                                    $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+                                    echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: auto; height: 325px;">'; // Adjusted size
+                                } else {
+                                    echo '<img src="assets/img/CineTime1.jpg" alt="Movie Poster" style="width: auto; height: 325px;">'; // Adjusted size
+                                }
+                                ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -144,12 +118,17 @@ if (isset($_GET['error']) && $_GET['error'] == '1') {
                             <p class="card-text"><strong>Duration:</strong> <?php echo htmlspecialchars($duration); ?> mins</p>
                             <p class="card-text"><strong>Release Date:</strong> <?php echo htmlspecialchars($release); ?></p>
                             <p class="card-text"><strong>Synopsis:</strong> <?php echo htmlspecialchars($desc); ?></p>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <a href="<?php echo htmlspecialchars($trailers_path); ?>" class="popup-youtube2">
+    <p><i><b>Play Trailer</b></i></p>
+    </a>
+    
 
     <button class="btn btn-primary mt-3" onclick="history.back()">Go Back</button>
 
@@ -170,3 +149,4 @@ if (isset($_GET['error']) && $_GET['error'] == '1') {
     <?php include('footer.php'); ?>
 </body>
 </html>
+y
