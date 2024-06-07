@@ -21,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $result->fetch_assoc();
 
     if ($user === null) {
-        die("Token not found");
+        echo "<script>alert('Token not found. Please request a new password reset link.'); window.location.href='login.php';</script>";
+        exit;
     }
 
     $expiry_column_name = "token_expiry"; // Use the correct column name
@@ -78,6 +79,29 @@ if (isset($_GET['userid'])) {
 }
 
 $token = $_GET["token"];
+$token_hash = hash("sha256", $token);
+
+$sql = "SELECT * FROM user WHERE password_reset_token = ?";
+$stmt = $mysqli->prepare($sql);
+if (!$stmt) {
+    die("Prepare statement failed: " . $mysqli->error);
+}
+$stmt->bind_param("s", $token_hash);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+if ($user === null) {
+    echo "<script>alert('Token not found. Please request a new password reset link.'); window.location.href='login.php';</script>";
+    exit;
+}
+
+// Check if the token has expired
+if (strtotime($user[$expiry_column_name]) <= time()) {
+    // Token has expired, display alert and redirect to login page
+    echo "<script>alert('Token has expired. Please request a new password reset link.'); window.location.href='login.php';</script>";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -123,13 +147,13 @@ $token = $_GET["token"];
     <label for="password">New password</label>
     <div style="position: relative;">
         <input type="password" name="password" id="password" required>
-        <span class="toggle-password" onclick="togglePasswordVisibilitypass()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+        <span class="toggle-password" onclick="togglePasswordVisibility('password')" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
 
     <label for="password_confirmation">Confirm new password</label>
     <div style="position: relative;">
         <input type="password" id="password_confirmation" name="password_confirmation" required>
-        <span class="toggle-password" onclick="togglePasswordVisibilityconf()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
+        <span class="toggle-password" onclick="togglePasswordVisibility('password_confirmation')" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
     
     <?php if ($error_message): ?>
@@ -140,33 +164,23 @@ $token = $_GET["token"];
 <?php include('footer.php'); ?>
 
 <script>
-function togglePasswordVisibilitypass() {
-    var passwordField = document.getElementById("password");
-    
-    var togglePasswordField = document.querySelector(".password-toggle[data-target='password']");
-
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        togglePasswordField.textContent = "Hide";
-    } else {
-        passwordField.type = "password";
-        togglePasswordField.textContent = "Show";
+function showPasswordField() {
+        document.getElementById('password-field').style.display = 'table-row';
+        document.getElementById('password-confirmation-field').style.display = 'table-row';
     }
-}
 
-function togglePasswordVisibilityconf() {
-    var passwordConfirmField = document.getElementById("password_confirmation");
-    
-    var togglePasswordConfirmField = document.querySelector(".password-toggle[data-target='password_confirmation']");
+    function togglePasswordVisibility(id) {
+        var passwordField = document.getElementById(id);
+        var togglePasswordField = passwordField.nextElementSibling;
 
-    if (passwordConfirmField.type === "password") {
-        passwordConfirmField.type = "text";
-        togglePasswordConfirmField.textContent = "Hide";
-    } else {
-        passwordConfirmField.type = "password";
-        togglePasswordConfirmField.textContent = "Show";
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            togglePasswordField.textContent = "Hide";
+        } else {
+            passwordField.type = "password";
+            togglePasswordField.textContent = "Show";
+        }
     }
-}
 </script>
 
 </body>

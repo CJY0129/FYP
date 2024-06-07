@@ -149,14 +149,14 @@ if(isset($rows[0])) {
         <th>Password</th>
     <td>
         <input type="password" name="password" id="password" placeholder="Leave blank to keep current password">
-        <span class="toggle-password" onclick="togglePasswordVisibilitypass()">Show</span>
+        <span class="toggle-password" onclick="togglePasswordVisibility('password')">Show</span>
         </td>
         </tr>
         <tr id="password-confirmation-field" style="display: none;">
             <th>Confirm Password</th>
             <td>
                 <input type="password" id="password_confirmation" name="password_confirmation">
-                <span class="toggle-password" onclick="togglePasswordVisibilityconf()" >Show</span>
+                <span class="toggle-password" onclick="togglePasswordVisibility('password_confirmation')" >Show</span>
             </td>
         </tr>
     </table>
@@ -172,16 +172,13 @@ if(isset($rows[0])) {
 ?>
 <script>
     function showPasswordField() {
-    document.getElementById('password-field').style.display = 'table-row';
-    document.getElementById('password-confirmation-field').style.display = 'table-row';
-    var togglePasswordButton = document.getElementById('toggle-password');
-    togglePasswordButton.style.display = 'inline-block'; 
-}
+        document.getElementById('password-field').style.display = 'table-row';
+        document.getElementById('password-confirmation-field').style.display = 'table-row';
+    }
 
-
-    function togglePasswordVisibilitypass() {
-        var passwordField = document.getElementById("password");
-        var togglePasswordField = document.querySelector(".toggle-password[data-target='password']");
+    function togglePasswordVisibility(id) {
+        var passwordField = document.getElementById(id);
+        var togglePasswordField = passwordField.nextElementSibling;
 
         if (passwordField.type === "password") {
             passwordField.type = "text";
@@ -191,21 +188,7 @@ if(isset($rows[0])) {
             togglePasswordField.textContent = "Show";
         }
     }
-
-    function togglePasswordVisibilityconf() {
-        var passwordConfirmField = document.getElementById("password_confirmation");
-        var togglePasswordConfirmField = document.querySelector(".toggle-password[data-target='password_confirmation']");
-
-        if (passwordConfirmField.type === "password") {
-            passwordConfirmField.type = "text";
-            togglePasswordConfirmField.textContent = "Hide";
-        } else {
-            passwordConfirmField.type = "password";
-            togglePasswordConfirmField.textContent = "Show";
-        }
-    }
 </script>
-
 
 <?php include('footer.php'); ?>
 </body>
