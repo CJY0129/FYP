@@ -85,6 +85,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                     echo '<thead>';
                     echo '<tr>';
                     echo '<th>Movie ID</th>';
+                    echo '<th>Status</th>';
                     echo '<th>Title</th>';
                     echo '<th>Genre</th>';
                     echo '<th>Director</th>';
@@ -100,21 +101,35 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                     echo '<tbody>';
 
                     // Loop through each row of the result
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      echo '<tr>';
-                      echo '<td>' . $row['movie_id'] . '</td>';
-                      echo '<td>' . $row['title'] . '</td>';
-                      echo '<td>' . $row['genre'] . '</td>';
-                      echo '<td>' . $row['director'] . '</td>';
-                      echo '<td>' . $row['cast'] . '</td>';
-                      echo '<td>' . $row['synopsis'] . '</td>';
-                      echo '<td>' . $row['duration'] . '</td>';
-                      echo '<td>' . $row['release_date'] . '</td>';
-                      echo '<td>' . $row['trailers_path'] . '</td>';
-                      echo '<td>' . displayImage($row['poster_path']) . '</td>';
-                      echo '<td><button type="button" class="close" data-toggle="modal" data-target="#editModal' . $row['movie_id'] . '"><i class="fa fa-edit" style="color:#ff4759;"></i></button>
-                      <a class="fa fa-trash-o" style="font-size:25px" href="delete_movie.php?movie_id='. $row['movie_id'].'" onclick="return confirmDelete();"></a></td>';
-                      echo '</tr>';
+                   while ($row = mysqli_fetch_assoc($result)) {
+    echo '<tr>';
+    echo '<td>' . $row['movie_id'] . '</td>';
+    if ($row['status'] == 0) {
+        echo '<td> Now Showing </td>';
+    } else if ($row['status'] == 1) {
+        echo '<td> Upcoming </td>';
+    } else if ($row['status'] == 2) {
+        echo '<td> Coming Soon</td>';
+    } else {
+        // Default message if movie_id doesn't match any predefined value
+        echo '<td> Unknown Status </td>';
+    }
+    
+    // Output other table columns
+    echo '<td>' . $row['title'] . '</td>';
+    echo '<td>' . $row['genre'] . '</td>';
+    echo '<td>' . $row['director'] . '</td>';
+    echo '<td>' . $row['cast'] . '</td>';
+    echo '<td>' . $row['synopsis'] . '</td>';
+    echo '<td>' . $row['duration'] . '</td>';
+    echo '<td>' . $row['release_date'] . '</td>';
+    echo '<td>' . $row['trailers_path'] . '</td>';
+    echo '<td>' . displayImage($row['poster_path']) . '</td>';
+    echo '<td><button type="button" class="close" data-toggle="modal" data-target="#editModal' . $row['movie_id'] . '"><i class="fa fa-edit" style="color:#ff4759;"></i></button>
+          <a class="fa fa-trash-o" style="font-size:25px" href="delete_movie.php?movie_id=' . $row['movie_id'] . '" onclick="return confirmDelete();"></a></td>';
+    echo '</tr>';
+
+
 
                       // Modal for editing movie
                       echo '<div class="modal fade" id="editModal' . $row['movie_id'] . '" tabindex="-1" role="dialog" aria-labelledby="editModalLabel' . $row['movie_id'] . '" aria-hidden="true">';
@@ -162,6 +177,14 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       echo '<input type="text" class="form-control" id="trailers_path" name="trailers_path" value="' . $row['trailers_path'] . '">';
                       echo '</div>';
                       echo '<div class="form-group">';
+                      echo '<label for="status">Status</label>';
+                      echo '<select class="form-control" id="status" name="status">';
+                      echo '<option value="0" ' . ($row['status'] == 0 ? 'selected' : '') . '>Now Showing</option>';
+                      echo '<option value="1" ' . ($row['status'] == 1 ? 'selected' : '') . '>Upcoming</option>';
+                      echo '<option value="2" ' . ($row['status'] == 2 ? 'selected' : '') . '>Coming Soon</option>';
+                      echo '</select>';
+                      echo '</div>';
+                      echo '<div class="form-group">';
                       echo '<label class="form-control-label">Poster</label>';
                       echo '<input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)" >';
                       echo '<img id="poster-preview-add" src="#" alt="Poster Preview" style="display: none; max-width: 50%; margin-top: 10px;">';
@@ -172,6 +195,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       echo '</div>';
                       echo '</div>';
                       echo '</div>';
+
                     }
 
                     echo '</tbody>';
@@ -226,7 +250,7 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Duration</label>
-                          <input type="text" name="duration" class="form-control" required>
+                          <input type="number" name="duration" class="form-control" min="0" required>
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Release Date</label>
@@ -236,6 +260,15 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                           <label class="form-control-label">Trailers Link</label>
                           <input type="text" name="trailers_path" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                        <label for="status">Status</label>
+                          <select class="form-control" id="status" name="status">
+                              <option value="0">Now Showing</option>
+                              <option value="1">Upcoming</option>
+                              <option value="2">Coming Soon</option>
+                            </select>
+                          </div>
+                      </div>
                         <div class="form-group">
                         <label class="form-control-label">Poster</label>
                         <input type="file" name="poster" class="form-control-file" accept="image/*" onchange="previewImage(event)" required>
