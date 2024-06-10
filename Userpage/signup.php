@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h6>Email</h6>
     <input type="email" name="email" required>
     <h6>Phone Number</h6>
-    <input type="tel" name="phone" pattern="\d*" required>
+    <input type="number" name="phone" min="111111111" max="999999999" required>
     <?php if ($error_message): ?>
     <div class="error-message"><?php echo $error_message; ?></div>
     <?php endif; ?>

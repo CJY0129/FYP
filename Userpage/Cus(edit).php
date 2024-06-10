@@ -135,7 +135,8 @@ if(isset($rows[0])) {
         <tr>
             <th>Phone Number</th>
             <td>
-                <input type="tel" name="phone_number" value="<?php echo htmlspecialchars($customer['phone_number']); ?>">
+                <input type="number" name="phone_number" value="<?php echo htmlspecialchars($customer['phone_number']); ?>" min="111111111" max="999999999">
+
             </td>
         </tr>
         
