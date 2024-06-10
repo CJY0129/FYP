@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Password update successful, display alert
-        echo "<script>alert('Password updated. You can now login.'); window.location.href='index.php';</script>";
+        echo "<script>alert('Password updated. You can now login.'); window.location.href='Login.php';</script>";
         exit;
     }
 }
@@ -78,6 +78,7 @@ if (isset($_GET['userid'])) {
     $rows = $result->fetch_all(MYSQLI_ASSOC);
 }
 
+// Handle token verification when the page loads
 $token = $_GET["token"];
 $token_hash = hash("sha256", $token);
 
@@ -92,13 +93,16 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 if ($user === null) {
+    // Token not found, display alert and redirect
     echo "<script>alert('Token not found. Please request a new password reset link.'); window.location.href='login.php';</script>";
     exit;
 }
 
+$expiry_column_name = "token_expiry"; // Use the correct column name
+
 // Check if the token has expired
 if (strtotime($user[$expiry_column_name]) <= time()) {
-    // Token has expired, display alert and redirect to login page
+    // Token has expired, display alert and redirect
     echo "<script>alert('Token has expired. Please request a new password reset link.'); window.location.href='login.php';</script>";
     exit;
 }

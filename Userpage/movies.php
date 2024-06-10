@@ -105,7 +105,7 @@ if(isset($_GET['userid'])) {
         							} else {
             							echo '<p>No poster available</p>';
         							}
-									echo '<a href="csmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -137,7 +137,7 @@ if(isset($_GET['userid'])) {
 									} else {
 										echo '<p>No poster available</p>';
 									}
-									echo '<a href="ucmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -217,7 +217,7 @@ if(isset($_GET['userid'])) {
         							} else {
             							echo '<p>No poster available</p>';
         							}
-									echo '<a href="csmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -249,7 +249,7 @@ if(isset($_GET['userid'])) {
 									} else {
 										echo '<p>No poster available</p>';
 									}
-									echo '<a href="ucmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';

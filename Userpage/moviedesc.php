@@ -78,11 +78,7 @@ if (isset($_GET['error']) && $_GET['error'] == '1') {
     <!-- Responsive CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
     <!-- Custom CSS -->
-    <style>
-        .popup-youtube2{
-            padding-top: 100px; 
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -90,44 +86,46 @@ if (isset($_GET['error']) && $_GET['error'] == '1') {
     <?php include('buytickets.php'); ?>
 
     <section class="hero-area" id="home">
-        <div class="container123">
-            <div class="movie-card mt-5 extra-margin-top">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <div class="card-body text-center">
-                            <!-- Display movie poster -->
-                            <div class="img-container">
-                                <?php
-                                if (!empty($poster_path)) {
-                                    $poster_data = base64_encode($poster_path); // Convert blob data to base64
-                                    $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
-                                    echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: auto; height: 325px;">'; // Adjusted size
-                                } else {
-                                    echo '<img src="assets/img/CineTime1.jpg" alt="Movie Poster" style="width: auto; height: 325px;">'; // Adjusted size
-                                }
-                                ?>
-                            </div>
+    <div class="container123">
+        <div class="movie-card mt-5 extra-margin-top">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <div class="card-body text-center">
+                        <!-- Display movie poster -->
+                        <div class="img-container">
+                            <?php
+                            if (!empty($poster_path)) {
+                                $poster_data = base64_encode($poster_path); // Convert blob data to base64
+                                $poster_src = 'data:image/jpg;base64,' . $poster_data; // Create the image source
+                                echo '<img src="' . $poster_src . '" alt="Movie Poster" style="width: auto; height: 325px;">'; // Adjusted size
+                            } else {
+                                echo '<img src="assets/img/CineTime1.jpg" alt="Movie Poster" style="width: auto; height: 325px;">'; // Adjusted size
+                            }
+                            ?>
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h2 class="card-title"><?php echo htmlspecialchars($title); ?></h2>
-                            <p class="card-text"><strong>Genre:</strong> <?php echo htmlspecialchars($genre); ?></p>
-                            <p class="card-text"><strong>Director:</strong> <?php echo htmlspecialchars($director); ?></p>
-                            <p class="card-text"><strong>Cast:</strong> <?php echo htmlspecialchars($cast); ?></p>
-                            <p class="card-text"><strong>Duration:</strong> <?php echo htmlspecialchars($duration); ?> mins</p>
-                            <p class="card-text"><strong>Release Date:</strong> <?php echo htmlspecialchars($release); ?></p>
-                            <p class="card-text"><strong>Synopsis:</strong> <?php echo htmlspecialchars($desc); ?></p>
-                            
-                        </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 class="card-title"><?php echo htmlspecialchars($title); ?></h2>
+                        <p class="card-text"><strong>Genre:</strong> <?php echo htmlspecialchars($genre); ?></p>
+                        <p class="card-text"><strong>Director:</strong> <?php echo htmlspecialchars($director); ?></p>
+                        <p class="card-text"><strong>Cast:</strong> <?php echo htmlspecialchars($cast); ?></p>
+                        <p class="card-text"><strong>Duration:</strong> <?php echo htmlspecialchars($duration); ?> mins</p>
+                        <p class="card-text"><strong>Release Date:</strong> <?php echo htmlspecialchars($release); ?></p>
+                        <p class="card-text"><strong>Synopsis:</strong> <?php echo htmlspecialchars($desc); ?></p>
+                        <!-- Updated link for the trailer -->
+                        <p class="card-text">
+                            <a href="<?php echo htmlspecialchars($trailers_path); ?>" class="theme-btn popup-youtube2"><strong>Play Trailer</strong></a>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <a href="<?php echo htmlspecialchars($trailers_path); ?>" class="popup-youtube2">
-    <p><i><b>Play Trailer</b></i></p>
-    </a>
+    </div>
+</section>
+
+ 
     
 
     <button class="btn btn-primary mt-3" onclick="history.back()">Go Back</button>

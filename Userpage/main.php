@@ -108,7 +108,7 @@ if (isset($_GET['error']) && $_GET['error'] == '1')
 
 // SQL query to retrieve movies based on show_time
 // SQL query to select one random movie
-$sql = "SELECT movie_id, title, poster_path, synopsis, cast FROM movie ORDER BY RAND() LIMIT 1";
+$sql = "SELECT movie_id, title, poster_path, synopsis, cast FROM movie WHERE status=0 ORDER BY RAND() LIMIT 1";
 
 $result = $conn->query($sql);
 
