@@ -210,9 +210,9 @@ if ($result->num_rows > 0) {
 		<section class="portfolio-area pt-60 video ptb-90 ">
 			<div class="container">
 				<div class="row flexbox-center">
-					<div class="col-lg-6 text-center text-lg-left">
+					<div class="col-lg-6 text-center text-lg-left"  >
 					    <div class="section-title">
-						<h1><i class="icofont icofont-movie"></i> Movies</h1>
+							<h1><i class="icofont icofont-movie"></i> Movies</h1>
 						</div>
 					</div>
 					<div class="col-lg-6 text-center text-lg-right">
@@ -231,7 +231,7 @@ if ($result->num_rows > 0) {
 						<div class="row portfolio-item">
 							<?php
 							//Latest movie
-							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie ORDER BY RAND() LIMIT 3";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=0 LIMIT 3";
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
 								while ($row = $result->fetch_assoc()) {
@@ -256,7 +256,6 @@ if ($result->num_rows > 0) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
-									echo '<a href="movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';
@@ -264,7 +263,7 @@ if ($result->num_rows > 0) {
 							}
 
 							//Coming soon movie
-							$sql = "SELECT * FROM csmovie";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=2 LIMIT 3";
 							$result = $conn->query($sql);
 
 							if ($result->num_rows > 0) {
@@ -280,7 +279,7 @@ if ($result->num_rows > 0) {
         							} else {
             							echo '<p>No poster available</p>';
         							}
-									echo '<a href="csmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -289,7 +288,6 @@ if ($result->num_rows > 0) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
-									echo '<a href="movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';
@@ -297,7 +295,7 @@ if ($result->num_rows > 0) {
 							}
 								
 							//Upcoming movie
-							$sql = "SELECT * FROM ucmovie";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=1 LIMIT 3";
 							$result = $conn->query($sql);
 							
 							if ($result->num_rows > 0) {
@@ -313,7 +311,7 @@ if ($result->num_rows > 0) {
 									} else {
 										echo '<p>No poster available</p>';
 									}
-									echo '<a href="ucmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -322,7 +320,6 @@ if ($result->num_rows > 0) {
 									echo '</div>';
 									echo '<div class="portfolio-content">';
 									echo '<h2>' . $row['title'] . '</h2>';
-									echo '<a href="movies.php" class="btn-view-all">View All</a>';
 									echo '</div>';
 									echo '</div>';
 									echo '</div>';
@@ -333,6 +330,9 @@ if ($result->num_rows > 0) {
 
 						</div>
 					</div>
+					
+				</div>
+			</div>
 					
 				</div>
 			</div>

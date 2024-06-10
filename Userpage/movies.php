@@ -57,7 +57,7 @@ if(isset($_GET['userid'])) {
 						<div class="row portfolio-item">
 							<?php
 							//Latest movie
-							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie LIMIT 3";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=0 LIMIT 3";
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
 								while ($row = $result->fetch_assoc()) {
@@ -89,7 +89,7 @@ if(isset($_GET['userid'])) {
 							}
 
 							//Coming soon movie
-							$sql = "SELECT * FROM csmovie LIMIT 4";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=2 LIMIT 3";
 							$result = $conn->query($sql);
 
 							if ($result->num_rows > 0) {
@@ -121,7 +121,7 @@ if(isset($_GET['userid'])) {
 							}
 								
 							//Upcoming movie
-							$sql = "SELECT * FROM ucmovie LIMIT 3";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=1 LIMIT 3";
 							$result = $conn->query($sql);
 							
 							if ($result->num_rows > 0) {
@@ -169,7 +169,7 @@ if(isset($_GET['userid'])) {
 						<div class="row portfolio-item">
 							<?php
 							//Latest movie
-							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie LIMIT 3, 18446744073709551615";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=0 LIMIT 3, 18446744073709551615";
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
 								while ($row = $result->fetch_assoc()) {
@@ -201,7 +201,7 @@ if(isset($_GET['userid'])) {
 							}
 
 							//Coming soon movie
-							$sql = "SELECT * FROM csmovie LIMIT 3, 18446744073709551615";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=2 LIMIT 3, 18446744073709551615";
 							$result = $conn->query($sql);
 
 							if ($result->num_rows > 0) {
@@ -233,7 +233,7 @@ if(isset($_GET['userid'])) {
 							}
 								
 							//Upcoming movie
-							$sql = "SELECT * FROM ucmovie LIMIT 3, 18446744073709551615";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=1 LIMIT 3, 18446744073709551615";
 							$result = $conn->query($sql);
 							
 							if ($result->num_rows > 0) {

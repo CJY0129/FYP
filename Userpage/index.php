@@ -87,7 +87,7 @@ if (isset($_GET['error']) && $_GET['error'] == '1')
 
 // SQL query to retrieve movies based on show_time
 // SQL query to select one random movie
-$sql = "SELECT movie_id, title, poster_path, synopsis, cast FROM movie ORDER BY RAND() LIMIT 1";
+$sql = "SELECT movie_id, title, poster_path, synopsis, cast FROM movie WHERE status=0 ORDER BY RAND() LIMIT 1 ";
 
 $result = $conn->query($sql);
 
@@ -210,7 +210,7 @@ if ($result->num_rows > 0) {
 						<div class="row portfolio-item">
 							<?php
 							//Latest movie
-							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie LIMIT 3";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=0 LIMIT 3";
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
 								while ($row = $result->fetch_assoc()) {
@@ -242,7 +242,7 @@ if ($result->num_rows > 0) {
 							}
 
 							//Coming soon movie
-							$sql = "SELECT * FROM csmovie ";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=2 LIMIT 3";
 							$result = $conn->query($sql);
 
 							if ($result->num_rows > 0) {
@@ -258,7 +258,7 @@ if ($result->num_rows > 0) {
         							} else {
             							echo '<p>No poster available</p>';
         							}
-									echo '<a href="csmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
@@ -274,7 +274,7 @@ if ($result->num_rows > 0) {
 							}
 								
 							//Upcoming movie
-							$sql = "SELECT * FROM ucmovie ";
+							$sql = "SELECT movie_id, title, poster_path, trailers_path FROM movie WHERE status=1 LIMIT 3";
 							$result = $conn->query($sql);
 							
 							if ($result->num_rows > 0) {
@@ -290,7 +290,7 @@ if ($result->num_rows > 0) {
 									} else {
 										echo '<p>No poster available</p>';
 									}
-									echo '<a href="ucmoviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
+									echo '<a href="moviedesc.php?id=' . $row['movie_id'] . '" class="popup-2">';
                                     echo '<i><b>Movie Description</b></i>';
 									echo '</a>';
                                     echo '<a href="' . $row['trailers_path'] . '" class="popup-youtube2">';
