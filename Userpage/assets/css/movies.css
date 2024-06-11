@@ -904,6 +904,7 @@ hr {
 ------------------------------------*/
 .buy-ticket {
     position: absolute;
+    margin-top: 60px;
     top: 0;
     left: 0;
     right: 0;
