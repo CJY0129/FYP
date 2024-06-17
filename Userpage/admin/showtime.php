@@ -171,7 +171,11 @@
         </div>
       </div>
     </section>
-
+    <script>
+                  function confirmDelete() {
+                    return confirm("Are you sure you want to delete this movie?");  
+                  }
+              </script>
     <section class="no-padding-top no-padding-bottom">
       <div class="container-fluid">
         <div class="row">
