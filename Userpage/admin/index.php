@@ -69,7 +69,7 @@
         </div>
       </div>
       <div class="copyrights text-center">
-         <p>2024 &copy; CineTime.  <a target="_blank">Templates Hub</a>.</p>
+         <p>2024 &copy; CineTime.</p>
       </div>
     </div>
     
