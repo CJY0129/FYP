@@ -151,7 +151,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                 <div class="item-type">
                     <div>Burger (RM 12)</div>
                     <div>
-                        <button class="btn" onclick="updateCount('burger', -1)">-</button>
+                        <button class="btn" onclick="updateCount('burger', -1)" >-</button>
                         <span id="burger-count">0</span>
                         <button class="btn" onclick="updateCount('burger', 1)">+</button>
                     </div>
@@ -240,8 +240,23 @@ $_SESSION['total_seats'] = count($selected_seats);
                 alert("Please select the same number of tickets as the number of seats selected.");
                 return;
             }
-            alert("Selection confirmed! Total Price: RM " + document.getElementById('total-price').textContent);
-            // Add form submission logic here
+            alert("Selection confirmed! ");
+            const totalPrice = parseInt(document.getElementById('total-price').textContent);
+
+            const items = {
+                adult: parseInt(document.getElementById('adult-count').textContent),
+                children: parseInt(document.getElementById('children-count').textContent),
+                student: parseInt(document.getElementById('student-count').textContent),
+                oku: parseInt(document.getElementById('oku-count').textContent),
+                soda: parseInt(document.getElementById('soda-count').textContent),
+                water: parseInt(document.getElementById('water-count').textContent),
+                popcorn: parseInt(document.getElementById('popcorn-count').textContent),
+                burger: parseInt(document.getElementById('burger-count').textContent)
+            };
+
+            const queryParams = new URLSearchParams(items).toString();
+            
+            window.location.href = `booking.php?${queryParams}&totalPrice=${totalPrice}`;
         }
     </script>
 </body>
