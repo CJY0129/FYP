@@ -42,7 +42,8 @@ label {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="number"],
+input[type="email"] {   
     padding: 10px;
     font-size: 1em;
     border: 1px solid #ccc;
@@ -74,3 +75,5 @@ button {
 button:hover {
     background-color: #5548c8;
 }
+
+
