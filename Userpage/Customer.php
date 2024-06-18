@@ -59,7 +59,9 @@ $_SESSION['first_name'] = $rows[0]['first_name'];
     <div class="container">
         <div class="header-area">
             <div class="logo">
-                <a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
+                <?php
+                echo'<a href="main.php?user_id="><img src="assets/img/CTlogo.png" alt="logo" /></a>'
+                ?>
             </div>
             <div class="header-right">
                 <ul>

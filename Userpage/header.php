@@ -3,7 +3,12 @@
         <div class="container">
             <div class="header-area">
                 <div class="logo">
-                    <a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
+                    <?php if ($_SESSION['user_id'] == 0) {
+                    echo '<a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>';
+                    } else {
+                        echo'<a href="main.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>';
+                    }
+                    ?>
                 </div>
                 <div class="header-right">
                     <ul>
