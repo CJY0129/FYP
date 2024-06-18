@@ -81,7 +81,12 @@ $number_of_seats = $row['number_of_seat'];
         <div class="container">
             <div class="header-area">
                 <div class="logo">
-                    <a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>
+                <?php if ($_SESSION['user_id'] == 0) {
+                    echo '<a href="index.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>';
+                    } else {
+                        echo'<a href="main.php"><img src="assets/img/CTlogo.png" alt="logo" /></a>';
+                    }
+                    ?>
                 </div>
                 <div class="header-right">
                     <ul>
@@ -127,7 +132,7 @@ $number_of_seats = $row['number_of_seat'];
                             }
                             ?>
                             <?php echo '<li><a href="movies.php?userid=' . $_SESSION['user_id'] . '">Movies</a></li>' ?>
-                            <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Buy Tickets</a></li>
+                            
                         </ul>
                     </div>
                 </div>
