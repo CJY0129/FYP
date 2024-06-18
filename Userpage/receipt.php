@@ -1,9 +1,6 @@
 <?php
 include ("connect.php");
-require "vendor/autoload.php"; 
-
-use Endroid\QrCode\QrCode;
-use Endroid\QrCode\Writer\PngWriter;
+require_once "phpqrcode/qrlib.php"; 
 
 
 $show_id = $_SESSION['show_id'];
@@ -45,13 +42,19 @@ $name = isset($_POST['name']) ? $_POST['name'] : $_SESSION['first_name'];
 if($_SESSION['phone'] == null){
     $_SESSION['phone'] ="-";
 }
-// Generate QR code
 
+// Folder to save qrcode images
+$path = 'assets/img/';
+if (!is_dir($path)) {
+    mkdir($path);
+}
+// Filename
+$file = $path.date("Y-m-d-h-i-s").'.png';
+// Generate QR code
 $text = "Booking ID: $booking_id\nName: ".$_SESSION['first_name']."\nEmail: ".$_SESSION['email'] ."\nPhone: ".$_SESSION['phone']."\nHall:".$_SESSION['hall_num']."\nSeat Number: ".$_SESSION['selected_seats']."\nShowTime ID:".$_SESSION['show_id']."\nShowTime:".$_SESSION['showtime']."";
-$qr_code = QrCode::create($text);
-$writer = new PngWriter();
-$result = $writer->write($qr_code);
-$qr_code_base64 = base64_encode($result->getString());
+// Lets create
+QRcode::png($text, $file, 'H', 2, 2);
+
 
 $conn->close();
 ?>
@@ -109,7 +112,7 @@ $conn->close();
             <p><strong>Seats:</strong> <?= $_SESSION['selected_seats']?></p>
         </div>
         <div class="qr-code">
-            <img src="data:image/png;base64,<?= $qr_code_base64 ?>" alt="QR Code">
+            <img src="<?= $file ?>" alt="QR Code"width="300" height="300">
         </div>
         <button id="download">Download Ticket</button>
     </div>
