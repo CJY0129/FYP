@@ -11,7 +11,7 @@ session_start();
 </head>
 <body>
     <div class="container">
-    <form action="booking.php?receiptcpunter=1" method="POST" class="payment-form">
+    <form action="booking.php?receiptcounter=1" method="POST" class="payment-form">
             <div class="section">
                 <h2>Payment</h2>
                 <label>
