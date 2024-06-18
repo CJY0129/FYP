@@ -2,6 +2,8 @@
 session_start();
 include('connection.php');
 $error_message = '';
+$error_message_username = '';
+$error_message_email = '';
 $signup_success = false;
 
 // Check if the form has been submitted
@@ -21,23 +23,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($password !== $password_confirmation) {
             $error_message = "Passwords must match";
         } else {
-            // Hash the password
-            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+            // Check if username already exists
+            $check_username_sql = "SELECT * FROM user WHERE username = ?";
+            $check_username_stmt = $conn->prepare($check_username_sql);
+            $check_username_stmt->bind_param("s", $username);
+            $check_username_stmt->execute();
+            $result_username = $check_username_stmt->get_result();
 
-            // You may want to add validation and sanitization here
+            if ($result_username->num_rows > 0) {
+                $error_message_username = "Username already exists";
+            }
 
-            // Insert the data into the database
-            $sql = "INSERT INTO user (username, password, first_name, last_name, Gender, email, phone_number) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssssss", $username, $hashed_password, $first_name, $last_name, $gender, $email, $phone_number);
+            // Check if email already exists
+            $check_email_sql = "SELECT * FROM user WHERE email = ?";
+            $check_email_stmt = $conn->prepare($check_email_sql);
+            $check_email_stmt->bind_param("s", $email);
+            $check_email_stmt->execute();
+            $result_email = $check_email_stmt->get_result();
 
-            if ($stmt->execute()) {
-                // Registration successful
-                $signup_success = true;
-            } else {
-                // Error occurred while registering
-                $error_message = "Error: " . $stmt->error;
+            if ($result_email->num_rows > 0) {
+                $error_message_email = "Email already exists";
+            }
+
+            // If no errors, insert the data into the database
+            if (empty($error_message_username) && empty($error_message_email)) {
+                // Hash the password
+                $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+                // Insert the data into the database
+                $sql = "INSERT INTO user (username, password, first_name, last_name, gender, email, phone_number) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("sssssss", $username, $hashed_password, $first_name, $last_name, $gender, $email, $phone_number);
+
+                if ($stmt->execute()) {
+                    // Registration successful
+                    $signup_success = true;
+                } else {
+                    // Error occurred while registering
+                    $error_message = "Error: " . $stmt->error;
+                }
             }
         }
     } 
@@ -88,6 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2 class="profile-heading">Sign Up</h2>
     <h6>Username</h6>
     <input type="text" name="username" required>
+    <?php if ($error_message_username): ?>
+    <div class="error-message"><?php echo $error_message_username; ?></div>
+    <?php endif; ?>
     <h6>Password</h6>
     <div style="position: relative;">
         <input type="password" name="password" id="password" required>
@@ -98,6 +126,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" id="password_confirmation" name="password_confirmation" required>
         <span class="password-toggle" data-target="password_confirmation" onclick="togglePasswordVisibilityconf()" style="position: absolute; right: 10px; top: 35%; transform: translateY(-50%);">Show</span>
     </div>
+    <?php if ($error_message): ?>
+    <div class="error-message"><?php echo $error_message; ?></div>
+    <?php endif; ?>
     <h6>First Name</h6>
     <input type="text" name="firstname" required>
     <h6>Last Name</h6>
@@ -110,17 +141,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </select>
     <h6>Email</h6>
     <input type="email" name="email" required>
+    <?php if ($error_message_email): ?>
+    <div class="error-message"><?php echo $error_message_email; ?></div>
+    <?php endif; ?>
     <h6>Phone Number</h6>
     <input type="number" name="phone" min="111111111" max="999999999" required>
-    <?php if ($error_message): ?>
-    <div class="error-message"><?php echo $error_message; ?></div>
-    <?php endif; ?>
     <div class="login-signup">
         <span class="signup-link"><a href="Login.php">Back</a></span>
         <button type="submit" name="signup" class="theme-btn">Sign Up</button>
     </div>
 </form>
-
 
 <!-- Include your footer if needed -->
 <?php include('footer.php'); ?>
@@ -128,7 +158,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
 function togglePasswordVisibilitypass() {
     var passwordField = document.getElementById("password");
-    
     var togglePasswordField = document.querySelector(".password-toggle[data-target='password']");
 
     if (passwordField.type === "password") {
@@ -142,7 +171,6 @@ function togglePasswordVisibilitypass() {
 
 function togglePasswordVisibilityconf() {
     var passwordConfirmField = document.getElementById("password_confirmation");
-    
     var togglePasswordConfirmField = document.querySelector(".password-toggle[data-target='password_confirmation']");
 
     if (passwordConfirmField.type === "password") {
