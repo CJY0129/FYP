@@ -16,11 +16,11 @@ session_start();
                 <h2>Payment</h2>
                 <label>
                     Full Name:
-                    <input type="text" name="fullName" placeholder="Jacob Aiden">
+                    <input type="text" name="fullName" placeholder="Jacob Aiden" required>
                 </label>
                 <label>
                     Email:
-                    <input type="email" name="email" placeholder="example@example.com">
+                    <input type="email" name="email" placeholder="example@example.com" required>
                 </label>
                 
             </div>
@@ -35,23 +35,23 @@ session_start();
                 </div>
                 <label>
                     Name On Card:
-                    <input type="text" name="nameOnCard" placeholder="Mr. Jacob Aiden">
+                    <input type="text" name="nameOnCard" placeholder="Mr. Jacob Aiden" required>
                 </label>
                 <label>
                     Credit Card Number:
-                    <input type="text" name="creditCardNumber" placeholder="1111 2222 3333 4444" min="16">
+                    <input type="number" name="creditCardNumber" placeholder="1111 2222 3333 4444" min="16"  max="19" required>
                 </label>
                 <label>
                     Exp. Month:
-                    <input type="text" name="expMonth" placeholder="August">
+                    <input type="text" name="expMonth" placeholder="August" required>
                 </label>
                 <label>
                     Exp. Year:
-                    <input type="text" name="expYear" placeholder="2025">
+                    <input type="number" name="expYear" placeholder="2025" min="2024" max="2026" step="1" required>
                 </label>
                 <label>
                     CVV:
-                    <input type="text" name="cvv" placeholder="123">
+                    <input type="number" name="cvv" placeholder="123" min="3" max="3" required>
                 </label>
             </div>
             
