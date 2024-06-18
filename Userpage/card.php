@@ -39,7 +39,7 @@ session_start();
                 </label>
                 <label>
                     Credit Card Number:
-                    <input type="number" name="creditCardNumber" placeholder="1111 2222 3333 4444" min="16"  max="19" required>
+                    <input type="number" name="creditCardNumber" placeholder="1111 2222 3333 4444" min="16"   required>
                 </label>
                 <label>
                     Exp. Month:
@@ -51,7 +51,7 @@ session_start();
                 </label>
                 <label>
                     CVV:
-                    <input type="number" name="cvv" placeholder="123" min="3" max="3" required>
+                    <input type="number" name="cvv" placeholder="123" min="001" max="999" required>
                 </label>
             </div>
             
