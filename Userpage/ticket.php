@@ -240,7 +240,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                 alert("Please select the same number of tickets as the number of seats selected.");
                 return;
             }
-            alert("Selection confirmed! ");
+            alert("Selection completed! ");
             const totalPrice = parseInt(document.getElementById('total-price').textContent);
 
             const items = {
