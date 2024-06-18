@@ -1,5 +1,4 @@
 <?php
-
 // Simulating selected seats from a session for this example
 
 $selected_seats = explode(',', $_SESSION['selected_seats']);
@@ -13,13 +12,10 @@ $_SESSION['total_seats'] = count($selected_seats);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket Selection</title>
     <style>
-       
         .ticket {
-
             background-color: #222;
             border-radius: 10px;
-            color: #fff
-            
+            color: #fff;
         }
         .section {
             margin-bottom: 20px;
@@ -78,13 +74,11 @@ $_SESSION['total_seats'] = count($selected_seats);
 <body>
     <div class="ticket">
         <div class="section">
-            
             <div class="section-content">
                 You have selected <span id="seat-count"><?php echo $_SESSION['total_seats']; ?></span> seat(s).
                 <input type="hidden" id="selected-seats" value="<?php echo $_SESSION['total_seats']; ?>">
             </div>
         </div>
-        
         <div class="section">
             <div class="section-header">Select Tickets</div>
             <div class="section-content">
@@ -99,7 +93,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                 <div class="item-type">
                     <div>Children (RM 12)</div>
                     <div>
-                        <button class="btn" onclick="updateCount('children', -1)" disabled>-</button>
+                        <button class="btn" onclick="updateCount('children', -1)">-</button>
                         <span id="children-count">0</span>
                         <button class="btn" onclick="updateCount('children', 1)">+</button>
                     </div>
@@ -107,7 +101,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                 <div class="item-type">
                     <div>Student (RM 16)</div>
                     <div>
-                        <button class="btn" onclick="updateCount('student', -1)" disabled>-</button>
+                        <button class="btn" onclick="updateCount('student', -1)">-</button>
                         <span id="student-count">0</span>
                         <button class="btn" onclick="updateCount('student', 1)">+</button>
                     </div>
@@ -115,7 +109,7 @@ $_SESSION['total_seats'] = count($selected_seats);
                 <div class="item-type">
                     <div>Oku (RM 16)</div>
                     <div>
-                        <button class="btn" onclick="updateCount('oku', -1)" disabled>-</button>
+                        <button class="btn" onclick="updateCount('oku', -1)">-</button>
                         <span id="oku-count">0</span>
                         <button class="btn" onclick="updateCount('oku', 1)">+</button>
                     </div>
@@ -164,24 +158,22 @@ $_SESSION['total_seats'] = count($selected_seats);
                 </div>
             </div>
         </div>
-        
         <div class="section">
             <div class="section-header">Total Price</div>
             <div class="section-content total-price">RM <span id="total-price">20</span></div>
-        </div>     
+        </div>
         <button style="margin-bottom:50px;" class="confirm-btn" onclick="confirmSelection()">Confirm</button>
     </div>
-    
     <script>
         const prices = {
-            adult: <?php echo $_SESSION['price'] ?> +10,
-            children: <?php echo $_SESSION['price'] ?> +2,
-            student: <?php echo $_SESSION['price'] ?> +5,
-            oku: <?php echo $_SESSION['price'] ?> +5,
-            soda: <?php echo $_SESSION['price'] ?> -4,
-            water: <?php echo $_SESSION['price'] ?> -7,
-            popcorn: <?php echo $_SESSION['price'] ?>,
-            burger: <?php echo $_SESSION['price'] ?> +2
+            adult: 20,
+            children: 12,
+            student: 16,
+            oku: 16,
+            soda: 6,
+            water: 3,
+            popcorn: 10,
+            burger: 12
         };
 
         const totalSeats = parseInt(document.getElementById('selected-seats').value);
@@ -189,21 +181,17 @@ $_SESSION['total_seats'] = count($selected_seats);
         function updateCount(itemType, increment) {
             const countElement = document.getElementById(`${itemType}-count`);
             let currentCount = parseInt(countElement.textContent);
-            currentCount += increment;
-
-            if (currentCount < 0) {
-                currentCount = 0;
-            }
 
             // Calculate total tickets selected
-            const totalTickets = getTotalTicketsSelected();
+            const totalTickets = getTotalTicketsSelected() + increment;
 
-            // Check if the total tickets exceed the total seats, but only for ticket types, not food and drinks
-            if (!['soda', 'water', 'popcorn', 'burger'].includes(itemType) && totalTickets + increment > totalSeats) {
-                alert("You cannot select more tickets than the number of seats selected.");
-                return; // Exit the function if the total tickets exceed total seats
+            // Check if the total tickets exceed the total seats
+            if (!['soda', 'water', 'popcorn', 'burger'].includes(itemType) && (totalTickets > totalSeats || totalTickets < 0)) {
+                alert("Please select the same number of tickets as the number of seats selected.");
+                return;
             }
 
+            currentCount += increment;
             countElement.textContent = currentCount;
 
             // Enable/disable the decrement button based on the current count
@@ -245,34 +233,16 @@ $_SESSION['total_seats'] = count($selected_seats);
                                (burgerCount * prices.burger);
 
             document.getElementById('total-price').textContent = totalPrice;
-            
         }
+
         function confirmSelection() {
-    // Update the total price before navigating
-    updateTotalPrice();
-    
-    // Get the total price
-    const totalPrice = parseInt(document.getElementById('total-price').textContent);
-
-    // Gather item quantities
-    const items = {
-        adult: parseInt(document.getElementById('adult-count').textContent),
-        children: parseInt(document.getElementById('children-count').textContent),
-        student: parseInt(document.getElementById('student-count').textContent),
-        oku: parseInt(document.getElementById('oku-count').textContent),
-        soda: parseInt(document.getElementById('soda-count').textContent),
-        water: parseInt(document.getElementById('water-count').textContent),
-        popcorn: parseInt(document.getElementById('popcorn-count').textContent),
-        burger: parseInt(document.getElementById('burger-count').textContent)
-    };
-
-    // Convert items to query parameters
-    const queryParams = new URLSearchParams(items).toString();
-    
-    // Redirect to the receipt page with the query parameters
-    window.location.href = `booking.php?${queryParams}&totalPrice=${totalPrice}`;
-}
-
+            if (getTotalTicketsSelected() !== totalSeats) {
+                alert("Please select the same number of tickets as the number of seats selected.");
+                return;
+            }
+            alert("Selection confirmed! Total Price: RM " + document.getElementById('total-price').textContent);
+            // Add form submission logic here
+        }
     </script>
-</body> 
+</body>
 </html>
