@@ -1,1 +1,0 @@
-https://buy.stripe.com/7sI02G7eN3CHaIMfYY

@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
             $mail->addAddress($email);
             $mail->Subject = "Password Reset";
             $mail->Body = <<<END
-            Click <a href="http://localhost:8080/FYP/Userpage/reset_password.php?token=$token">here</a> 
+            Click <a href="http://localhost/FYP/CineTime/Userpage/reset_password.php?token=$token">here</a> 
             to reset your password.
             END;
 
