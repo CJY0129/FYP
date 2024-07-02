@@ -2,16 +2,11 @@
 
 include("connect.php");
 session_start();
-if ($_SESSION['m']==1) {
-    $movie = "movie";
-} elseif ($_SESSION['m']==2) {
-    $movie = "csmovie";
-} elseif ($_SESSION['m']==3) {
-    $movie = "ucmovie";
-}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve movie details from the form
     $title = $_POST['title'];
+    $status = $_POST['status'];
     $genre = $_POST['genre'];
     $director = $_POST['director'];
     $cast = $_POST['cast'];
@@ -22,6 +17,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Check if a file was uploaded
     if (isset($_FILES['poster']) && $_FILES['poster']['error'] === UPLOAD_ERR_OK) {
+        // Validate file type and size (optional but recommended)
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $maxFileSize = 2 * 1024 * 1024; // 2 MB
+
+        if (!in_array($_FILES['poster']['type'], $allowedTypes)) {
+            header("location: home.php?show=movie&error=Invalid file type");
+            exit();
+        }
+
+        if ($_FILES['poster']['size'] > $maxFileSize) {
+            header("location: home.php?show=movie&error=File size exceeds limit");
+            exit();
+        }
+
         // Retrieve file details
         $fileTmpName = $_FILES['poster']['tmp_name'];
         $fileName = $_FILES['poster']['name'];
@@ -31,27 +40,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $posterData = fread($fp, filesize($fileTmpName));
         fclose($fp);
 
-        // Escape special characters to prevent SQL injection
-        $posterData = mysqli_real_escape_string($conn, $posterData);
+        // Use prepared statements to prevent SQL injection
+        $stmt = $conn->prepare("INSERT INTO movie (title, status, genre, director, cast, synopsis, duration, release_date, poster_path, trailers_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param('ssssssssss', $title, $status, $genre, $director, $cast, $synopsis, $duration, $releaseDate, $posterData, $trailers_path);
 
-        // Insert movie details into the database, including the poster data
-        $insertQuery = "INSERT INTO $movie (title, genre, director, cast, synopsis, duration, release_date, poster_path, trailers_path) 
-                        VALUES ('$title', '$genre', '$director', '$cast', '$synopsis', '$duration', '$releaseDate', '$posterData','$trailers_path')";
-        $insertResult = mysqli_query($conn, $insertQuery);
-
-        if ($insertResult) {
-            header("location: home.php?show=$movie&success=1");
+        if ($stmt->execute()) {
+            header("location: home.php?show=movie&success=1");
             exit();
         } else {
-            header("location: home.php?show=$movie&error=1");
+            header("location: home.php?show=movie&error=Database error");
             exit();
         }
+
+        $stmt->close();
     } else {
-        header("location: home.php?show=$movie&error=1");
+        header("location: home.php?show=movie&error=File upload error");
         exit();
     }
-
-} 
+}
 
 // Close the database connection
 mysqli_close($conn);
