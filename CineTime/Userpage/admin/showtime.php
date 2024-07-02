@@ -149,7 +149,7 @@
                         echo '</div>';
                         echo '<div class="form-group">';
                         echo '<label class="form-control-label">Price</label>';
-                        echo '<input type="number" name="price" class="form-control" value="' . $row['price'] . '" required>';
+                        echo '<input type="number" name="price" class="form-control" value="' . $row['price'] . '" min="1" required>';
                         echo '</div>';
                         echo '<button type="submit" class="btn btn-primary">Save Changes</button>';
                         echo '</form>';
@@ -228,7 +228,7 @@
                     </div>
                     <div class="form-group">
                       <label class="form-control-label">Price</label>
-                      <input type="number" name="price" class="form-control" required>
+                      <input type="number" name="price" class="form-control" min="1" required>
                     </div>
                     <div class="form-group">
                       <input type="submit" value="Add Showtime" class="btn btn-primary">

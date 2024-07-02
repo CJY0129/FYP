@@ -146,35 +146,35 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                       echo '<input type="hidden" name="movie_id" value="' . $row['movie_id'] . '">';
                       echo '<div class="form-group">';
                       echo '<label for="title">Title</label>';
-                      echo '<input type="text" class="form-control" id="title" name="title" value="' . $row['title'] . '">';
+                      echo '<input type="text" class="form-control" id="title" name="title" value="' . $row['title'] . '" required>';
                       echo '</div>';
                       echo '<div class="form-group">';
                       echo '<label for="genre">Genre</label>';
-                      echo '<input type="text" class="form-control" id="genre" name="genre" value="' . $row['genre'] . '">';
+                      echo '<input type="text" class="form-control" id="genre" name="genre" value="' . $row['genre'] . '" required>';
                       echo '</div>';
                       echo '<div class="form-group">';
                       echo '<label for="director">Director</label>';
-                      echo '<input type="text" class="form-control" id="director" name="director" value="' . $row['director'] . '">';
+                      echo '<input type="text" class="form-control" id="director" name="director" value="' . $row['director'] . '" required>';
                       echo '</div>';
                       echo '<div class="form-group">';
                       echo '<label for="cast">Cast</label>';
-                      echo '<input type="text" class="form-control" id="cast" name="cast" value="' . $row['cast'] . '">';
+                      echo '<input type="text" class="form-control" id="cast" name="cast" value="' . $row['cast'] . '" required>';
                       echo '</div>';
                       echo '<div class="form-group">';
                       echo '<label for="synopsis">Synopsis</label>';
-                      echo '<textarea class="form-control" id="synopsis" name="synopsis">' . $row['synopsis'] . '</textarea>';
+                      echo '<textarea class="form-control" id="synopsis" name="synopsis" required >' . $row['synopsis'] . '</textarea>';
                       echo '</div>';
                       echo '<div class="form-group">';
                       echo '<label for="duration">Duration</label>';
-                      echo '<input type="text" class="form-control" id="duration" name="duration" value="' . $row['duration'] . '">';
+                      echo '<input type="text" class="form-control" id="duration" name="duration" value="' . $row['duration'] . '"min="1" required>';
                       echo '</div>';
                       echo '<div class="form-group">';
                       echo '<label for="release_date">Release Date</label>';
-                      echo '<input type="text" class="form-control" id="release_date" name="release_date" value="' . $row['release_date'] . '">';
+                      echo '<input type="text" class="form-control" id="release_date" name="release_date" value="' . $row['release_date'] . '"required>';
                       echo '</div>';
                       echo '<div class="form-group">';
                       echo '<label for="trailers_path">Trailers Link</label>';
-                      echo '<input type="text" class="form-control" id="trailers_path" name="trailers_path" value="' . $row['trailers_path'] . '">';
+                      echo '<input type="text" class="form-control" id="trailers_path" name="trailers_path" value="' . $row['trailers_path'] . '"required>';
                       echo '</div>';
                       echo '<div class="form-group">';
                       echo '<label for="status">Status</label>';
@@ -234,23 +234,23 @@ if (isset($_GET['show']) && $_GET['show'] == 'movie')
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Genre</label>
-                          <input type="text" name="genre" class="form-control">
+                          <input type="text" name="genre" class="form-control" required>
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Director</label>
-                          <input type="text" name="director" class="form-control">
+                          <input type="text" name="director" class="form-control" required>
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Cast</label>
-                          <input type="text" name="cast" class="form-control">
+                          <input type="text" name="cast" class="form-control" required>
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Synopsis</label>
-                          <textarea name="synopsis" class="form-control"></textarea>
+                          <textarea name="synopsis" class="form-control" required></textarea>
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Duration</label>
-                          <input type="number" name="duration" class="form-control" min="0" required>
+                          <input type="number" name="duration" class="form-control" min="1" required>
                         </div>
                         <div class="form-group">
                           <label class="form-control-label">Release Date</label>

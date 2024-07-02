@@ -51,7 +51,7 @@ if (!is_dir($path)) {
 // Filename
 $file = $path.date("Y-m-d-h-i-s").'.png';
 // Generate QR code
-$text = "Booking ID: $booking_id\nName: ".$_SESSION['first_name']."\nEmail: ".$_SESSION['email'] ."\nPhone: ".$_SESSION['phone']."\nHall:".$_SESSION['hall_num']."\nSeat Number: ".$_SESSION['selected_seats']."\nShowTime ID:".$_SESSION['show_id']."\nShowTime:".$_SESSION['showtime']."";
+$text = "Booking ID: $booking_id\nName: ".$_SESSION['first_name']."\nEmail: ".$_SESSION['email'] ."\nPhone: ".$_SESSION['phone']."\nBooking Time:".date('Y-m-d H:i:s')."\nHall:".$_SESSION['hall_num']."\nSeat Number: ".$_SESSION['selected_seats']."\nShowTime ID:".$_SESSION['show_id']."\nShowTime:".$_SESSION['showtime']."";
 // Lets create
 QRcode::png($text, $file, 'H', 2, 2);
 
@@ -104,6 +104,7 @@ $conn->close();
         <h1>Booking Detail & QR code</h1>
         <div class="details">
             <p><strong>Booking ID:</strong> <?= $booking_id ?></p>
+            <p><strong>Booking Date:</strong> <?= date('Y-m-d H:i:s') ?></p>
             <p><strong>Name:</strong> <?= $_SESSION['first_name'] ?></p>
             <p><strong>Email:</strong> <?= $_SESSION['email'] ?></p>
             <p><strong>Phone:</strong> <?= $_SESSION['phone'] ?></p>

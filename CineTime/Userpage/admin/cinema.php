@@ -98,19 +98,19 @@
                                     echo '<input type="hidden" name="cinema_id" value="' . $row['cinema_id'] . '">';
                                     echo '<div class="form-group">';
                                     echo '<label for="name">Name</label>';
-                                    echo '<input type="text" class="form-control" id="name" name="name" value="' . $row['name'] . '">';
+                                    echo '<input type="text" class="form-control" id="name" name="name" value="' . $row['name'] . '"required>';
                                     echo '</div>';
                                     echo '<div class="form-group">';
                                     echo '<label for="location">Location</label>';
-                                    echo '<input type="text" class="form-control" id="location" name="location" value="' . $row['location'] . '">';
+                                    echo '<input type="text" class="form-control" id="location" name="location" value="' . $row['location'] . '"required>';
                                     echo '</div>';
                                     echo '<div class="form-group">';
                                     echo '<label for="city">City</label>';
-                                    echo '<input type="text" class="form-control" id="city" name="city" value="' . $row['city'] . '">';
+                                    echo '<input type="text" class="form-control" id="city" name="city" value="' . $row['city'] . '"required>';
                                     echo '</div>';
                                     echo '<div class="form-group">';
                                     echo '<label for="num_of_hall">Number of Halls</label>';
-                                    echo '<input type="number" class="form-control" id="num_of_hall" name="num_of_hall" value="' . $row['num_of_hall'] . '">';
+                                    echo '<input type="number" class="form-control" id="num_of_hall" name="num_of_hall" value="' . $row['num_of_hall'] . '"min="1" required>';
                                     echo '</div>';
                                     echo '<button type="submit" class="btn btn-primary">Save Changes</button>';
                                     echo '</form>';
@@ -150,19 +150,19 @@
                                 <form method="post" action="submit_cinema.php">
                                     <div class="form-group">
                                         <label class="form-control-label">Name</label>
-                                        <input type="text" name="name" class="form-control">
+                                        <input type="text" name="name" class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-control-label">Location</label>
-                                        <input type="text" name="location" class="form-control">
+                                        <input type="text" name="location" class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-control-label">City</label>
-                                        <input type="text" name="city" class="form-control">
+                                        <input type="text" name="city" class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-control-label">Number of Halls</label>
-                                        <input type="number" name="num_of_hall" class="form-control">
+                                        <input type="number" name="num_of_hall" class="form-control" min="1" required>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" value="Add Cinema" class="btn btn-primary">
@@ -233,7 +233,7 @@
                                     echo '<div class="form-group">';
                                     echo '<div class="form-group">';
                                     echo '<label for="number_of_seat">Hall Number</label>';
-                                    echo '<input type="number" class="form-control" id="hall_num" name="hall_num" value="' . $row['hall_num'] . '">';
+                                    echo '<input type="number" class="form-control" id="hall_num" name="hall_num" value="' . $row['hall_num'] . '"min="1" required>';
                                     echo '</div>';
                                     echo '<label for="cinema_id">Cinema</label>';
                                     echo '<select class="form-control" id="cinema_id" name="cinema_id">';
@@ -248,7 +248,7 @@
                                     echo '</div>';
                                     echo '<div class="form-group">';
                                     echo '<label for="number_of_seat">Number of Seats</label>';
-                                    echo '<input type="number" class="form-control" id="number_of_seat" name="number_of_seat" value="' . $row['number_of_seat'] . '">';
+                                    echo '<input type="number" class="form-control" id="number_of_seat" name="number_of_seat" value="' . $row['number_of_seat'] . '" min="1" required>';
                                     echo '</div>';
                                     echo '<button type="submit" class="btn btn-primary">Save Changes</button>';
                                     echo '</form>';
@@ -288,7 +288,7 @@
                                 <form method="post" action="submit_hall.php">
                                 <div class="form-group">
                                         <label class="form-control-label">Hall Number</label>
-                                        <input type="number" name="hall_num" class="form-control">
+                                        <input type="number" name="hall_num" class="form-control" min="1" required>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-control-label">Cinema</label>
@@ -307,7 +307,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-control-label">Number of Seats</label>
-                                        <input type="number" name="number_of_seat" class="form-control">
+                                        <input type="number" name="number_of_seat" class="form-control" min="1" required>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" value="Add Hall" class="btn btn-primary">
